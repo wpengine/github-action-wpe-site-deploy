@@ -25,7 +25,7 @@ jobs:
         
     steps: 
     - uses: actions/checkout@v2
-    - name: SSH Deploy to WP Engine
+    - name: GitHub Deploy to WP Engine
       uses: wpengine/github-action-wpe-site-deploy@main
       env: 
           WPE_ENV_NAME: yoursitename 
