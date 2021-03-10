@@ -16,7 +16,7 @@ name: Deploy to WP Engine
 on:  
   push:
     branches:
-        - master
+        - main
 
 jobs:
   build:
