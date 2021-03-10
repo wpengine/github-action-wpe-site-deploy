@@ -53,10 +53,7 @@ jobs:
 | Name | Type | Usage |
 |-|-|-|
 | `TPO_SRC_PATH` | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
-| `TPO_PATH` | Optional path to specify a theme, plugin, or other directory you want to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Note the ending slash.  |
-
-
-Note: If you do not use the `TPO_PATH` , simply leave `""` as is. 
+| `TPO_PATH` | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
 
 ### Further reading
 
@@ -71,6 +68,3 @@ Note: If you do not use the `TPO_PATH` , simply leave `""` as is.
 
 
 3. Add the Public SSH key to your WP Engine SSH Gateway configuration. https://wpengine.com/support/ssh-gateway/#addsshkey
-
-# Github-Action-WP-Engine-SSH-Deploy
-A Github Action to deploy code directly to WP Engine.
