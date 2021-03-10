@@ -1,4 +1,4 @@
-# GitHub Action for WP Engine SSH Deployments
+# GitHub Action for WP Engine Site Deployments
 
 This GitHub Action can be used to deploy your WordPress repo/branch from Github to a WP Engine environment (Production / Stage / Dev) via the WP Engine SSH Gateway toolkit and a prefashioned rsync protocol. This can also be used to specifically deploy a single directory of your choice such as a theme or plugin directory. 
 
