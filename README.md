@@ -26,7 +26,7 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: SSH Deploy to WP Engine
-      uses: bowiedev/github-action-wpengine-ssh-deploy@master 
+      uses: wpengine/github-action-wpe-site-deploy@master 
       env: 
           WPE_ENV_NAME: yoursitename 
           WPE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
