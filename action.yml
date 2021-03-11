@@ -2,7 +2,7 @@ name: "Deploy to WordPress to WP Engine"
 branding:
   icon: "upload-cloud"
   color: "blue"
-description: "Deploy  WordPress projects to a WP Engine account using SSH Gateway"
+description: "Deploy WordPress projects to a WP Engine account using SSH Gateway"
 runs:
   using: "docker"
   image: "Dockerfile"
