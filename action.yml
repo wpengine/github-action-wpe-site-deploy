@@ -1,4 +1,4 @@
-name: "Deploy to WordPress to WP Engine"
+name: "Deploy WordPress to WP Engine"
 branding:
   icon: "upload-cloud"
   color: "blue"
