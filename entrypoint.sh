@@ -28,7 +28,7 @@ fi
 
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
 
-WPE_DESTINATION="$WPE_ENV_NAME"@"$WPE_SSH_HOST":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
+WPE_DESTINATION="$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
 mkdir "$SSH_PATH"
