@@ -48,5 +48,5 @@ chmod 644 "$WPE_SSHG_KEY_PUBLIC_PATH"
 rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -a --out-format="%n"  --exclude=".*" $SRC_PATH "$WPE_DESTINATION"
 
 # Clear cache 
-ssh $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
+ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
 echo "SUCCESS: Site has been deployed and cache has been flushed."
