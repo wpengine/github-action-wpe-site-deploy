@@ -26,6 +26,8 @@ else
     SRC_PATH="."
 fi
 
+WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
+
 WPE_DESTINATION="$WPE_ENV_NAME"@"$WPE_SSH_HOST":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
@@ -46,5 +48,5 @@ chmod 644 "$WPE_SSHG_KEY_PUBLIC_PATH"
 rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -a --out-format="%n"  --exclude=".*" $SRC_PATH "$WPE_DESTINATION"
 
 # Clear cache 
-ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_HOST << "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
+ssh $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
 echo "SUCCESS: Site has been deployed and cache has been flushed."
