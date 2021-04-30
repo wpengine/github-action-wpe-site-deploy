@@ -59,6 +59,7 @@ jobs:
 
 * [Defining environment variables in GitHub Actions](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#environment-variables)
 * [Storing secrets in GitHub repositories](https://developer.github.com/actions/managing-workflows/storing-secrets/)
+* As this script does not restrict files or directories that can be deployed, it is recommended to leverage one of [WP Engine's .gitignore tamplates.](https://wpengine.com/support/git/#Add_gitignore)
 
 ## Setting up your SSH keys for repo
 
