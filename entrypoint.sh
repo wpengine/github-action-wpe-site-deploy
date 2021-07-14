@@ -21,7 +21,6 @@ else
 fi
 
 if [ -n "$TPO_PATH" ]; then 
-    if [[ "$TPO_PATH" ]] 
     DEST_PATH="${TPO_PATH%/}"
 else 
     DEST_PATH=""
