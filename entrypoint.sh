@@ -15,6 +15,7 @@ WPE_SSHG_KEY_PUBLIC_PATH="$SSH_PATH/github_action.pub"
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
 if [ -n "$TPO_PATH" ]; then 
+ #   if [[ "$TPO_PATH" ]] 
     DIR_PATH="$TPO_PATH"
 else 
     DIR_PATH=""
@@ -45,7 +46,7 @@ chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 chmod 644 "$WPE_SSHG_KEY_PUBLIC_PATH"
 
 # Deploy via SSH
-rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -avm --inplace --delete --out-format="%n"  --exclude=".*" $SRC_PATH "$WPE_DESTINATION"
+rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -av --inplace --delete-after --out-format="%n"  --exclude=".*" $SRC_PATH "$WPE_DESTINATION"
 
 # Clear cache 
 ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
