@@ -3,9 +3,9 @@ branding:
   icon: "upload-cloud"
   color: "blue"
 description: "Deploy WordPress projects to a WP Engine account using SSH Gateway"
-runs:
-  using: "docker"
-  image: "Dockerfile"
+#runs:
+#  using: "docker"
+#  image: "Dockerfile"
 inputs:
   WPE_ENV_NAME:
     description: "The WP Engine environment to deploy to that is labeled as Production, Staging or Development."
@@ -22,3 +22,9 @@ inputs:
   TPO_PATH:
     description: "An optional destination directory to deploy to other than the WordPress root."
     required: false
+
+runs:
+  using: "composite"
+  steps:
+    - run: $GITHUB_ACTION_PATH/entrypoint.sh
+      shell: sh
