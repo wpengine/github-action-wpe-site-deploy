@@ -26,20 +26,11 @@ inputs:
 runs:
   using: composite
   steps:
-    - env:
-        SSH_PATH: "$HOME/.ssh"
-        KNOWN_HOSTS_PATH: ${{ env.SSH_PATH }}/known_hosts
-        WPE_SSHG_KEY_PRIVATE_PATH: ${{ env.SSH_PATH }}/github_action
-        WPE_SSHG_KEY_PUBLIC_PATH: ${{ SSH_PATH }}/github_action.pub
-        WPE_SSH_HOST: ${{ env.WPE_ENV_NAME }}.ssh.wpengine.net
-        WPE_SSH_USER: ${{ env.WPE_ENV_NAME }}@${{ WPE_SSH_HOST }}
-        WPE_DESTINATION: '${{ env.WPE_SSH_USER }}":sites/"${{ env.WPE_ENV_NAME }}"/"$DEST_PATH"'  
-
     - name: Generate Source and Destination Paths
       shell: bash
       run: |
         if [ -n "$TPO_SRC_PATH" ]; then
-            SRC_PATH="$TPO_SRC_PATH"
+            SRC_PATH="${TPO_SRC_PATH}"
         else 
             SRC_PATH=""
         fi
@@ -49,6 +40,13 @@ runs:
         else
             DEST_PATH=""
         fi
+        SSH_PATH="$HOME/.ssh"
+        KNOWN_HOSTS_PATH=${SSH_PATH}/known_hosts
+        WPE_SSHG_KEY_PRIVATE_PATH: ${SSH_PATH}/github_action
+        WPE_SSHG_KEY_PUBLIC_PATH: ${SSH_PATH}/github_action.pub
+        WPE_SSH_HOST: ${{ env.WPE_ENV_NAME }}.ssh.wpengine.net
+        WPE_SSH_USER: ${{ env.WPE_ENV_NAME }}@${{ WPE_SSH_HOST }}
+        WPE_DESTINATION: '${{ env.WPE_SSH_USER }}":sites/"${{ env.WPE_ENV_NAME }}"/"$DEST_PATH"'
 
     - name: Setup SSH keys and configurations
       shell: bash
