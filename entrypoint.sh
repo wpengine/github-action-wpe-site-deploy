@@ -15,23 +15,13 @@ WPE_SSHG_KEY_PUBLIC_PATH="$SSH_PATH/github_action.pub"
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
 if [ -n "$TPO_SRC_PATH" ]; then
-    if [[ -d "$TPO_SRC_PATH" ]]; then 
-        SRC_PATH="${TPO_SRC_PATH%/}"
-        SRC_PATH="${TPO_SRC_PATH+/}"
-    else 
-        SRC_PATH="${TPO_SRC_PATH%/}"
-    fi
+    SRC_PATH="$TPO_SRC_PATH"
 else 
     SRC_PATH=""
 fi
 
 if [ -n "$TPO_PATH" ]; then
-    if [[ -d "$TPO_PATH" ]]; then
-        DEST_PATH="${TPO_PATH%/}"
-        DEST_PATH="${TPO_PATH+/}"
-    else
-        DEST_PATH="${TPO_PATH%/}"
-    fi
+    DEST_PATH="${TPO_PATH}"
 else
     DEST_PATH=""
 fi
