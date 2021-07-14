@@ -42,11 +42,11 @@ runs:
         fi
         SSH_PATH="$HOME/.ssh"
         KNOWN_HOSTS_PATH=${SSH_PATH}/known_hosts
-        WPE_SSHG_KEY_PRIVATE_PATH: ${SSH_PATH}/github_action
-        WPE_SSHG_KEY_PUBLIC_PATH: ${SSH_PATH}/github_action.pub
-        WPE_SSH_HOST: ${{ env.WPE_ENV_NAME }}.ssh.wpengine.net
-        WPE_SSH_USER: ${{ env.WPE_ENV_NAME }}@${{ WPE_SSH_HOST }}
-        WPE_DESTINATION: '${WPE_SSH_USER}":sites/"${{ env.WPE_ENV_NAME }}"/"$DEST_PATH"'
+        WPE_SSHG_KEY_PRIVATE_PATH=${SSH_PATH}/github_action
+        WPE_SSHG_KEY_PUBLIC_PATH=${SSH_PATH}/github_action.pub
+        WPE_SSH_HOST=${{ env.WPE_ENV_NAME }}.ssh.wpengine.net
+        WPE_SSH_USER=${{ env.WPE_ENV_NAME }}@${{ WPE_SSH_HOST }}
+        WPE_DESTINATION='${WPE_SSH_USER}":sites/"${{ env.WPE_ENV_NAME }}"/"$DEST_PATH"'
 
     - name: Setup SSH keys and configurations
       shell: bash
