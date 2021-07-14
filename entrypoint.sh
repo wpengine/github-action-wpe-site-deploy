@@ -48,7 +48,7 @@ chmod 644 "$WPE_SSHG_KEY_PUBLIC_PATH"
 # Deploy via SSH
 #WPE_MU_PLUGINS="wp-content/mu-plugins/"+{"wpengine-common","wpe-wp-sign-on-plugin","wpe-elasticpress-autosuggest-logger","force-strong-passwords"}
 #--exclude="$WPE_MU_PLUGINS"
-rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -avm --delete-after --out-format="%n"  --exclude=".*" --exclude="_wpeprivate" $SRC_PATH "$WPE_DESTINATION"
+rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -avm --delete-after --out-format="%n"  --exclude=".*" --exclude="_wpeprivate","wp-config.php" $SRC_PATH "$WPE_DESTINATION"
 
 # Clear cache 
 ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
