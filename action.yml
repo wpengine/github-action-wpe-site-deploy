@@ -19,16 +19,13 @@ inputs:
     description: "An optional destination directory to deploy to other than the WordPress root."
 
 env:
-  WPE_ENV_NAME: ${{ env.WPE_ENV_NAME?Required environment name variable not set. }}
-  WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE?Required secret not set. }}
-  WPE_SSHG_KEY_PUBLIC: ${{ secrets.WPE_SSHG_KEY_PUBLIC?Required secret not set. }}
   SSH_PATH: "$HOME/.ssh"
-  KNOWN_HOSTS_PATH: ${{ env.SSH_PATH }}/known_hosts
-  WPE_SSHG_KEY_PRIVATE_PATH: ${{ env.SSH_PATH }}/github_action
-  WPE_SSHG_KEY_PUBLIC_PATH: ${{ env.SSH_PATH }}/github_action.pub
-  WPE_SSH_HOST: ${{ env.WPE_ENV_NAME }}.ssh.wpengine.net
-  WPE_SSH_USER: ${{ env.WPE_ENV_NAME }}@${{ WPE_SSH_HOST }}
-  WPE_DESTINATION: '${{ env.WPE_SSH_USER }}":sites/"$WPE_ENV_NAME"/"$DEST_PATH"'
+  KNOWN_HOSTS_PATH: ${{ SSH_PATH }}/known_hosts
+  WPE_SSHG_KEY_PRIVATE_PATH: ${{ SSH_PATH }}/github_action
+  WPE_SSHG_KEY_PUBLIC_PATH: ${{ SSH_PATH }}/github_action.pub
+  WPE_SSH_HOST: ${{ WPE_ENV_NAME }}.ssh.wpengine.net
+  WPE_SSH_USER: ${{ WPE_ENV_NAME }}@${{ WPE_SSH_HOST }}
+  WPE_DESTINATION: '${{ WPE_SSH_USER }}":sites/"${{ WPE_ENV_NAME }}"/"$DEST_PATH"'
 
 jobs:
   generate_paths:
