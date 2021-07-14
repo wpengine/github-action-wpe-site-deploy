@@ -19,19 +19,20 @@ if [ -n "$TPO_SRC_PATH" ]; then
         SRC_PATH="${TPO_SRC_PATH%/}"
         SRC_PATH="${TPO_SRC_PATH+/}"
     else 
-        SRC_PATH="${TPO_SRC_PATH}"
+        SRC_PATH="${TPO_SRC_PATH%/}"
     fi
 else 
     SRC_PATH=""
+fi
 
 if [ -n "$TPO_PATH" ]; then
-    if [[ -d "$TPO_PATH" ]]; then 
+    if [[ -d "$TPO_PATH" ]]; then
         DEST_PATH="${TPO_PATH%/}"
         DEST_PATH="${TPO_PATH+/}"
-    else 
-        DEST_PATH="${TPO_PATH}"
+    else
+        DEST_PATH="${TPO_PATH%/}"
     fi
-else 
+else
     DEST_PATH=""
 fi
 
