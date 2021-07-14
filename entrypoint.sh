@@ -14,22 +14,22 @@ WPE_SSHG_KEY_PUBLIC_PATH="$SSH_PATH/github_action.pub"
 
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
-if [ -n "$TPO_PATH" ]; then 
- #   if [[ "$TPO_PATH" ]] 
-    DIR_PATH="$TPO_PATH"
-else 
-    DIR_PATH=""
-fi
-
 if [ -n "$TPO_SRC_PATH" ]; then
-    SRC_PATH="$TPO_SRC_PATH"
+    SRC_PATH="${TPO_SRC_PATH%/}"
 else
     SRC_PATH="."
 fi
 
+if [ -n "$TPO_PATH" ]; then 
+    if [[ "$TPO_PATH" ]] 
+    DEST_PATH="${TPO_PATH%/}"
+else 
+    DEST_PATH=""
+fi
+
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
 
-WPE_DESTINATION="$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
+WPE_DESTINATION="$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DEST_PATH"
 
 # Setup our SSH Connection & use keys
 mkdir "$SSH_PATH"
@@ -45,8 +45,10 @@ chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 chmod 644 "$WPE_SSHG_KEY_PUBLIC_PATH"
 
+
+echo "$SRC_PATH"
+echo "$DEST_PATH"
 # Deploy via SSH
-WPE_MU_PLUGINS="wp-content/mu-plugins/"+{"wpengine-common","wpe-wp-sign-on-plugin","wpe-elasticpress-autosuggest-logger","force-strong-passwords"}
 rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -av --out-format="%n"  --exclude=".*" $SRC_PATH "$WPE_DESTINATION"
 
 # Clear cache 
