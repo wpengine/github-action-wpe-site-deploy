@@ -3,76 +3,17 @@ branding:
   icon: "upload-cloud"
   color: "blue"
 description: "Deploy WordPress projects to a WP Engine account using SSH Gateway"
-#runs:
-#  using: "docker"
-#  image: "Dockerfile"
+runs:
+  using: "docker"
+  image: "Dockerfile"
 inputs:
   WPE_ENV_NAME:
-    required: True
     description: "The WP Engine environment to deploy to that is labeled as Production, Staging or Development."
   WPE_SSHG_KEY_PUBLIC:
-    required: True
     description: "The public RSA key you save in the WP Engine User Portal"
   WPE_SSHG_KEY_PRIVATE:
-    required: True
     description: "The private RSA key you will save in the Github Secrets"
   TPO_SRC_PATH:
-    required: False
     description: "An optional source directory to deploy other than the root directory that is being versioned."
   TPO_PATH:
-    required: False
     description: "An optional destination directory to deploy to other than the WordPress root."
-
-runs:
-  using: composite
-  steps:
-    - name: Generate Source and Destination Paths
-      shell: bash
-      run: |
-        if [ -n "$TPO_SRC_PATH" ]; then
-            SRC_PATH="${TPO_SRC_PATH}"
-        else 
-            SRC_PATH=""
-        fi
-
-        if [ -n "$TPO_PATH" ]; then
-            DEST_PATH="${TPO_PATH}"
-        else
-            DEST_PATH=""
-        fi
-        SSH_PATH="$HOME/.ssh"
-        KNOWN_HOSTS_PATH="${SSH_PATH}/known_hosts"
-        WPE_SSHG_KEY_PRIVATE_PATH="${SSH_PATH}/github_action"
-        WPE_SSHG_KEY_PUBLIC_PATH="${SSH_PATH}/github_action.pub"
-        WPE_SSH_HOST="${{ env.WPE_ENV_NAME }}.ssh.wpengine.net"
-        WPE_SSH_USER="${{ env.WPE_ENV_NAME }}@${WPE_SSH_HOST}"
-        WPE_DESTINATION="${WPE_SSH_USER}:sites/${{ env.WPE_ENV_NAME }}/${DEST_PATH}"
-
-    - name: Setup SSH keys and configurations
-      shell: bash
-      run: |
-        # Setup our SSH Connection & use keys
-        mkdir "$SSH_PATH"
-        ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
-
-        #Copy Secret Keys to container
-        echo "$WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
-        echo "$WPE_SSHG_KEY_PUBLIC" > "$WPE_SSHG_KEY_PUBLIC_PATH"
-
-        #Set Key Perms 
-        chmod 700 "$SSH_PATH"
-        chmod 644 "$KNOWN_HOSTS_PATH"
-        chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
-        chmod 644 "$WPE_SSHG_KEY_PUBLIC_PATH"
-
-    - name: Run Rsync
-      shell: bash
-      run: |
-        echo "$SRC_PATH"
-        echo "$DEST_PATH"
-        # Deploy via SSH
-        rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -av --out-format="%n"  --exclude=".*" $SRC_PATH "$WPE_DESTINATION"
-
-        # Clear cache 
-        ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
-        echo "SUCCESS: Site has been deployed and cache has been flushed."

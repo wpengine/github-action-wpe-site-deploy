@@ -1,10 +1,10 @@
 #!/bin/sh -l
 
-set -e
+#set -e
 
-: ${WPE_ENV_NAME?Required environment name variable not set.}
-: ${WPE_SSHG_KEY_PRIVATE?Required secret not set.}
-: ${WPE_SSHG_KEY_PUBLIC?Required secret not set.}
+#: ${WPE_ENV_NAME?Required environment name variable not set.}
+#: ${WPE_SSHG_KEY_PRIVATE?Required secret not set.}
+#: ${WPE_SSHG_KEY_PUBLIC?Required secret not set.}
 
 #SSH Key Vars 
 SSH_PATH="$HOME/.ssh"
