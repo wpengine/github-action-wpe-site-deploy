@@ -51,7 +51,7 @@ chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 
 # Lint before deploy
-if [[ $PHP_LINT ]]; then
+if [ "$PHP_LINT" == true ]; then
     php -l $SRC_PATH
 fi
 
