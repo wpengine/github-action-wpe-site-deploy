@@ -10,9 +10,9 @@ KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 
 case $GITHUB_REF in
-    $GITHUB_REF =~ /$GH_PRODUCTION_BRANCH$) echo "WPE_ENV_NAME=${{ env.WPE_PRODUCTION_ENV }}" >> $GITHUB_ENV ;;
-    $GITHUB_REF =~ /$GH_STAGING_BRANCH$) echo "WPE_ENV_NAME=${{ env.WPE_STAGING_ENV }}" >> $GITHUB_ENV ;;
-    $GITHUB_REF =~ /$GH_DEVELOPMENT_BRANCH$) echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV ;;
+    "/$GH_PRODUCTION_BRANCH$") echo "WPE_ENV_NAME=${{ env.WPE_PRODUCTION_ENV }}" >> $GITHUB_ENV ;;
+    "/$GH_STAGING_BRANCH$") echo "WPE_ENV_NAME=${{ env.WPE_STAGING_ENV }}" >> $GITHUB_ENV ;;
+    "/$GH_DEVELOPMENT_BRANCH$") echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV ;;
     *) echo "Branch name required" && exit 1 ;;
 esac
 
