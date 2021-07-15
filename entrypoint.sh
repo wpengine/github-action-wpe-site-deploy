@@ -1,4 +1,5 @@
-#!/bin/bash -l
+#!/bin/sh -l
+chsh bash
 
 set -e
 
