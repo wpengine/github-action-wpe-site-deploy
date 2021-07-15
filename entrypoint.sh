@@ -64,7 +64,34 @@ chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 # Lint before deploy
 if [ "${PHP_LINT^^}" == "TRUE" ]; then
     echo "Begin PHP Linting."
-    find $SRC_PATH/ -name "*.php" -exec php -l {} \;
+    error=false
+    while test $# -gt 0; do
+        current=$1
+        shift
+
+        if [ ! -d $current ] && [ ! -f $current ] ; then
+            echo "Invalid directory or file: $current"
+            error=true
+
+            continue
+        fi
+
+        for file in `find $current -type f -name "*.php"` ; do
+            RESULTS=`php -l $file`
+
+            if [ "$RESULTS" != "No syntax errors detected in $file" ] ; then
+                echo $RESULTS
+                error=true
+            fi
+        done
+    done
+
+
+    if [ "$error" = true ] ; then
+        exit 1
+    else
+        exit 0
+    fi
     echo "End PHP Linting."
 else 
     echo "Skipping PHP Linting."
