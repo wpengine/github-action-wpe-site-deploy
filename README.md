@@ -33,9 +33,6 @@ jobs:
           WPE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
           TPO_SRC_PATH: ""
           TPO_PATH: ""
-
-          
-
 ```
 
 ## Environment Variables & Secrets
