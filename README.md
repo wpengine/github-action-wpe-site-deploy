@@ -12,49 +12,27 @@ This GitHub Action can be used to deploy your WordPress repo/branch from Github 
 
 ```
 name: Deploy to WP Engine
-
-on:  
+on:
   push:
-    branches:
-      - main
-      - stage 
-      - dev
-
-env:
-  WPE_PRODUCTION_ENV: brettkrueger
-  WPE_STAGING_ENV: bkruegerstage
-  WPE_DEVELOPMENT_ENV: bkruegerdev
-  GITHUB_PRODUCTION_BRANCH: main
-  GITHUB_STAGING_BRANCH: stage
-  GITHUB_DEVELOPMENT_BRANCH: dev
-  WPE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
-  WPE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
-  TPO_SRC_PATH: ""
-  TPO_PATH: ""
-
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
     steps: 
-      - uses: actions/checkout@v2
-        name: GitHub Deploy to WP Engine
-
-      - name: Set variable (prod)
-        if: endsWith(github.ref, '/main')
-        run: |
-          echo "WPE_ENV_NAME=${{ env.WPE_PRODUCTION_ENV }}" >> $GITHUB_ENV
-      - name: Set variable (stage)
-        if: endsWith(github.ref, '/stage')
-        run: |
-          echo "WPE_ENV_NAME=${{ env.WPE_STAGING_ENV }}" >> $GITHUB_ENV
-      - name: Set variable (dev)    
-        if: endsWith(github.ref, '/dev')
-        run: |
-          echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV
-
-      - uses: wpengine/github-action-wpe-site-deploy@main
-
+    - uses: actions/checkout@v2
+    - name: GitHub Action Deploy to WP Engine
+      uses: wpengine/github-action-wpe-site-deploy@feature/stage
+      env:
+        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }} 
+        PHP_LINT: true
+        TPO_SRC_PATH: ""
+        TPO_PATH: ""
+      # Branches & Environments 
+        PRD_BRANCH: main
+        PRD_ENV: prodsitehere
+        STG_BRANCH: stage
+        STG_ENV: stagesitehere
+        DEV_BRANCH: dev
+        DEV_ENV: devsitehere
 ```
 
 ## Environment Variables & Secrets
