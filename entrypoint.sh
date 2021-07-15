@@ -64,7 +64,7 @@ chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 # Lint before deploy
 if [ "${PHP_LINT^^}" == "TRUE" ]; then
     echo "Begin PHP Linting."
-    find $SRC_PATH/ -type file -name "*.php" -exec php -l {} \;
+    find $SRC_PATH/ -name "*.php" -exec php -l {} \;
     echo "End PHP Linting."
 else 
     echo "Skipping PHP Linting."
