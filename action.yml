@@ -23,4 +23,4 @@ runs:
   using: "composite"
   steps:
     - run: $GITHUB_ACTION_PATH/entrypoint.sh
-      shell: sh
+      shell: bash
