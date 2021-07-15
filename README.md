@@ -46,7 +46,7 @@ jobs:
         run: |
           echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV
 
-      - uses: brettkrueger/github-action-wpe-site-deploy@feature/brett
+      - uses: wpengine/github-action-wpe-site-deploy@main
         env: 
           WPE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
           WPE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
