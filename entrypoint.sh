@@ -67,7 +67,7 @@ if [ "${PHP_LINT^^}" == "TRUE" ]; then
     for file in $(find $SRC_PATH/ -name "*.php"); do
         php -l $file
         status=$?
-        if [ !$status -eq 0 ]; then
+        if [[ $status -ne 0 ]]; then
             echo "FAILURE: Linting failed - $file :: $status" && exit 1
         fi
     done
