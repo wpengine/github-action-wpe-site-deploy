@@ -16,8 +16,8 @@ Then adjust variables to match the new ones you added in main.yml
 
 Example:
 
-elif [[ {GITHUB_REP} =~ {NEW_BRANCH_NAME}$ ]]; then
-    export WPE_ENV_NAME={NEW_ENV_NAME};    
+# elif [[ {GITHUB_REP} =~ {NEW_BRANCH_NAME}$ ]]; then
+#     export WPE_ENV_NAME={NEW_ENV_NAME};    
 """
 
 if [[ $GITHUB_REF =~ ${PRD_BRANCH}$ ]]; then
