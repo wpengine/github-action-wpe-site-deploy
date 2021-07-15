@@ -16,8 +16,12 @@ inputs:
     default: ""
     required: false
 
+#runs:
+#  using: "composite"
+#  steps:
+#    - run: $GITHUB_ACTION_PATH/entrypoint.sh
+#      shell: bash
+
 runs:
-  using: "composite"
-  steps:
-    - run: $GITHUB_ACTION_PATH/entrypoint.sh
-      shell: bash
+  using: "docker"
+  image: "Dockerfile"
