@@ -9,12 +9,12 @@ SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 
-if [[ $GITHUB_REF =~ ${GH_PRODUCTON_BRANCH}$ ]]; then
-    export WPE_ENV_NAME=$WPE_PRODUCTION_ENV;
-elif [[ $GITHUB_REF =~ ${GH_STAGING_BRANCH}$ ]]; then
-    export WPE_ENV_NAME=$WPE_STAGING_ENV;
-elif [[ $GITHUB_REF =~ ${GH_DEVELOPMENT_BRANCH}$ ]]; then
-    export WPE_ENV_NAME=$WPE_DEVELOPMENT_ENV;
+if [[ $GITHUB_REF =~ ${PRD_BRANCH}$ ]]; then
+    export WPE_ENV_NAME=$PRD_ENV;
+elif [[ $GITHUB_REF =~ ${STG_BRANCH}$ ]]; then
+    export WPE_ENV_NAME=$STG_ENV;
+elif [[ $GITHUB_REF =~ ${DEV_BRANCH}$ ]]; then
+    export WPE_ENV_NAME=$DEV_ENV;    
 else 
     echo "FAILURE: Branch name required." && exit 1;
 fi
