@@ -39,6 +39,7 @@ jobs:
         
         DEV_BRANCH: feature/dev
         DEV_ENV: devsitenamehere
+
 ```
 
 ## Environment Variables & Secrets
@@ -57,6 +58,7 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
+
 | `STG_BRANCH` | Branch Variable | Insert the name of a staging Github branch you would like to deploy from. Note: exclude leading / from branch names.|
 | `STG_ENV` | Environment Variable | Insert the name of the WP Engine Stage environment you want to deploy to. |
 | `DEV_BRANCH` | Branch Variable | Insert the name of a development Github branch you would like to deploy from. Note: exclude leading / in branch names.|
