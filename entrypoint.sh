@@ -14,10 +14,13 @@ echo "refs/heads/$GH_DEVELOPMENT_BRANCH"
 
 if [[ $GITHUB_REF =~ ${GH_PRODUCTON_BRANCH}$ ]]; then
     echo "WPE_ENV_NAME=$WPE_PRODUCTION_ENV" >> $GITHUB_ENV;
+    export WPE_ENV_NAME=$WPE_PRODUCTION_ENV;
 elif [[ $GITHUB_REF =~ ${GH_STAGING_BRANCH}$ ]]; then
     echo "WPE_ENV_NAME=$WPE_STAGING_ENV" >> $GITHUB_ENV;
+    export WPE_ENV_NAME=$WPE_STAGING_ENV;
 elif [[ $GITHUB_REF =~ ${GH_DEVELOPMENT_BRANCH}$ ]]; then
     echo "WPE_ENV_NAME=$WPE_DEVELOPMENT_ENV" >> $GITHUB_ENV;
+    export WPE_ENV_NAME=$WPE_DEVELOPMENT_ENV;
 else 
     echo "FAILURE: Branch name required." && exit 1;
 fi
