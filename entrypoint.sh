@@ -52,7 +52,7 @@ chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 
 # Lint before deploy
 if [[ $PHP_LINT ]]; then
-    ./phplint $SRC_PATH
+    php -l $SRC_PATH
 fi
 
 # Deploy via SSH
