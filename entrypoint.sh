@@ -24,6 +24,28 @@ else
     SRC_PATH="."
 fi
 
+declare -A ENVIRONMENTS_BRANCHES
+ENVIRONMENTS_BRANCHES[$WPE_PRODUCTION_ENV]=$GH_PRODUCTION_BRANCH
+ENVIRONMENTS_BRANCHES[$WPE_STAGING_ENV]=$GH_STAGING_BRANCH
+ENVIRONMENTS_BRANCHES[$WPE_DEVELOPMENT_ENV]=$GH_DEVELOPMENT_BRANCH
+
+echo $ENVIRONMENTS_BRANCHES
+
+#      - name: Set variable (prod)
+#        if: github.ref == "refs/heads/${{ env.GH_PRODUCTION_BRANCH }}"
+#        run: |
+#          echo "WPE_ENV_NAME=${{ env.WPE_PRODUCTION_ENV }}" >> $GITHUB_ENV
+#      - name: Set variable (stage)
+#        if: endsWith(github.ref, "/${{ env.GH_STAGING_BRANCH }}")
+#        run: |
+#          echo "WPE_ENV_NAME=${{ env.WPE_STAGING_ENV }}" >> $GITHUB_ENV
+#      - name: Set variable (dev)
+#        if: endsWith(github.ref, "/${{ env.GH_DEVELOPMENT_BRANCH }}")
+#        run: |
+#          echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV
+
+# Set up our 
+
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
 
 WPE_DESTINATION="$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
