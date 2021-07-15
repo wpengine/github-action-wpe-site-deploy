@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/sh -l
 
 set -e
 
@@ -9,20 +9,11 @@ SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 
-"""
-case $GITHUB_REF in
-    "/$GH_PRODUCTION_BRANCH$") echo "WPE_ENV_NAME=${{ env.WPE_PRODUCTION_ENV }}" >> $GITHUB_ENV ;;
-    "/$GH_STAGING_BRANCH$") echo "WPE_ENV_NAME=${{ env.WPE_STAGING_ENV }}" >> $GITHUB_ENV ;;
-    "/$GH_DEVELOPMENT_BRANCH$") echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV ;;
-    *) echo "Branch name required" && exit 1 ;;
-esac
-"""
-
-if [[ $GITHUB_REF =~ "$GH_PRODUCTION_BRANCH$" ]]; then
+if [[ $GITHUB_REF =~ "refs/heads/$GH_DEVELOPMENT_BRANCH$" ]]; then
     echo "WPE_ENV_NAME=${{ env.WPE_PRODUCTION_ENV }}" >> $GITHUB_ENV;
-elif [[ $GITHUB_REF =~ "$GH_STAGING_BRANCH$" ]]; then
+elif [[ $GITHUB_REF =~ "refs/heads/$GH_DEVELOPMENT_BRANCH$" ]]; then
     echo "WPE_ENV_NAME=${{ env.WPE_STAGING_ENV }}" >> $GITHUB_ENV;
-elif [[ $GITHUB_REF =~ "$GH_DEVELOPMENT_BRANCH$" ]]; then
+elif [[ $GITHUB_REF =~ "refs/heads/$GH_DEVELOPMENT_BRANCH$" ]]; then
     echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV;
 else 
     echo "Branch name required" && exit 1;
