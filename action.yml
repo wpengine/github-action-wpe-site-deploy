@@ -7,9 +7,6 @@ inputs:
   WPE_ENV_NAME:
     description: "The WP Engine environment to deploy to that is labeled as Production, Staging or Development."
     required: true
-  WPE_SSHG_KEY_PUBLIC:
-    description: "The public RSA key you save in the WP Engine User Portal"
-    required: true
   WPE_SSHG_KEY_PRIVATE:
     description: "The private RSA key you will save in the Github Secrets"
     required: true
