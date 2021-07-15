@@ -9,9 +9,6 @@ SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 
-echo $GITHUB_REF
-echo "refs/heads/$GH_DEVELOPMENT_BRANCH"
-
 if [[ $GITHUB_REF =~ ${GH_PRODUCTON_BRANCH}$ ]]; then
     echo "WPE_ENV_NAME=$WPE_PRODUCTION_ENV" >> $GITHUB_ENV;
     export WPE_ENV_NAME=$WPE_PRODUCTION_ENV;
