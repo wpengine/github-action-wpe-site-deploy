@@ -1,7 +1,4 @@
 name: "Deploy WordPress to WP Engine"
-#runs:
-#  using: "docker"
-#  image: "Dockerfile"
 branding:
   icon: "upload-cloud"
   color: "blue"
