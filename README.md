@@ -15,15 +15,22 @@ name: Deploy to WP Engine
 
 on:  
   push:
-    branches: # Modify your branches here and in the "Set variable" sections below
+    branches:
       - main
       - stage 
       - dev
 
 env:
-  WPE_PRODUCTION_ENV: yourprodsite
-  WPE_STAGING_ENV: yourstagesite
-  WPE_DEVELOPMENT_ENV: yourdevsite
+  WPE_PRODUCTION_ENV: brettkrueger
+  WPE_STAGING_ENV: bkruegerstage
+  WPE_DEVELOPMENT_ENV: bkruegerdev
+  GITHUB_PRODUCTION_BRANCH: main
+  GITHUB_STAGING_BRANCH: stage
+  GITHUB_DEVELOPMENT_BRANCH: dev
+  WPE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
+  WPE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
+  TPO_SRC_PATH: ""
+  TPO_PATH: ""
 
 jobs:
   build:
@@ -47,11 +54,6 @@ jobs:
           echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV
 
       - uses: wpengine/github-action-wpe-site-deploy@main
-        env: 
-          WPE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
-          WPE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
-          TPO_SRC_PATH: ""
-          TPO_PATH: ""
 
 ```
 
