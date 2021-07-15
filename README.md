@@ -6,36 +6,39 @@ This GitHub Action can be used to deploy your WordPress repo/branch from Github 
 
 1. Create a `.github/workflows/main.yml` file in your root of your WordPress project/repo, if one doesn't exist already.
 
-2. Add the following to the `main.yml` file, replacing <YOUR INSTALL NAME> and the public and private key var names if they were anything other than what is below. Consult "Furthur Reading" on how to setup keys in repo Secrets. 
+2. Add the following to the `main.yml` file, replacing PRD_BRANCH, PRD_ENV and WPE_SSHG_KEY_PRIVATE if they are anything other than what is below. Optionally, values for staging and development environments and branches can be specified. Consult ["Further Reading"](#further-reading) on how to setup keys in repo Secrets.
 
 3. Git push your site repo. 
 
 ```
 name: Deploy to WP Engine
-
-on:  
+on:
   push:
-    branches:
-        - main
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-        
+    runs-on: ubuntu-latest  
     steps: 
     - uses: actions/checkout@v2
-    - name: GitHub Deploy to WP Engine
+    - name: GitHub Action Deploy to WP Engine
       uses: wpengine/github-action-wpe-site-deploy@main
-      env: 
-          WPE_ENV_NAME: yoursitename 
-          WPE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
-          WPE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
-          TPO_SRC_PATH: ""
-          TPO_PATH: ""
-
-          
-
+      env:
+      
+      # Keys, lint & url options 
+        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
+        PHP_LINT: TRUE
+        TPO_SRC_PATH: ""
+        TPO_PATH: ""
+      
+      # Branches & Environments 
+        PRD_BRANCH: main
+        PRD_ENV: prodsitenamehere
+        
+        STG_BRANCH: feature/stage
+        STG_ENV: stagesitenamehere
+        
+        DEV_BRANCH: feature/dev
+        DEV_ENV: devsitenamehere
 ```
 
 ## Environment Variables & Secrets
@@ -44,27 +47,34 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `WPE_ENV_NAME` | Environment Variable | Insert the name of the WP Engine environment you want to deploy to. |
+| `PRD_BRANCH` | Branch Variable | Insert the name of the Github branch you would like to deploy from, example; main. |
+| `PRD_ENV` | Environment Variable | Insert the name of the WP Engine environment you want to deploy to. |
 | `WPE_SSHG_KEY_PRIVATE` | Secret | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
-| `WPE_SSHG_KEY_PUBLIC` | Secret | Public SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
+
+
 
 ### Optional
 
 | Name | Type | Usage |
 |-|-|-|
+| `STG_BRANCH` | Branch Variable | Insert the name of a staging Github branch you would like to deploy from. Note: exclude leading / from branch names.|
+| `STG_ENV` | Environment Variable | Insert the name of the WP Engine Stage environment you want to deploy to. |
+| `DEV_BRANCH` | Branch Variable | Insert the name of a development Github branch you would like to deploy from. Note: exclude leading / in branch names.|
+| `DEV_ENV` | Environment Variable | Insert the name of the WP Engine Dev environment you want to deploy to. |
+| `PHP_LINT` | Bool | Set to TRUE to execute a php lint on your branch pre-deployment. Set to FALSE to bypass lint. |
 | `TPO_SRC_PATH` | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
 | `TPO_PATH` | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
 
-### Further reading
+### Further reading 
 
-* [Defining environment variables in GitHub Actions](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#environment-variables)
-* [Storing secrets in GitHub repositories](https://developer.github.com/actions/managing-workflows/storing-secrets/)
+* [Defining environment variables in GitHub Actions](https://docs.github.com/en/actions/reference/environment-variables)
+* [Storing secrets in GitHub repositories](https://docs.github.com/en/actions/reference/encrypted-secrets)
 * As this script does not restrict files or directories that can be deployed, it is recommended to leverage one of [WP Engine's .gitignore tamplates.](https://wpengine.com/support/git/#Add_gitignore)
 
 ## Setting up your SSH keys for repo
 
 1. [Generate a new SSH key pair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) as a special deploy key between your Github Repo and WP Engine. The simplest method is to generate a key pair with a blank passphrase, which creates an unencrypted private key. 
 
-2. Store your public and private keys in the GitHub repository of your website as new 'Secrets' (under your repository settings) using the names `PRIVATE_KEY_NAME` and `PUBLIC_KEY_NAME` respectively with the name in your specfic files. These can be customized, just remember to change the var in the yml file to call them correctly. 
+2. Store your private key in the GitHub repository of your website as new 'Secrets' (under your repository settings) using the names `WPE_SSHG_KEY_PRIVATE` with the name in your specfic files. These can be customized, just remember to change the var in the yml file to call them correctly. 
 
 3. Add the Public SSH key to your WP Engine SSH Gateway configuration. https://wpengine.com/support/ssh-gateway/#addsshkey
