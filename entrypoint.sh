@@ -69,6 +69,7 @@ if [ "${PHP_LINT^^}" == "TRUE" ]; then
         status=$?
         if [ !$status -eq 0 ]; then
             echo "FAILURE: Linting failed - $file :: $status" && exit 1
+        fi
     done
     echo "End PHP Linting."
 else 
