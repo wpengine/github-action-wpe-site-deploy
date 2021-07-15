@@ -1,7 +1,7 @@
 name: "Deploy WordPress to WP Engine"
-runs:
-  using: "docker"
-  image: "Dockerfile"
+#runs:
+#  using: "docker"
+#  image: "Dockerfile"
 branding:
   icon: "upload-cloud"
   color: "blue"
@@ -25,8 +25,8 @@ inputs:
     default: ""
     required: false
 
-#runs:
-#  using: "composite"
-#  steps:
-#    - run: $GITHUB_ACTION_PATH/entrypoint.sh
-#      shell: sh
+runs:
+  using: "composite"
+  steps:
+    - run: $GITHUB_ACTION_PATH/entrypoint.sh
+      shell: sh
