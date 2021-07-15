@@ -10,6 +10,13 @@ SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 
+case $GITHUB_REF in;
+    $GH_PRODUCTION_BRANCH) echo "WPE_ENV_NAME=${{ env.WPE_PRODUCTION_ENV }}" >> $GITHUB_ENV ;;
+    $GH_STAGING_BRANCH) echo "WPE_ENV_NAME=${{ env.WPE_STAGING_ENV }}" >> $GITHUB_ENV ;;
+    $GH_DEVELOPMENT_BRANCH) echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV ;;
+    *) echo "Branch name required" && exit 1 ;;
+esac
+
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
 if [ -n "$TPO_PATH" ]; then 
@@ -24,30 +31,9 @@ else
     SRC_PATH="."
 fi
 
-declare -A ENVIRONMENTS_BRANCHES
-ENVIRONMENTS_BRANCHES[$WPE_PRODUCTION_ENV]=$GH_PRODUCTION_BRANCH
-ENVIRONMENTS_BRANCHES[$WPE_STAGING_ENV]=$GH_STAGING_BRANCH
-ENVIRONMENTS_BRANCHES[$WPE_DEVELOPMENT_ENV]=$GH_DEVELOPMENT_BRANCH
-
-echo $ENVIRONMENTS_BRANCHES[$WPE_PRODUCTION_ENV]
-
-#      - name: Set variable (prod)
-#        if: github.ref == "refs/heads/${{ env.GH_PRODUCTION_BRANCH }}"
-#        run: |
-#          echo "WPE_ENV_NAME=${{ env.WPE_PRODUCTION_ENV }}" >> $GITHUB_ENV
-#      - name: Set variable (stage)
-#        if: endsWith(github.ref, "/${{ env.GH_STAGING_BRANCH }}")
-#        run: |
-#          echo "WPE_ENV_NAME=${{ env.WPE_STAGING_ENV }}" >> $GITHUB_ENV
-#      - name: Set variable (dev)
-#        if: endsWith(github.ref, "/${{ env.GH_DEVELOPMENT_BRANCH }}")
-#        run: |
-#          echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV
-
-# Set up our 
+# Set up our user and path
 
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
-
 WPE_DESTINATION="$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
