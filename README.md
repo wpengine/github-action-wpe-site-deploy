@@ -21,16 +21,20 @@ jobs:
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
       uses: wpengine/github-action-wpe-site-deploy@feature/stage
-      env:
-        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }} 
-        PHP_LINT: true
+      env:      
+      # Keys, lint & url options 
+        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
+        PHP_LINT: TRUE
         TPO_SRC_PATH: ""
         TPO_PATH: ""
+      
       # Branches & Environments 
         PRD_BRANCH: main
         PRD_ENV: prodsitehere
+        
         STG_BRANCH: stage
         STG_ENV: stagesitehere
+        
         DEV_BRANCH: dev
         DEV_ENV: devsitehere
 ```
@@ -41,14 +45,21 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `WPE_ENV_NAME` | Environment Variable | Insert the name of the WP Engine environment you want to deploy to. |
+| `PRD_BRANCH` | Branch Variable | Insert the name of the Github branch you would like to deploy from, example; main. |
+| `PRD_ENV` | Environment Variable | Insert the name of the WP Engine environment you want to deploy to. |
 | `WPE_SSHG_KEY_PRIVATE` | Secret | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
-| `WPE_SSHG_KEY_PUBLIC` | Secret | Public SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
+
+
 
 ### Optional
 
 | Name | Type | Usage |
 |-|-|-|
+| `STG_BRANCH` | Branch Variable | Insert the name of a staging Github branch you would like to deploy from. |
+| `STG_ENV` | Environment Variable | Insert the name of the WP Engine Stage environment you want to deploy to. |
+| `DEV_BRANCH` | Branch Variable | Insert the name of a development Github branch you would like to deploy from. |
+| `DEV_ENV` | Environment Variable | Insert the name of the WP Engine Dev environment you want to deploy to. |
+| `PHP_LINT` | Bool | Set to TRUE to execute a php lint on your branch pre-deployment. Set to FALSE to bypass lint. |
 | `TPO_SRC_PATH` | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
 | `TPO_PATH` | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
 
