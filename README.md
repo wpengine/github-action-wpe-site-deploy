@@ -6,33 +6,33 @@ This GitHub Action can be used to deploy your WordPress repo/branch from Github 
 
 1. Create a `.github/workflows/main.yml` file in your root of your WordPress project/repo, if one doesn't exist already.
 
-2. Add the following to the `main.yml` file, replacing <YOUR INSTALL NAME> and the public and private key var names if they were anything other than what is below. Consult "Furthur Reading" on how to setup keys in repo Secrets. 
+2. Add the following to the `main.yml` file, replacing WPE_PRODUCTION_ENV, WPE_STAGING_ENV, WPE_DEVELOPMENT_ENV and the public and private key var names and branches if they were anything other than what is below. Consult "Furthur Reading" on how to setup keys in repo Secrets.
 
 3. Git push your site repo. 
 
 ```
 name: Deploy to WP Engine
-
-on:  
+on:
   push:
-    branches:
-        - main
-
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-        
+    runs-on: ubuntu-latest  
     steps: 
     - uses: actions/checkout@v2
-    - name: GitHub Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@main
-      env: 
-          WPE_ENV_NAME: yoursitename 
-          WPE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
-          WPE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
-          TPO_SRC_PATH: ""
-          TPO_PATH: ""
+    - name: GitHub Action Deploy to WP Engine
+      uses: wpengine/github-action-wpe-site-deploy@feature/stage
+      env:
+        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }} 
+        PHP_LINT: true
+        TPO_SRC_PATH: ""
+        TPO_PATH: ""
+      # Branches & Environments 
+        PRD_BRANCH: main
+        PRD_ENV: prodsitehere
+        STG_BRANCH: stage
+        STG_ENV: stagesitehere
+        DEV_BRANCH: dev
+        DEV_ENV: devsitehere
 ```
 
 ## Environment Variables & Secrets
