@@ -6,7 +6,7 @@ This GitHub Action can be used to deploy your WordPress repo/branch from Github 
 
 1. Create a `.github/workflows/main.yml` file in your root of your WordPress project/repo, if one doesn't exist already.
 
-2. Add the following to the `main.yml` file, replacing <YOUR INSTALL NAME> and the public and private key var names if they were anything other than what is below. Consult "Furthur Reading" on how to setup keys in repo Secrets. 
+2. Add the following to the `main.yml` file, replacing WPE_PRODUCTION_ENV, WPE_STAGING_ENV, WPE_DEVELOPMENT_ENV and the public and private key var names and branches if they were anything other than what is below. Consult "Furthur Reading" on how to setup keys in repo Secrets.
 
 3. Git push your site repo. 
 
@@ -15,26 +15,43 @@ name: Deploy to WP Engine
 
 on:  
   push:
-    branches:
-        - main
+    branches: # Modify your branches here and in the "Set variable" sections below
+      - main
+      - stage 
+      - dev
+
+env:
+  WPE_PRODUCTION_ENV: yourprodsite
+  WPE_STAGING_ENV: yourstagesite
+  WPE_DEVELOPMENT_ENV: yourdevsite
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-        
     steps: 
-    - uses: actions/checkout@v2
-    - name: GitHub Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@main
-      env: 
-          WPE_ENV_NAME: yoursitename 
+      - uses: actions/checkout@v2
+        name: GitHub Deploy to WP Engine
+
+      - name: Set variable (prod)
+        if: endsWith(github.ref, '/main')
+        run: |
+          echo "WPE_ENV_NAME=${{ env.WPE_PRODUCTION_ENV }}" >> $GITHUB_ENV
+      - name: Set variable (stage)
+        if: endsWith(github.ref, '/stage')
+        run: |
+          echo "WPE_ENV_NAME=${{ env.WPE_STAGING_ENV }}" >> $GITHUB_ENV
+      - name: Set variable (dev)    
+        if: endsWith(github.ref, '/dev')
+        run: |
+          echo "WPE_ENV_NAME=${{ env.WPE_DEVELOPMENT_ENV }}" >> $GITHUB_ENV
+
+      - uses: brettkrueger/github-action-wpe-site-deploy@feature/brett
+        env: 
           WPE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
           WPE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
           TPO_SRC_PATH: ""
           TPO_PATH: ""
-
-          
 
 ```
 
