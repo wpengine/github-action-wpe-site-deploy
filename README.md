@@ -14,7 +14,6 @@ This GitHub Action can be used to deploy your WordPress repo/branch from Github 
 name: Deploy to WP Engine
 on:
   push:
-
 jobs:
   build:
     runs-on: ubuntu-latest  
@@ -32,14 +31,13 @@ jobs:
       
       # Branches & Environments 
         PRD_BRANCH: main
-        PRD_ENV: prodsitenamehere
+        PRD_ENV: prodsitehere
         
         STG_BRANCH: feature/stage
-        STG_ENV: stagesitenamehere
+        STG_ENV: stagesitehere
         
         DEV_BRANCH: feature/dev
-        DEV_ENV: devsitenamehere
-
+        DEV_ENV: devsitehere
 ```
 
 ## Environment Variables & Secrets
