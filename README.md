@@ -63,12 +63,6 @@ jobs:
 | `TPO_SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
 | `TPO_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
 
-### Further reading 
-
-* [Defining environment variables in GitHub Actions](https://docs.github.com/en/actions/reference/environment-variables)
-* [Storing secrets in GitHub repositories](https://docs.github.com/en/actions/reference/encrypted-secrets)
-* As this script does not restrict files or directories that can be deployed, it is recommended to leverage one of [WP Engine's .gitignore tamplates.](https://wpengine.com/support/git/#Add_gitignore)
-
 ## Setting up your SSH keys for repo
 
 1. [Generate a new SSH key pair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) as a special deploy key between your Github Repo and WP Engine. The simplest method is to generate a key pair with a blank passphrase, which creates an unencrypted private key. 
@@ -76,3 +70,9 @@ jobs:
 2. Store your private key in the GitHub repository of your website as new 'Secrets' (under your repository settings) using the names `WPE_SSHG_KEY_PRIVATE` with the name in your specfic files. These can be customized, just remember to change the var in the yml file to call them correctly. 
 
 3. Add the Public SSH key to your WP Engine SSH Gateway configuration. https://wpengine.com/support/ssh-gateway/#addsshkey
+
+### Further reading 
+
+* [Defining environment variables in GitHub Actions](https://docs.github.com/en/actions/reference/environment-variables)
+* [Storing secrets in GitHub repositories](https://docs.github.com/en/actions/reference/encrypted-secrets)
+* As this script does not restrict files or directories that can be deployed, it is recommended to leverage one of [WP Engine's .gitignore tamplates.](https://wpengine.com/support/git/#Add_gitignore)
