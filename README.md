@@ -1,19 +1,20 @@
 # GitHub Action for WP Engine Site Deployments
 
-This GitHub Action can be used to deploy your WordPress repo/branch from Github to a WP Engine environment (Production / Stage / Dev) via the WP Engine SSH Gateway toolkit and a prefashioned rsync protocol. Deploy a theme, plugin or other directory with the TPO options. Post deploy, this action will automatically purge your WP Engine cache to ensure all changes are visible. 
+This GitHub Action can be used to deploy code from Github repo to a WP Engine environment of your choosing. Deploy a a full site directory, or optionally a theme, plugin or other directory with the TPO options. Optionally lint your php pre-deployment. Post deploy, this action will automatically purge your WP Engine cache to ensure all changes are visible. 
 
 ## Example GitHub Action workflow
 
 1. Create a `.github/workflows/main.yml` file in your root of your WordPress project/repo, if one doesn't exist already.
 
-2. Add the following to the `main.yml` file, replacing PRD_BRANCH, PRD_ENV and WPE_SSHG_KEY_PRIVATE if they are anything other than what is below. Optionally, values for staging and development environments and branches can be specified. Consult ["Further Reading"](#further-reading) on how to setup keys in repo Secrets.
+2. Add the following to the `main.yml` file, replacing values for PRD_BRANCH, PRD_ENV and WPE_SSHG_KEY_PRIVATE if they are anything other than what is below. Optionally, values for STG_ and DEV_ environments and branches can be specified. Consult ["Further Reading"](#further-reading) on how to setup keys in repo Secrets.
 
-3. Git push your site repo. 
+3. Git push your site repo. The action will do the rest 
 
 ```
 name: Deploy to WP Engine
 on:
   push:
+
 jobs:
   build:
     runs-on: ubuntu-latest  
@@ -46,23 +47,21 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `PRD_BRANCH` | Branch Variable | Insert the name of the Github branch you would like to deploy from, example; main. |
-| `PRD_ENV` | Environment Variable | Insert the name of the WP Engine environment you want to deploy to. |
-| `WPE_SSHG_KEY_PRIVATE` | Secret | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
-
-
+| `PRD_BRANCH` | string | Insert the name of the Github branch you would like to deploy from, example; main. |
+| `PRD_ENV` | string | Insert the name of the WP Engine environment you want to deploy to. |
+| `WPE_SSHG_KEY_PRIVATE` | secrets | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
 
 ### Optional
 
 | Name | Type | Usage |
 |-|-|-|
-| `STG_BRANCH` | Branch Variable | Insert the name of a staging Github branch you would like to deploy from. Note: exclude leading / from branch names.|
-| `STG_ENV` | Environment Variable | Insert the name of the WP Engine Stage environment you want to deploy to. |
-| `DEV_BRANCH` | Branch Variable | Insert the name of a development Github branch you would like to deploy from. Note: exclude leading / in branch names.|
-| `DEV_ENV` | Environment Variable | Insert the name of the WP Engine Dev environment you want to deploy to. |
-| `PHP_LINT` | Bool | Set to TRUE to execute a php lint on your branch pre-deployment. Set to FALSE to bypass lint. |
-| `TPO_SRC_PATH` | Dir Variable | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
-| `TPO_PATH` | Dir Variable | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
+| `STG_BRANCH` | string | Insert the name of a staging Github branch you would like to deploy from. Note: exclude leading / from branch names.|
+| `STG_ENV` | string | Insert the name of the WP Engine Stage environment you want to deploy to. |
+| `DEV_BRANCH` | string | Insert the name of a development Github branch you would like to deploy from. Note: exclude leading / in branch names.|
+| `DEV_ENV` | string | Insert the name of the WP Engine Dev environment you want to deploy to. |
+| `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Set to FALSE to bypass lint. |
+| `TPO_SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
+| `TPO_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
 
 ### Further reading 
 
