@@ -57,11 +57,7 @@ jobs:
 |-|-|-|
 | `STG_BRANCH` | Branch Variable | Insert the name of a staging Github branch you would like to deploy from. |
 | `STG_ENV` | Environment Variable | Insert the name of the WP Engine Stage environment you want to deploy to. |
-| `DEV_BRANCH` | Branch Variable | Insert the name of a development Github branch you would like to deploy from. |
-| `DEV_ENV` | Environment Variable | Insert the name of the WP Engine Dev environment you want to deploy to. |
-| `PHP_LINT` | Bool | Set to TRUE to execute a php lint on your branch pre-deployment. Set to FALSE to bypass lint. |
-| `TPO_SRC_PATH` | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
-| `TPO_PATH` | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
+
 
 ### Further reading
 
