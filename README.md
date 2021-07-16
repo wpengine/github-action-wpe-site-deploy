@@ -6,7 +6,7 @@ This GitHub Action can be used to deploy code from Github repo to a WP Engine en
 
 1. Create a `.github/workflows/main.yml` file in your root of your WordPress project/repo, if one doesn't exist already.
 
-2. Add the following to the `main.yml` file, replacing values for PRD_BRANCH, PRD_ENV and WPE_SSHG_KEY_PRIVATE if they are anything other than what is below. Optionally, values for STG_ and DEV_ environments and branches can be specified. Consult ["Further Reading"](#further-reading) on how to setup keys in repo Secrets.
+2. Add the following to the `main.yml` file, replacing values for `PRD_BRANCH`, `PRD_ENV` and `WPE_SSHG_KEY_PRIVATE` if they are anything other than what is below. Optionally, values for `STG_` and `DEV_` environments and branches can be specified. Consult ["Further Reading"](#further-reading) on how to setup keys in repo Secrets.
 
 3. Git push your site repo. The action will do the rest 
 
