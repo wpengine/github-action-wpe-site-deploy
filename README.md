@@ -14,16 +14,14 @@ This GitHub Action can be used to deploy your WordPress repo/branch from Github 
 name: Deploy to WP Engine
 on:
   push:
-
 jobs:
   build:
     runs-on: ubuntu-latest  
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@feature/hackathon
-      env:
-      
+      uses: wpengine/github-action-wpe-site-deploy@feature/stage
+      env:      
       # Keys, lint & url options 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
         PHP_LINT: TRUE
