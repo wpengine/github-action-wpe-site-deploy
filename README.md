@@ -52,8 +52,8 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `TPO_SRC_PATH` | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
-| `TPO_PATH` | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
+| `TPO_SRC_PATH` | Dir Variable | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
+| `TPO_PATH` | Dir Variable | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
 
 ### Further reading
 
