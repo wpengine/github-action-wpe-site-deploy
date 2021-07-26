@@ -2,6 +2,9 @@
 
 This GitHub Action can be used to deploy code from Github repo to a WP Engine environment of your choosing. Deploy a a full site directory, or optionally a theme, plugin or other directory with the TPO options. Optionally lint your php pre-deployment. Post deploy, this action will automatically purge your WP Engine cache to ensure all changes are visible. 
 
+V2.0 NOW AVAILABLE! 
+Note: v2.0 enhancements WILL break previous version yaml configs. To utilize the new features, users must update main.yml to match format below. If issues persist post update, please contact WP Engine Support. 
+
 ## Example GitHub Action workflow
 
 1. Create a `.github/workflows/main.yml` file in your root of your WordPress project/repo, if one doesn't exist already.
