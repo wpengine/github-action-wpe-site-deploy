@@ -30,6 +30,7 @@ jobs:
       # Keys, lint & url options 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
         PHP_LINT: TRUE
+        FLAGS: -a --inplace --out-format="%n"  --exclude=".*"
         TPO_SRC_PATH: ""
         TPO_PATH: ""
       
