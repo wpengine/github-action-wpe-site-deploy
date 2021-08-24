@@ -47,7 +47,7 @@ fi
 
 FLAGS="$INPUT_FLAGS"
  
-echo $FLAGS
+echo "$FLAGS"
 # Set up our user and path
 
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
