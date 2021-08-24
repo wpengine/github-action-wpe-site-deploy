@@ -44,8 +44,6 @@ if [ -n "$TPO_SRC_PATH" ]; then
 else
     SRC_PATH="."
 fi
-
-FLAGS="$INPUT_FLAGS"
  
 # Set up our user and path
 
@@ -85,4 +83,5 @@ rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecki
 # Clear cache 
 ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
 echo "SUCCESS: Site has been deployed and cache has been flushed."
-echo ${FLAGS}
+echo $FLAGS 
+echo "$FLAGS"
