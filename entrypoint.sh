@@ -32,6 +32,7 @@ fi
 
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
+
 if [ -n "$TPO_PATH" ]; then 
     DIR_PATH="$TPO_PATH"
 else 
@@ -45,7 +46,8 @@ else
 fi
 
 FLAGS="$INPUT_FLAGS"
-
+ 
+echo $FLAGS
 # Set up our user and path
 
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
