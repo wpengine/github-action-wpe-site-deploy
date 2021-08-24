@@ -10,7 +10,6 @@ inputs:
   FLAGS: 
     description: "optional flags for the deployment"
     required: false
-    default: ''
   TPO_SRC_PATH:
     description: "An optional source directory to deploy other than the root directory that is being versioned."
     default: ""
