@@ -20,12 +20,12 @@ WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 #     export WPE_ENV_NAME=${NEW_ENV_NAME};    
 ###
 
-if [[ $GITHUB_REF =~ ${PRD_BRANCH}$ ]]; then
-    export WPE_ENV_NAME=$PRD_ENV;
-elif [[ $GITHUB_REF =~ ${STG_BRANCH}$ ]]; then
-    export WPE_ENV_NAME=$STG_ENV;
-elif [[ $GITHUB_REF =~ ${DEV_BRANCH}$ ]]; then
-    export WPE_ENV_NAME=$DEV_ENV;    
+if [[ $GITHUB_REF =~ ${INPUT_PRD_BRANCH}$ ]]; then
+    export WPE_ENV_NAME=$INPUT_PRD_ENV;
+elif [[ $GITHUB_REF =~ ${INPUT_STG_BRANCH}$ ]]; then
+    export WPE_ENV_NAME=$INPUT_STG_ENV;
+elif [[ $GITHUB_REF =~ ${INPUT_DEV_BRANCH}$ ]]; then
+    export WPE_ENV_NAME=$INPUT_DEV_ENV;    
 else 
     echo "FAILURE: Branch name required." && exit 1;
 fi
@@ -33,14 +33,14 @@ fi
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
 
-if [ -n "$TPO_PATH" ]; then 
-    DIR_PATH="$TPO_PATH"
+if [ -n "$INPUT_TPO_PATH" ]; then 
+    DIR_PATH="$INPUT_TPO_PATH"
 else 
     DIR_PATH=""
 fi
 
-if [ -n "$TPO_SRC_PATH" ]; then
-    SRC_PATH="$TPO_SRC_PATH"
+if [ -n "$INPUT_TPO_SRC_PATH" ]; then
+    SRC_PATH="$INPUT_TPO_SRC_PATH"
 else
     SRC_PATH="."
 fi
@@ -66,7 +66,7 @@ chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 
 # Lint before deploy
-if [ "${PHP_LINT^^}" == "TRUE" ]; then
+if [ "${INPUT_PHP_LINT^^}" == "TRUE" ]; then
     echo "Begin PHP Linting."
     for file in $(find $SRC_PATH/ -name "*.php"); do
         php -l $file
