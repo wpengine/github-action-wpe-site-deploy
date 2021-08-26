@@ -9,7 +9,7 @@ inputs:
     required: true
   FLAGS: 
     description: "optional flags for the deployment"
-    required: false
+    required: true
     default: '-azvr --inplace --exclude=".*"'
   TPO_SRC_PATH:
     description: "An optional source directory to deploy other than the root directory that is being versioned."
