@@ -25,11 +25,9 @@ inputs:
   PRD_BRANCH: 
     description: "Source branch to deploy PRD_ENV"
     required: true
-    default: "" 
   PRD_ENV:
     description: "Destination to deploy to WPE Prod"
     required: false
-    default: "" 
   STG_BRANCH: 
     description: "Source branch to deploy STG_ENV"
     required: false
