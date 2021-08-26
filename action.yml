@@ -19,28 +19,28 @@ inputs:
     description: "An optional destination directory to deploy to other than the WordPress root."
     default: ""
     required: false
-  PRD_BRANCH: "Source branch to deploy"
-    description:
+  PRD_BRANCH: 
+    description: "Source branch to deploy PRD_ENV"
     required: true
     default: "" 
   PRD_ENV:
-    description: "Deestination to deploy to"
+    description: "Destination to deploy to WPE Prod"
     required: false
     default: "" 
-  STG_BRANCH: "Source branch to deploy"
-    description:
+  STG_BRANCH: 
+    description: "Source branch to deploy STG_ENV"
     required: false
     default: "" 
   STG_ENV:
-    description: "Deestination to deploy to"
+    description: "Destination to deploy to WPE Stage"
     required: false
     default: "" 
-  DEV_BRANCH: "Source branch to deploy"
-    description:
+  DEV_BRANCH: 
+    description: "Source branch to deploy DEV_ENV"
     required: false
     default: ""
   DEV_ENV:
-    description: "Deestination to deploy to"
+    description: "Destination to deploy to WPE Dev"
     required: false
     default: "" 
 
