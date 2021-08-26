@@ -31,7 +31,7 @@ else
 fi
 
 #Deploy Vars
-WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
+WPE_SSH_HOST="$INPUT_WPE_ENV_NAME.ssh.wpengine.net"
 
 if [ -n "$TPO_PATH" ]; then 
     DIR_PATH="$TPO_PATH"
