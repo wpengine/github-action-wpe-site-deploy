@@ -2,8 +2,10 @@
 
 This GitHub Action can be used to deploy code from Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally a theme, plugin or other directory with the TPO options. Optionally lint your php pre-deployment. Post deploy, this action will automatically purge your WP Engine cache to ensure all changes are visible. 
 
-V2.0 NOW AVAILABLE! 
-Note: v2.0 enhancements WILL break previous version yaml configs. To utilize the new features, users must update main.yml to match format below. If issues persist post update, please contact WP Engine Support. 
+V2.1 NOW AVAILABLE! 
+Note: v2.1 will require an update to the main.yml configuration to enable optional flags. Replacing `env:` for `with:` to follow Github Action best practice and utilize new options of the tool moving forward. This should allow our team to append new features of the tool with greater ease and no impact to customer configs moving forward.
+
+V2.1 includes optional `FLAGS` variable for users to customize their own rsync deploy protocol. This is completely optional and the toolkit will work without any `FLAGS` variable by relying on the flags historically built into the tool. 
 
 ## Example GitHub Action workflow
 
@@ -25,7 +27,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
       uses: wpengine/github-action-wpe-site-deploy@main
-      env:
+      with:
       
       # Keys, lint & url options 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
