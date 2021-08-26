@@ -79,11 +79,11 @@ if [ "${PHP_LINT^^}" == "TRUE" ]; then
 else 
     echo "Skipping PHP Linting."
 fi
+echo $INPUT_FLAGS
 
 # Deploy via SSH
 rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" $INPUT_FLAGS $SRC_PATH "$WPE_DESTINATION"
 
-echo $INPUT_FLAGS
 
 # Clear cache 
 ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
