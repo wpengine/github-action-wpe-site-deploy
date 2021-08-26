@@ -58,7 +58,7 @@ mkdir "$SSH_PATH"
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
 
 #Copy Secret Keys to container
-echo "$WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
+echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
 
 #Set Key Perms 
 chmod 700 "$SSH_PATH"
