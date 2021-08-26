@@ -7,6 +7,9 @@ inputs:
   WPE_SSHG_KEY_PRIVATE:
     description: "The private RSA key you will save in the Github Secrets"
     required: true
+  PHP_LINT:
+    description: "optional php syntax check"
+    required: false
   FLAGS: 
     description: "optional flags for the deployment"
     required: true
