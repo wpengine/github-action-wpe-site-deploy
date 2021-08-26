@@ -31,19 +31,15 @@ inputs:
   STG_BRANCH: 
     description: "Source branch to deploy STG_ENV"
     required: false
-    default: "" 
   STG_ENV:
     description: "Destination to deploy to WPE Stage"
     required: false
-    default: "" 
   DEV_BRANCH: 
     description: "Source branch to deploy DEV_ENV"
     required: false
-    default: ""
   DEV_ENV:
     description: "Destination to deploy to WPE Dev"
     required: false
-    default: "" 
 
 runs:
   using: "docker"
