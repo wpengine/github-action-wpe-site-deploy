@@ -34,6 +34,7 @@ jobs:
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
         PHP_LINT: TRUE
         FLAGS: -azvr --inplace --exclude=".*"
+        CACHE_CLEAR: TRUE
         TPO_SRC_PATH: ""
         TPO_PATH: ""
       
@@ -68,6 +69,7 @@ jobs:
 | `DEV_ENV` | string | Insert the name of the WP Engine Dev environment you want to deploy to. |
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Set to FALSE to bypass lint. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete`. This action defaults to a non-destructive deploy using the flags in the example above. |
+| `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
 | `TPO_SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
 | `TPO_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
 
