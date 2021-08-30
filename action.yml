@@ -10,6 +10,7 @@ inputs:
   PHP_LINT:
     description: "optional php syntax check"
     required: false
+    default: false
   FLAGS: 
     description: "Optional flags for the deployment"
     required: true
