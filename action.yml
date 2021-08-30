@@ -11,9 +11,13 @@ inputs:
     description: "optional php syntax check"
     required: false
   FLAGS: 
-    description: "optional flags for the deployment"
+    description: "Optional flags for the deployment"
     required: true
     default: '-azvr --inplace --exclude=".*"'
+  CACHE_CLEAR:
+    description: "Optional WPE Clear cache"
+    required: false
+    default: true
   TPO_SRC_PATH:
     description: "An optional source directory to deploy other than the root directory that is being versioned."
     default: ""
