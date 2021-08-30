@@ -85,5 +85,10 @@ rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecki
 
 
 # Clear cache 
-ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
-echo "SUCCESS: Site has been deployed and cache has been flushed."
+if [ "${CACHE_CLEAR^^}" == "TRUE" ]; then
+    echo "Clearing WP Engine Cache..."
+    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
+    echo "SUCCESS: Site has been deployed and cache has been flushed."
+else
+    echo "Skipping Cache Clear."
+fi
