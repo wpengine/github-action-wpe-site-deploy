@@ -81,8 +81,10 @@ else
 fi
 
 # Deploy via SSH
-rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" $INPUT_FLAGS $SRC_PATH "$WPE_DESTINATION"
+#rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" $INPUT_FLAGS $SRC_PATH "$WPE_DESTINATION"
 
+echo "Cache clear is set to:"
+echo $CACHE_CLEAR
 
 # Clear cache 
 if [ "${CACHE_CLEAR^^}" == "TRUE" ]; then
