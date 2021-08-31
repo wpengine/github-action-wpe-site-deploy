@@ -21,7 +21,7 @@ inputs:
     default: true
   TPO_SRC_PATH:
     description: "An optional source directory to deploy other than the root directory that is being versioned."
-    default: ""
+    default: "."
     required: false
   TPO_PATH:
     description: "An optional destination directory to deploy to other than the WordPress root."
