@@ -2,19 +2,26 @@
 
 This GitHub Action can be used to deploy code from Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally a theme, plugin or other directory with the TPO options. Optionally lint your php pre-deployment. Post deploy, this action will automatically purge your WP Engine cache to ensure all changes are visible. 
 
-V2.2 NOW AVAILABLE!
+V2.3 NOW AVAILABLE!
 
-Note: v2.2 WILL REQUIRE an update to the main.yml configuration to enable optional flags. Replacing `env:` for `with:` to follow Github Action best practice and to utilize new options of the tool moving forward. This should allow our team to append new features of the tool with greater ease and no impact to customer configs moving forward. Thank you for your patience during our pre-release phase, all feedback welcome via issues or pull requests!
+Changelog: 
+v2.3 `CACHE_CLEAR` has been added as an option to the toolkit. Default is `TRUE` but users can disable by setting to `FALSE`. This may decrease the execution time of deploys. All planned options are now built into the toolkit. All feedback welcome via issues or pull requests! 
 
 v2.2 includes optional `FLAGS` variable for users to customize their own rsync deploy protocol. This is completely optional and the toolkit will work without any `FLAGS` variable by relying on the flags historically built into the tool. 
+
+NOTE: v2.2 WILL REQUIRE an update to the main.yml configuration to enable optional flags if you are using a previous version. Replacing `env:` for `with:` to follow Github Action best practice and to utilize new options of the tool moving forward. 
+
+
 
 ## Example GitHub Action workflow
 
 1. Create a `.github/workflows/main.yml` file in your root of your WordPress project/repo, if one doesn't exist already.
 
-2. Add the following to the `main.yml` file, replacing values for `PRD_BRANCH`, `PRD_ENV` and `WPE_SSHG_KEY_PRIVATE` if they are anything other than what is below. Optionally, values for `STG_` and `DEV_` environments and branches can be specified. Consult ["Further Reading"](#further-reading) on how to setup keys in repo Secrets.
+2. Add the following to the `main.yml` file, replacing values for `PRD_BRANCH`, `PRD_ENV` and `WPE_SSHG_KEY_PRIVATE` if they are anything other than what is below. Optional vars can be specified as well. Consult ["Further Reading"](#further-reading) on how to setup keys in repo Secrets.
 
 3. Git push your site repo. The action will do the rest 
+
+### Simple main.yml:
 
 ```
 name: Deploy to WP Engine
@@ -27,16 +34,40 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v2.2
+      uses: wpengine/github-action-wpe-site-deploy@v2.3
+      with:
+      
+      # Keys, lint & url options 
+        WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
+      
+      # Branches & Environments 
+        PRD_BRANCH: main
+        PRD_ENV: prodsitehere
+```
+
+### Extended main.yml
+
+```
+name: Deploy to WP Engine
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+    steps: 
+    - uses: actions/checkout@v2
+    - name: GitHub Action Deploy to WP Engine
+      uses: wpengine/github-action-wpe-site-deploy@v2.3
       with:
       
       # Keys, lint & url options 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
         PHP_LINT: TRUE
-        FLAGS: -azvr --inplace --exclude=".*"
+        FLAGS: -azvr --inplace --delete --exclude=".*"
         CACHE_CLEAR: TRUE
-        TPO_SRC_PATH: ""
-        TPO_PATH: ""
+        TPO_SRC_PATH: "wp-content/themes/genesis-child-theme/"
+        TPO_PATH: "wp-content/themes/genesis-child-theme/"
       
       # Branches & Environments 
         PRD_BRANCH: main
