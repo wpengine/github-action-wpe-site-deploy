@@ -1,6 +1,6 @@
 # GitHub Action for WP Engine Site Deployments
 
-This GitHub Action can be used to deploy code from Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally a theme, plugin or other directory with the TPO options. Optionally lint your php pre-deployment. Post deploy, this action will automatically purge your WP Engine cache to ensure all changes are visible. 
+This GitHub Action may be used to deploy code from Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally a theme, plugin or other directory with the TPO options. Optionally lint your php pre-deployment. Post deploy, this action will automatically purge your WP Engine cache to ensure all changes are visible. 
 
 V2.3 NOW AVAILABLE!
 
@@ -37,7 +37,7 @@ jobs:
       uses: wpengine/github-action-wpe-site-deploy@v2.3
       with:
       
-      # Keys, lint & url options 
+      # Deploy vars
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
       
       # Branches & Environments 
@@ -61,7 +61,7 @@ jobs:
       uses: wpengine/github-action-wpe-site-deploy@v2.3
       with:
       
-      # Keys, lint & url options 
+      # Deploy vars 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
         PHP_LINT: TRUE
         FLAGS: -azvr --inplace --delete --exclude=".*"
@@ -101,8 +101,8 @@ jobs:
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Set to FALSE to bypass lint. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete`. This action defaults to a non-destructive deploy using the flags in the example above. |
 | `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
-| `TPO_SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
-| `TPO_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Defaults to WordPress root directory.  |
+| `TPO_SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to "." Dir. |
+| `TPO_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory.  |
 
 ## Setting up your SSH keys for repo
 
