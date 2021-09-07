@@ -9,8 +9,6 @@
 *.swp
 Thumbs.db
 
-
-
 # wordpress specific
 wp-config.php
 wp-content/blogs.dir/
@@ -20,7 +18,6 @@ wp-content/advanced-cache.php
 wp-content/wp-cache-config.php
 wp-content/cache/*
 wp-content/cache/supercache/*
-
 
 # wpengine specific
 .smushit-status
