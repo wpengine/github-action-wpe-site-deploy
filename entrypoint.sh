@@ -8,9 +8,9 @@ set -e
 SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
-source exclude.txt 
+source /exclude.txt 
 
-cat exclude.txt 
+cat /exclude.txt 
 ###
 # If you'd like to expand the environments, 
 # Just copy/paste an elif line and the following export
