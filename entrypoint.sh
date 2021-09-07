@@ -62,7 +62,7 @@ if [ "${INPUT_PHP_LINT^^}" == "TRUE" ]; then
             echo "FAILURE: Linting failed - $file :: $status" && exit 1
         fi
     done
-    echo "End PHP Linting."
+    echo "PHP Lint Successful! No errors detected!"
 else 
     echo "Skipping PHP Linting."
 fi
