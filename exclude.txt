@@ -12,6 +12,7 @@ Thumbs.db
 # wordpress specific
 wp-config.php
 wp-content/blogs.dir/
+wp-content/uploads/
 wp-content/upgrade/*
 wp-content/backup-db/*
 wp-content/advanced-cache.php
