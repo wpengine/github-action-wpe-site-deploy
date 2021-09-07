@@ -32,25 +32,12 @@ fi
 
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
-
-if [ -n "$INPUT_TPO_PATH" ]; then 
-    DIR_PATH="$INPUT_TPO_PATH"
-else 
-    DIR_PATH=""
-fi
-
-if [ -n "$INPUT_TPO_SRC_PATH" ]; then
-    SRC_PATH="$INPUT_TPO_SRC_PATH"
-else
-    SRC_PATH="."
-fi
+DIR_PATH="$INPUT_TPO_PATH"
+SRC_PATH="$INPUT_TPO_SRC_PATH"
  
 # Set up our user and path
 
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
-
-echo $WPE_SSH_USER 
-
 WPE_DESTINATION="$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
@@ -59,7 +46,6 @@ ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
 
 #Copy Secret Keys to container
 echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
-
 #Set Key Perms 
 chmod 700 "$SSH_PATH"
 chmod 644 "$KNOWN_HOSTS_PATH"
@@ -83,7 +69,7 @@ fi
 # Deploy via SSH
 rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" $INPUT_FLAGS $SRC_PATH "$WPE_DESTINATION"
 
-# Clear cache 
+# Post deploy clear cache 
 if [ "${INPUT_CACHE_CLEAR^^}" == "TRUE" ]; then
     echo "Clearing WP Engine Cache..."
     ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && wp page-cache flush"
