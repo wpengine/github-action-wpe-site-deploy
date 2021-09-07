@@ -47,9 +47,9 @@ _wpeprivate
 wp-content/object-cache.php
 wp-content/mu-plugins/mu-plugin.php
 wp-content/mu-plugins/slt-force-strong-passwords.php
-wp-content/mu-plugins/force-strong-passwords*
 wp-content/mu-plugins/wpengine-security-auditor.php
 wp-content/mu-plugins/stop-long-comments.php
+wp-content/mu-plugins/force-strong-passwords*
 wp-content/mu-plugins/wpengine-common*
 wp-content/mu-plugins/wpe-wp-sign-on-plugin*
 wp-content/mu-plugins/wpe-elasticpress-autosuggest-logger*
