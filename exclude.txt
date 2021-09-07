@@ -1,3 +1,8 @@
+# Version Control 
+# NOTE: 
+#    WP Engine does not support server side versioning so hosting any version control
+#    on the server would not be advantageous. 
+
 *~
 .git
 .github
@@ -9,7 +14,12 @@
 *.swp
 Thumbs.db
 
-# wordpress specific
+# WordPress specific files
+# NOTE:
+#     These files are excluded from the deploy so as to prevent unwanted errors from occurring, 
+#     such as accidentally deploying a local version of wp-config.php or accidentally deleting
+#     wp-content/uploads/ if a --delete flag is passed while deploying root. Most directories 
+#     are ingnored in sample .gitinore per best practice
 wp-config.php
 wp-content/blogs.dir/
 wp-content/uploads/
@@ -20,7 +30,15 @@ wp-content/wp-cache-config.php
 wp-content/cache/*
 wp-content/cache/supercache/*
 
-# wpengine specific
+# WP Engine specific files
+# NOTE:
+#   These files are specific to running a WordPress site at WP Engine and would
+#   likely result in a broken production site if modified in production (in
+#   fact, permissions would prevent modification for many of these files). While
+#   some of these files (such as those in /_wpeprivate) would be extremely large
+#   and completely useless in the context of local WordPress development, others
+#   (such as some of the WP Engine managed plugins) might be useful in rare
+#   circumstances to have as a reference for debugging purposes.
 .smushit-status
 .gitattributes
 .wpe-devkit/
