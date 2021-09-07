@@ -8,7 +8,9 @@ set -e
 SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
+source exclude.txt 
 
+cat exclude.txt 
 ###
 # If you'd like to expand the environments, 
 # Just copy/paste an elif line and the following export
@@ -65,6 +67,7 @@ if [ "${INPUT_PHP_LINT^^}" == "TRUE" ]; then
 else 
     echo "Skipping PHP Linting."
 fi
+
 
 # Deploy via SSH
 rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" $INPUT_FLAGS --exclude-from='exclude.txt' $SRC_PATH "$WPE_DESTINATION"
