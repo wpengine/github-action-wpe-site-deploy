@@ -1,0 +1,32 @@
+*~
+.git
+.DS_Store
+.svn
+.cvs
+*.bak
+*.swp
+Thumbs.db
+
+
+# wordpress specific
+wp-config.php
+wp-content/blogs.dir/
+wp-content/upgrade/*
+wp-content/backup-db/*
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/cache/*
+wp-content/cache/supercache/*
+
+
+# wpengine specific
+.smushit-status
+.gitattributes
+_wpeprivate
+wp-content/object-cache.php
+wp-content/mu-plugins/mu-plugin.php
+wp-content/mu-plugins/slt-force-strong-passwords.php
+wp-content/mu-plugins/stop-long-comments.php
+wp-content/mu-plugins/force-strong-passwords*
+wp-content/mu-plugins/wpengine-common*
+wp-content/mysql.sql
