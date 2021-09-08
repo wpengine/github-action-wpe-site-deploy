@@ -5,7 +5,7 @@ This GitHub Action may be used to deploy code from Github repo to a WP Engine en
 V2.3.1 NOW AVAILABLE!
 
 Changelog: 
-v.2.3.1 Restricted paths are excluded from the rsync deploy such as `wp-config.php` as well as platform specific files that customers do not have permissions to edit. No action required. This should enhance support expected behavior of the toolkit for users. Inspect `exclude.txt` for reference. 
+v.2.3.1 Restricted paths are excluded from the rsync deploy such as `wp-config.php` as well as platform specific files that customers do not have permissions to edit. No action required. This should enhance expected behavior of the toolkit for users. Inspect `exclude.txt` for reference. 
 
 v2.3 `CACHE_CLEAR` has been added as an option to the toolkit. Default is `TRUE` but users can disable by setting to `FALSE`. This may decrease the execution time of deploys. All planned options are now built into the toolkit. All feedback welcome via issues or pull requests! 
 
