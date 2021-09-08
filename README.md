@@ -2,9 +2,11 @@
 
 This GitHub Action may be used to deploy code from Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally a theme, plugin or other directory with the TPO options. Optionally lint your php pre-deployment. Post deploy, this action will automatically purge your WP Engine cache to ensure all changes are visible. 
 
-V2.3 NOW AVAILABLE!
+V2.3.1 NOW AVAILABLE!
 
 Changelog: 
+v.2.3.1 Restricted paths are excluded from the rsync deploy such as `wp-config.php` as well as platform specific files that customers do not have permissions to edit. No action required. This should enhance support expected behavior of the toolkit for users. Inspect `exclude.txt` for reference. 
+
 v2.3 `CACHE_CLEAR` has been added as an option to the toolkit. Default is `TRUE` but users can disable by setting to `FALSE`. This may decrease the execution time of deploys. All planned options are now built into the toolkit. All feedback welcome via issues or pull requests! 
 
 v2.2 includes optional `FLAGS` variable for users to customize their own rsync deploy protocol. This is completely optional and the toolkit will work without any `FLAGS` variable by relying on the flags historically built into the tool. 
