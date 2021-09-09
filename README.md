@@ -36,7 +36,7 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v2.3
+      uses: wpengine/github-action-wpe-site-deploy@v2.3.1
       with:
       
       # Deploy vars
@@ -60,13 +60,13 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v2.3
+      uses: wpengine/github-action-wpe-site-deploy@v2.3.1
       with:
       
       # Deploy vars 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
         PHP_LINT: TRUE
-        FLAGS: -azvr --inplace --delete --exclude=".*"
+        FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
         CACHE_CLEAR: TRUE
         TPO_SRC_PATH: "wp-content/themes/genesis-child-theme/"
         TPO_PATH: "wp-content/themes/genesis-child-theme/"
@@ -101,7 +101,7 @@ jobs:
 | `DEV_BRANCH` | string | Insert the name of a development Github branch you would like to deploy from. Note: exclude leading / in branch names.|
 | `DEV_ENV` | string | Insert the name of the WP Engine Dev environment you want to deploy to. |
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Set to FALSE to bypass lint. |
-| `FLAGS` | string | Set optional rsync flags such as `--delete`. This action defaults to a non-destructive deploy using the flags in the example above. |
+| `FLAGS` | string | Set optional rsync flags such as `--delete` or `--exclude-from`. The example is excluding paths specified in a `.deployignore` file in the root of the repo. This action defaults to a non-destructive deploy using the flags in the example above. |
 | `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
 | `TPO_SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to "." Dir. |
 | `TPO_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory.  |
