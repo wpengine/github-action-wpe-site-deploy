@@ -118,4 +118,4 @@ jobs:
 
 * [Defining environment variables in GitHub Actions](https://docs.github.com/en/actions/reference/environment-variables)
 * [Storing secrets in GitHub repositories](https://docs.github.com/en/actions/reference/encrypted-secrets)
-* As this script does not restrict files or directories that can be deployed, it is recommended to leverage one of [WP Engine's .gitignore tamplates.](https://wpengine.com/support/git/#Add_gitignore)
+* As this script does not restrict files or directories that can be deployed, it is recommended to leverage one of [WP Engine's .gitignore templates.](https://wpengine.com/support/git/#Add_gitignore)
