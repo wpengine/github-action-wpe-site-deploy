@@ -18,7 +18,8 @@ NOTE: v2.2 WILL REQUIRE an update to the main.yml configuration to enable option
 
 1. Copy the following `main.yml` to `.github/workflows/main.yml` in your root of your local WordPress project/repo, replacing values of `PRD_BRANCH`, `PRD_ENV` for the branch and WPE Environment name of your choice. Optional vars can be specified as well. Consult ["Environment Variable & Secrets"](#environment-variables--secrets) for more available options. 
 
-2. [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. Add the *SSH Private Key* to your Github repo settings. 
+2. [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. 
+    Add the *SSH Private Key* to your Github repo settings. 
 
     **Repo > Settings > Secrets > Actions Secrets > New Repository Secrets** 
 
