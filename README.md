@@ -14,23 +14,25 @@ v2.2 includes optional `FLAGS` variable for users to customize their own rsync d
 NOTE: v2.2 WILL REQUIRE an update to the main.yml configuration to enable optional flags if you are using a previous version. Replacing `env:` for `with:` to follow Github Action best practice and to utilize new options of the tool moving forward. 
 
 
-
-## Example GitHub Action workflow
+## SSH Gateway Key setup 
 
 1. Copy the following `main.yml` to `.github/workflows/main.yml` in your root of your local WordPress project/repo, replacing values of `PRD_BRANCH`, `PRD_ENV` for the branch and WPE Environment name of your choice. Optional vars can be specified as well. Consult ["Environment Variable & Secrets"](#environment-variables--secrets) for more available options. 
 
-2. [Generate a new SSH key pair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) if you have not already done so. Then add the SSH Private Key to your Github repo settings. 
+2. [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. Add the *SSH Private Key* to your Github repo settings. 
+
 **Repo > Settings > Secrets > Actions Secrets > New Repository Secrets** 
 
-Save the new secret "Name" as `WPE_SSHG_KEY_PRIVATE`. 
+    Save the new secret "Name" as `WPE_SSHG_KEY_PRIVATE`. [More reading available here for Repo Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
-3. Add SSH Public Key to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key) 
+3. Add *SSH Public Key* to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key) 
 
-NOTE: This Action DOES NOT utilize WP Engine GitPush or the GitPush SSH keys [found here](https://wpengine.com/support/git/#Add_SSH_Key_to_User_Portal)
+    NOTE: This Action DOES NOT utilize WP Engine GitPush or the GitPush SSH keys [found here](https://wpengine.com/support/git/#Add_SSH_Key_to_User_Portal)
 
 4. Git push your site Github repo. The action will do the rest! 
 
 View your actions progress and logs by navigating to the "Actions" tab in your repo. 
+
+## Example GitHub Action workflow
 
 ### Simple main.yml:
 
@@ -115,13 +117,6 @@ jobs:
 | `TPO_SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to "." Dir. |
 | `TPO_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory.  |
 
-## Setting up your SSH keys for repo
-
-1. [Generate a new SSH key pair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) as a special deploy key between your Github Repo and WP Engine. The simplest method is to generate a key pair with a blank passphrase, which creates an unencrypted private key. 
-
-2. Store your private key in the GitHub repository of your website as new 'Secrets' (under your repository settings) using the names `WPE_SSHG_KEY_PRIVATE` with the name in your specfic files. These can be customized, just remember to change the var in the yml file to call them correctly. 
-
-3. Add the Public SSH key to your WP Engine SSH Gateway configuration. https://wpengine.com/support/ssh-gateway/#addsshkey
 
 ### Further reading 
 
