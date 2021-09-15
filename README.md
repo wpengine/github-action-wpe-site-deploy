@@ -20,9 +20,9 @@ NOTE: v2.2 WILL REQUIRE an update to the main.yml configuration to enable option
 
 2. [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. Add the *SSH Private Key* to your Github repo settings. 
 
-**Repo > Settings > Secrets > Actions Secrets > New Repository Secrets** 
+    **Repo > Settings > Secrets > Actions Secrets > New Repository Secrets** 
 
-Save the new secret "Name" as `WPE_SSHG_KEY_PRIVATE`. [More reading available here for Repo Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets)
+     Save the new secret "Name" as `WPE_SSHG_KEY_PRIVATE`. [More reading available here for Repo Secrets](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
 3. Add *SSH Public Key* to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key) 
 
