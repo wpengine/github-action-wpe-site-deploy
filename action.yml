@@ -30,27 +30,27 @@ inputs:
   PRD_BRANCH: 
     description: "Source branch to deploy PRD_ENV"
     required: true
-    default: ""
+    default: "PROD_BRANCH_HERE"
   PRD_ENV:
     description: "Destination to deploy to WPE Prod"
     required: true
-    default: ""
+    default: "PROD_ENV_HERE"
   STG_BRANCH: 
     description: "Source branch to deploy STG_ENV"
     required: false
-    default: ""
+    default: "STAGE_BRANCH_HERE"
   STG_ENV:
     description: "Destination to deploy to WPE Stage"
     required: false
-    default: ""
+    default: "STAGE_ENV_HERE"
   DEV_BRANCH: 
     description: "Source branch to deploy DEV_ENV"
     required: false
-    default: ""
+    default: "DEV_BRANCH_HERE"
   DEV_ENV:
     description: "Destination to deploy to WPE Dev"
     required: false
-    default: ""
+    default: "DEV_ENV_HERE"
 
 runs:
   using: "docker"
