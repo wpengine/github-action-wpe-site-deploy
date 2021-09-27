@@ -20,14 +20,14 @@ WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 # elif [[ ${GITHUB_REP} =~ ${INPUT_NEW_BRANCH_NAME}$ ]]; then
 #     export WPE_ENV_NAME=${INPUT_NEW_ENV_NAME};    
 ###
-echo "$PRD_ENV"
-echo "$PRD_BRANCH"
+echo "$INPUT_PRD_ENV"
+echo "$INPUT_PRD_BRANCH"
 
-echo "$STG_ENV"
-echo "$STG_BRANCH"
+echo "$INPUT_STG_ENV"
+echo "$INPUT_STG_BRANCH"
 
-echo "$DEV_ENV" 
-echo "$DEV_BRANCH"
+echo "$INPUT_DEV_ENV" 
+echo "$INPUT_DEV_BRANCH"
 
 if [[ $GITHUB_REF =~ ${INPUT_PRD_BRANCH}$ ]]; then
     export WPE_ENV_NAME=$INPUT_PRD_ENV;
