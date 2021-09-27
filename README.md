@@ -1,18 +1,8 @@
 # GitHub Action for WP Engine Site Deployments
 
-This GitHub Action may be used to deploy code from Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally a theme, plugin or other directory with the TPO options. Optionally lint your php pre-deployment. Post deploy, this action will automatically purge your WP Engine cache to ensure all changes are visible. 
+This GitHub Action may be used to deploy code from a Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally just a theme, plugin or other directory with the TPO options. Other options include performing a PHP Lint, custom rsync flags, or clearing cache. 
 
-V2.3.1 NOW AVAILABLE!
-
-Changelog: 
-v.2.3.1 Restricted paths are excluded from the rsync deploy such as `wp-config.php` as well as platform specific files that customers do not have permissions to edit. No action required. This should enhance expected behavior of the toolkit for users. Inspect `exclude.txt` for reference. 
-
-v2.3 `CACHE_CLEAR` has been added as an option to the toolkit. Default is `TRUE` but users can disable by setting to `FALSE`. This may decrease the execution time of deploys. All planned options are now built into the toolkit. All feedback welcome via issues or pull requests! 
-
-v2.2 includes optional `FLAGS` variable for users to customize their own rsync deploy protocol. This is completely optional and the toolkit will work without any `FLAGS` variable by relying on the flags historically built into the tool. 
-
-NOTE: v2.2 WILL REQUIRE an update to the main.yml configuration to enable optional flags if you are using a previous version. Replacing `env:` for `with:` to follow Github Action best practice and to utilize new options of the tool moving forward. 
-
+V2.3.2 NOW AVAILABLE! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
 
 ## SSH Gateway Key setup 
 
@@ -48,7 +38,7 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v2.3.1
+      uses: wpengine/github-action-wpe-site-deploy@v2.3.2
       with:
       
       # Deploy vars
@@ -72,7 +62,7 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v2.3.1
+      uses: wpengine/github-action-wpe-site-deploy@v2.3.2
       with:
       
       # Deploy vars 
@@ -112,7 +102,7 @@ jobs:
 | `STG_ENV` | string | Insert the name of the WP Engine Stage environment you want to deploy to. |
 | `DEV_BRANCH` | string | Insert the name of a development Github branch you would like to deploy from. Note: exclude leading / in branch names.|
 | `DEV_ENV` | string | Insert the name of the WP Engine Dev environment you want to deploy to. |
-| `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Set to FALSE to bypass lint. |
+| `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Default is `FALSE`. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete` or `--exclude-from`. The example is excluding paths specified in a `.deployignore` file in the root of the repo. This action defaults to a non-destructive deploy using the flags in the example above. |
 | `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
 | `TPO_SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to "." Dir. |
