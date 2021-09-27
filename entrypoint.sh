@@ -39,6 +39,8 @@ else
     echo "FAILURE: Branch name required." && exit 1;
 fi
 
+echo "Deploying $GITHUB_REF to $WPE_ENV_NAME..."
+
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
 DIR_PATH="$INPUT_TPO_PATH"
