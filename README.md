@@ -2,7 +2,7 @@
 
 This GitHub Action may be used to deploy code from a Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally just a theme, plugin or other directory with the TPO options. Other options include performing a PHP Lint, custom rsync flags, or clearing cache. 
 
-V2.3.2 NOW AVAILABLE! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
+V2.3.3 NOW AVAILABLE! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
 
 ## SSH Gateway Key setup 
 
@@ -38,7 +38,7 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v2.3.2
+      uses: wpengine/github-action-wpe-site-deploy@v2.3.3
       with:
       
       # Deploy vars
@@ -62,7 +62,7 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v2.3.2
+      uses: wpengine/github-action-wpe-site-deploy@v2.3.3
       with:
       
       # Deploy vars 
