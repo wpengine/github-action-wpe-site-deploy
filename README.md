@@ -4,7 +4,9 @@ This GitHub Action may be used to deploy code from a Github repo to a WP Engine 
 
 V2.3.3 NOW AVAILABLE! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
 
-## SSH Gateway Key setup 
+## Setup Instructions 
+
+Follow along with the [video tutorial here!](https://wpengine-2.wistia.com/medias/crj1lp3qke)
 
 1. Copy the following `main.yml` to `.github/workflows/main.yml` in your root of your local WordPress project/repo, replacing values of `PRD_BRANCH`, `PRD_ENV` for the branch and WPE Environment name of your choice. Optional vars can be specified as well. Consult ["Environment Variable & Secrets"](#environment-variables--secrets) for more available options. 
 
