@@ -6,10 +6,10 @@ V2.3.3 NOW AVAILABLE! [View Changelog here.](https://github.com/wpengine/github-
 
 ## Setup Instructions 
 
-Follow along with the [video tutorial here!](https://wpengine-2.wistia.com/medias/crj1lp3qke){:target="_blank"}
+Follow along with the [video tutorial here!](https://wpengine-2.wistia.com/medias/crj1lp3qke)
 
 1. **MAIN.YML SETUP**
-Copy the following `main.yml` to `.github/workflows/main.yml` in your root of your local WordPress project/repo, replacing values of `PRD_BRANCH`, `PRD_ENV` for the branch and WPE Environment name of your choice. Optional vars can be specified as well. Consult ["Environment Variable & Secrets"](#environment-variables--secrets) for more available options. 
+* Copy the following `main.yml` to `.github/workflows/main.yml` in your root of your local WordPress project/repo, replacing values of `PRD_BRANCH`, `PRD_ENV` for the branch and WPE Environment name of your choice. Optional vars can be specified as well. Consult ["Environment Variable & Secrets"](#environment-variables--secrets) for more available options. 
 
 2. **SSH PRIVATE KEY SETUP IN GITHUB**
 * [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. 
@@ -19,7 +19,7 @@ Copy the following `main.yml` to `.github/workflows/main.yml` in your root of yo
 **NOTE:** If using a Github Organization, adding the SSH key to the Organization Secrets will allow all repos to reference the same SSH key for deploys using the method in the sample `main.yml`. The SSH Key also connects to all installs made available to its WP Engine User. One key can then effectively be used to deploy all projects to their respective sites on WP Engine. Less work. More deploys! 
 
 3. **SSH PUBLIC KEY SETUP IN WP ENGINE**
-Add *SSH Public Key* to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key) 
+* Add *SSH Public Key* to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key) 
 
     **NOTE:** This Action DOES NOT utilize WP Engine GitPush or the GitPush SSH keys [found here.](https://wpengine.com/support/git/#Add_SSH_Key_to_User_Portal)
 
