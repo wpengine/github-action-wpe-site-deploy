@@ -57,8 +57,8 @@ chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 ls -lha $INPUT_TPO_PATH
 echo "updating file perms..."
 
-find $INPUT_TPO_PATH -type d -exec chmod 755 {} \;
-find $INPUT_TPO_PATH -type d -exec chmod 644 {} \;
+find $INPUT_TPO_PATH -type d -exec chmod 775 {} \;
+find $INPUT_TPO_PATH -type d -exec chmod 664 {} \;
 
 ls -lha $INPUT_TPO_PATH
 
