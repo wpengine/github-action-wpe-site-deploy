@@ -58,7 +58,7 @@ ls -lha $INPUT_TPO_PATH
 echo "updating file perms..."
 
 find $INPUT_TPO_PATH -type d -exec chmod 775 {} \;
-find $INPUT_TPO_PATH -type d -exec chmod 664 {} \;
+find $INPUT_TPO_PATH -type f -exec chmod 664 {} \;
 
 ls -lha $INPUT_TPO_PATH
 
