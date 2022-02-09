@@ -54,6 +54,8 @@ chmod 700 "$SSH_PATH"
 chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 
+ls -lha $INPUT_TPO_PATH
+
 # Lint before deploy
 if [ "${INPUT_PHP_LINT^^}" == "TRUE" ]; then
     echo "Begin PHP Linting."
