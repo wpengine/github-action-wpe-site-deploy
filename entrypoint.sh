@@ -54,16 +54,6 @@ chmod 700 "$SSH_PATH"
 chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 
-ls -lha $INPUT_TPO_PATH
-echo "updating file perms..."
-
-find $INPUT_TPO_PATH -type d -exec chmod 775 {} \;
-find $INPUT_TPO_PATH -type f -exec chmod 664 {} \;
-
-ls -lha $INPUT_TPO_PATH
-
-echo "file perms have been set..."
-
 # Lint before deploy
 if [ "${INPUT_PHP_LINT^^}" == "TRUE" ]; then
     echo "Begin PHP Linting."
