@@ -55,10 +55,10 @@ chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 
 echo "prepping file perms..."
-ls -lha $SRC_PATH
+ls -lha "$SRC_PATH"
 find $SRC_PATH -type d -exec chmod -R 775 {} \;
 find $SRC_PATH -type f -exec chmod -R 664 {} \;
-ls -lha $SRC_PATH
+ls -lha "$SRC_PATH"
 echo "file perms set..."
 
 # Lint before deploy
