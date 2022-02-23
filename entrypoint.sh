@@ -21,17 +21,20 @@ WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 #     export WPE_ENV_NAME=${INPUT_NEW_ENV_NAME};    
 ###
 
-if [[ $GITHUB_REF =~ ${INPUT_PRD_BRANCH}$ ]]; then
-    export WPE_ENV_NAME=$INPUT_PRD_ENV;
-elif [[ $GITHUB_REF =~ ${INPUT_STG_BRANCH}$ ]]; then
-    export WPE_ENV_NAME=$INPUT_STG_ENV;
-elif [[ $GITHUB_REF =~ ${INPUT_DEV_BRANCH}$ ]]; then
-    export WPE_ENV_NAME=$INPUT_DEV_ENV;    
-else 
-    echo "FAILURE: Branch name required." && exit 1;
+if [[ -n ${WPE_ENV} ]]; then
+    WPE_ENV_NAME="${WPE_ENV}";
+  elif [[ -n ${PRD_ENV} ]]; then
+    WPE_ENV_NAME="${PRD_ENV}";
+  elif [[ -n ${STG_ENV} ]]; then
+    WPE_ENV_NAME="${STG_ENV}";
+  elif [[ -n ${DEV_ENV} ]]; then  
+    WPE_ENV_NAME="${DEV_ENV}";
+  else echo "Failure: Missing environment variable..."  && exit 1;
 fi
 
-echo "Deploying $GITHUB_REF to $WPE_ENV_NAME..."
+
+info "Deploying your code to:"
+echo ${WPE_ENV_NAME}
 
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
