@@ -29,12 +29,12 @@ inputs:
     required: false
   WPE_ENV:
     description: "Destination to deploy to WPE"
-    required: true
+    required: false
     default: "WPE_ENV_HERE"
   PRD_ENV:
     description: "Destination to deploy to WPE Prod"
     required: false
-    default: "PROD_ENV_HERE"
+    default: "PRD_ENV_HERE"
   STG_ENV:
     description: "Destination to deploy to WPE Stage"
     required: false
