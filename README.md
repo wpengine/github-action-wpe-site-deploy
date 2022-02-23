@@ -35,7 +35,8 @@ View your actions progress and logs by navigating to the "Actions" tab in your r
 name: Deploy to WP Engine
 on:
   push:
-
+    branches:
+     - main
 jobs:
   build:
     runs-on: ubuntu-latest  
@@ -58,7 +59,8 @@ jobs:
 name: Deploy to WP Engine
 on:
   push:
-
+    branches:
+     - main
 jobs:
   build:
     runs-on: ubuntu-latest  
@@ -67,15 +69,13 @@ jobs:
     - name: GitHub Action Deploy to WP Engine
       uses: wpengine/github-action-wpe-site-deploy@v2.3.5
       with:
-      
       # Deploy vars 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
         PHP_LINT: TRUE
         FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
         CACHE_CLEAR: TRUE
-        TPO_SRC_PATH: "wp-content/themes/genesis-child-theme/"
-        TPO_PATH: "wp-content/themes/genesis-child-theme/"
-      
+        SRC_PATH: "wp-content/themes/genesis-child-theme/"
+        REMOTE_PATH: "wp-content/themes/genesis-child-theme/"
       # Environment
         WPE_ENV: prodsitehere
 ```
