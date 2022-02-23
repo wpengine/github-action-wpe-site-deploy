@@ -38,8 +38,8 @@ echo ${WPE_ENV_NAME}
 
 #Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
-DIR_PATH="$INPUT_TPO_PATH"
-SRC_PATH="$INPUT_TPO_SRC_PATH"
+DIR_PATH="$INPUT_REMOTE_PATH"
+SRC_PATH="$INPUT_SRC_PATH"
  
 # Set up our user and path
 
