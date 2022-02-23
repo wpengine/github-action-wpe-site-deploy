@@ -22,7 +22,7 @@ if [[ -n ${INPUT_WPE_ENV} ]]; then
 fi
 
 
-info "Deploying your code to:"
+echo "Deploying your code to:"
 echo ${WPE_ENV_NAME}
 
 #Deploy Vars
