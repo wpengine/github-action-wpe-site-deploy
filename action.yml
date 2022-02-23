@@ -39,6 +39,9 @@ inputs:
   DEV_ENV:
     description: "Destination to deploy to WPE Dev"
     required: false
+  SCRIPT: 
+    description: "File containing custom scripts run after the rsync"
+    required: false
 
 runs:
   using: "docker"
