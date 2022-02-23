@@ -45,12 +45,8 @@ jobs:
     - name: GitHub Action Deploy to WP Engine
       uses: wpengine/github-action-wpe-site-deploy@v2.3.5
       with:
-      
-      # Deploy vars
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
-      
-      # Environment
-        WPE_ENV: prodsitehere
+        WPE_ENV: <your_install_name_here>
 ```
 
 ### Extended main.yml
@@ -71,13 +67,13 @@ jobs:
       with:
       # Deploy vars 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
+        WPE_ENV: <your_install_name_here>
+        # Deploy Options
+        SRC_PATH: "wp-content/themes/genesis-child-theme/"
+        REMOTE_PATH: "wp-content/themes/genesis-child-theme/"
         PHP_LINT: TRUE
         FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
         CACHE_CLEAR: TRUE
-        SRC_PATH: "wp-content/themes/genesis-child-theme/"
-        REMOTE_PATH: "wp-content/themes/genesis-child-theme/"
-      # Environment
-        WPE_ENV: prodsitehere
 ```
 
 ## Environment Variables & Secrets
@@ -87,17 +83,17 @@ jobs:
 | Name | Type | Usage |
 |-|-|-|
 | `WPE_SSHG_KEY_PRIVATE` | secrets | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
+| `WPE_ENV` | string | Insert the name of the WP Engine environment you want to deploy to. This also has an alias of `PRD_ENV`, `STG_ENV`, or `DEV_ENV` for easier syntax if running paralell jobs. |
 
-### Optional
+### Deploy Options
 
 | Name | Type | Usage |
 |-|-|-|
-| `WPE_ENV` | string | Insert the name of the WP Engine environment you want to deploy to. This also has an alias of `PRD_ENV`, `STG_ENV`, or `DEV_ENV` |
+| `SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to "." Dir. |
+| `REMOTE_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory.  |
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Default is `FALSE`. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete` or `--exclude-from`. The example is excluding paths specified in a `.deployignore` file in the root of the repo. This action defaults to a non-destructive deploy using the flags in the example above. |
 | `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
-| `SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to "." Dir. |
-| `REMOTE_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory.  |
 
 
 ### Further reading 
