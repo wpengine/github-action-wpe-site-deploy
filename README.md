@@ -48,9 +48,8 @@ jobs:
       # Deploy vars
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
       
-      # Branches & Environments 
-        PRD_BRANCH: main
-        PRD_ENV: prodsitehere
+      # Environment
+        WPE_ENV: prodsitehere
 ```
 
 ### Extended main.yml
@@ -77,15 +76,8 @@ jobs:
         TPO_SRC_PATH: "wp-content/themes/genesis-child-theme/"
         TPO_PATH: "wp-content/themes/genesis-child-theme/"
       
-      # Branches & Environments 
-        PRD_BRANCH: main
-        PRD_ENV: prodsitehere
-        
-        STG_BRANCH: feature/stage
-        STG_ENV: stagesitehere
-        
-        DEV_BRANCH: feature/dev
-        DEV_ENV: devsitehere
+      # Environment
+        WPE_ENV: prodsitehere
 ```
 
 ## Environment Variables & Secrets
@@ -94,23 +86,18 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `PRD_BRANCH` | string | Insert the name of the Github branch you would like to deploy from, example; main. |
-| `PRD_ENV` | string | Insert the name of the WP Engine environment you want to deploy to. |
 | `WPE_SSHG_KEY_PRIVATE` | secrets | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
 
 ### Optional
 
 | Name | Type | Usage |
 |-|-|-|
-| `STG_BRANCH` | string | Insert the name of a staging Github branch you would like to deploy from. Note: exclude leading / from branch names.|
-| `STG_ENV` | string | Insert the name of the WP Engine Stage environment you want to deploy to. |
-| `DEV_BRANCH` | string | Insert the name of a development Github branch you would like to deploy from. Note: exclude leading / in branch names.|
-| `DEV_ENV` | string | Insert the name of the WP Engine Dev environment you want to deploy to. |
+| `WPE_ENV` | string | Insert the name of the WP Engine environment you want to deploy to. This also has an alias of `PRD_ENV`, `STG_ENV`, or `DEV_ENV` |
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Default is `FALSE`. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete` or `--exclude-from`. The example is excluding paths specified in a `.deployignore` file in the root of the repo. This action defaults to a non-destructive deploy using the flags in the example above. |
 | `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
-| `TPO_SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to "." Dir. |
-| `TPO_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory.  |
+| `SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to "." Dir. |
+| `REMOTE_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory.  |
 
 
 ### Further reading 

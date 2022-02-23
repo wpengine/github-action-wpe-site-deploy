@@ -19,34 +19,26 @@ inputs:
     description: "Optional WPE Clear cache"
     required: false
     default: true
-  TPO_SRC_PATH:
+  SRC_PATH:
     description: "An optional source directory to deploy other than the root directory that is being versioned."
     default: "."
     required: false
-  TPO_PATH:
+  REMOTE_PATH:
     description: "An optional destination directory to deploy to other than the WordPress root."
     default: ""
     required: false
-  PRD_BRANCH: 
-    description: "Source branch to deploy PRD_ENV"
+  WPE_ENV:
+    description: "Destination to deploy to WPE"
     required: true
-    default: "PROD_BRANCH_HERE"
-  PRD_ENV:
+    default: "WPE_ENV_HERE"
+  WPE_ENV:
     description: "Destination to deploy to WPE Prod"
-    required: true
-    default: "PROD_ENV_HERE"
-  STG_BRANCH: 
-    description: "Source branch to deploy STG_ENV"
     required: false
-    default: "STAGE_BRANCH_HERE"
+    default: "PROD_ENV_HERE"
   STG_ENV:
     description: "Destination to deploy to WPE Stage"
     required: false
     default: "STAGE_ENV_HERE"
-  DEV_BRANCH: 
-    description: "Source branch to deploy DEV_ENV"
-    required: false
-    default: "DEV_BRANCH_HERE"
   DEV_ENV:
     description: "Destination to deploy to WPE Dev"
     required: false
