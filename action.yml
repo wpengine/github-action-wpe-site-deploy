@@ -30,19 +30,15 @@ inputs:
   WPE_ENV:
     description: "Destination to deploy to WPE"
     required: false
-    default: "WPE_ENV_HERE"
   PRD_ENV:
     description: "Destination to deploy to WPE Prod"
     required: false
-    default: "PRD_ENV_HERE"
   STG_ENV:
     description: "Destination to deploy to WPE Stage"
     required: false
-    default: "STAGE_ENV_HERE"
   DEV_ENV:
     description: "Destination to deploy to WPE Dev"
     required: false
-    default: "DEV_ENV_HERE"
 
 runs:
   using: "docker"
