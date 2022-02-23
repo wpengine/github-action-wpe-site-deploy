@@ -31,7 +31,7 @@ inputs:
     description: "Destination to deploy to WPE"
     required: true
     default: "WPE_ENV_HERE"
-  WPE_ENV:
+  PRD_ENV:
     description: "Destination to deploy to WPE Prod"
     required: false
     default: "PROD_ENV_HERE"

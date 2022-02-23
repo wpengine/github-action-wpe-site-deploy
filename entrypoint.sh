@@ -9,18 +9,7 @@ SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 
-
-###
-# If you'd like to expand the environments, 
-# Just copy/paste an elif line and the following export
-# Then adjust variables to match the new ones you added in main.yml
-#
-# Example:
-#
-# elif [[ ${GITHUB_REP} =~ ${INPUT_NEW_BRANCH_NAME}$ ]]; then
-#     export WPE_ENV_NAME=${INPUT_NEW_ENV_NAME};    
-###
-
+#Alias logic for ENV names 
 if [[ -n ${INPUT_WPE_ENV} ]]; then
     WPE_ENV_NAME="${INPUT_WPE_ENV}";
   elif [[ -n ${INPUT_PRD_ENV} ]]; then
