@@ -21,14 +21,14 @@ WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 #     export WPE_ENV_NAME=${INPUT_NEW_ENV_NAME};    
 ###
 
-if [[ -n ${WPE_ENV} ]]; then
-    WPE_ENV_NAME="${WPE_ENV}";
-  elif [[ -n ${PRD_ENV} ]]; then
-    WPE_ENV_NAME="${PRD_ENV}";
-  elif [[ -n ${STG_ENV} ]]; then
-    WPE_ENV_NAME="${STG_ENV}";
-  elif [[ -n ${DEV_ENV} ]]; then  
-    WPE_ENV_NAME="${DEV_ENV}";
+if [[ -n ${INPUT_WPE_ENV} ]]; then
+    WPE_ENV_NAME="${INPUT_WPE_ENV}";
+  elif [[ -n ${INPUT_PRD_ENV} ]]; then
+    WPE_ENV_NAME="${INPUT_PRD_ENV}";
+  elif [[ -n ${INPUT_STG_ENV} ]]; then
+    WPE_ENV_NAME="${INPUT_STG_ENV}";
+  elif [[ -n ${INPUT_DEV_ENV} ]]; then  
+    WPE_ENV_NAME="${INPUT_DEV_ENV}";
   else echo "Failure: Missing environment variable..."  && exit 1;
 fi
 
