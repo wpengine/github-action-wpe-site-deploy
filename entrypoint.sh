@@ -85,8 +85,8 @@ fi
 if [ "${INPUT_CACHE_CLEAR^^}" == "TRUE" ]; then
     CACHE_CLEAR="&& wp page-cache flush"
 else
-    CACHE_CLEAR="&& echo 'Skipping Cache Clear...'"
+    CACHE_CLEAR=""
 fi
 
 ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
-echo "SUCCESS: Custom post deploy scripts have been run and cache is cleared."
+echo "SUCCESS: Your site hass been deployed."
