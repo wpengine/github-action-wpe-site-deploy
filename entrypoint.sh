@@ -75,5 +75,18 @@ rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecki
 # build test for 
 
 echo "Testing SCRIPT"
-ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} && sh ${INPUT_SCRIPT} && wp page-cache flush"
+
+if [[ -n ${INPUT_SCRIPT} ]]; then 
+    SCRIPT="&& sh ${INPUT_SCRIPT}"; 
+else 
+    SCRIPT=""
+fi 
+
+if [ "${INPUT_CACHE_CLEAR^^}" == "TRUE" ]; then
+    CACHE_CLEAR="&& wp page-cache flush"
+else
+    CACHE_CLEAR="&& echo 'Skipping Cache Clear...'"
+fi
+
+ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
 echo "SUCCESS: Custom post deploy scripts have been run and cache is cleared."

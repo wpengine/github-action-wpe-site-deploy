@@ -73,6 +73,7 @@ jobs:
         REMOTE_PATH: "wp-content/themes/genesis-child-theme/"
         PHP_LINT: TRUE
         FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
+        SCRIPT: postdeploy.sh
         CACHE_CLEAR: TRUE
 ```
 
