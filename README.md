@@ -2,7 +2,8 @@
 
 This GitHub Action may be used to deploy code from a Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally just a theme, plugin or other directory with the TPO options. Other options include performing a PHP Lint, custom rsync flags, or clearing cache. 
 
-V2.3.5 NOW AVAILABLE! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
+v3.0 COMING SOON! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
+
 
 ## Setup Instructions 
 
@@ -43,7 +44,7 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v2.3.5
+      uses: wpengine/github-action-wpe-site-deploy@v3.0
       with:
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
         WPE_ENV: <your_install_name_here>
@@ -63,7 +64,7 @@ jobs:
     steps: 
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v2.3.5
+      uses: wpengine/github-action-wpe-site-deploy@v3.0
       with:
       # Deploy vars 
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
@@ -73,7 +74,7 @@ jobs:
         REMOTE_PATH: "wp-content/themes/genesis-child-theme/"
         PHP_LINT: TRUE
         FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
-        SCRIPT: postdeploy.sh
+        SCRIPT: < yourscript.sh >
         CACHE_CLEAR: TRUE
 ```
 
@@ -94,7 +95,7 @@ jobs:
 | `REMOTE_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory.  |
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Default is `FALSE`. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete` or `--exclude-from`. The example is excluding paths specified in a `.deployignore` file in the root of the repo. This action defaults to a non-destructive deploy using the flags in the example above. |
-| `SCRIPT` | string | Name of a bash file to execute post rsync such as WP_CLI.  |
+| `SCRIPT` | string | Name of a bash file to execute post rsync such as WP_CLI commands.  |
 | `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
 
 
