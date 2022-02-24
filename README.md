@@ -10,7 +10,7 @@ v3.0 COMING SOON! [View Changelog here.](https://github.com/wpengine/github-acti
 Follow along with the [video tutorial here!](https://wpengine-2.wistia.com/medias/crj1lp3qke)
 
 1. **MAIN.YML SETUP**
-* Copy the following `main.yml` to `.github/workflows/main.yml` in your root of your local WordPress project/repo, replacing values of `PRD_BRANCH`, `PRD_ENV` for the branch and WPE Environment name of your choice. Optional vars can be specified as well. Consult ["Environment Variable & Secrets"](#environment-variables--secrets) for more available options. 
+* Copy the following `main.yml` to `.github/workflows/main.yml` in your root of your local WordPress project/repo, replacing values of `WPE_ENV` with the WP Engine environment name of your choice. Optional vars can be specified as well. Consult ["Environment Variable & Secrets"](#environment-variables--secrets) for more available options. 
 
 2. **SSH PRIVATE KEY SETUP IN GITHUB**
 * [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. 
@@ -74,7 +74,7 @@ jobs:
         REMOTE_PATH: "wp-content/themes/genesis-child-theme/"
         PHP_LINT: TRUE
         FLAGS: -azvr --inplace --delete --exclude=".*" --exclude-from=.deployignore
-        SCRIPT: < yourscript.sh >
+        SCRIPT: "path/yourscript.sh"
         CACHE_CLEAR: TRUE
 ```
 
@@ -91,11 +91,11 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `SRC_PATH` | string | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to "." Dir. |
-| `REMOTE_PATH` | string | Optional path to specify a theme, plugin, or other directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory.  |
+| `SRC_PATH` | string | Optional path to specify a directory within the repo to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"`. Defaults to root of repo filesystem as source. |
+| `REMOTE_PATH` | string | Optional path to specify a directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory on WP Engine.  |
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Default is `FALSE`. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete` or `--exclude-from`. The example is excluding paths specified in a `.deployignore` file in the root of the repo. This action defaults to a non-destructive deploy using the flags in the example above. |
-| `SCRIPT` | string | Name of a bash file to execute post rsync such as WP_CLI commands.  |
+| `SCRIPT` | string | Path and name of a bash file to execute post deploy such as WP_CLI commands. This executes the bash file from within the remote filesystem. |
 | `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
 
 
