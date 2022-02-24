@@ -74,8 +74,6 @@ rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecki
 # Post deploy clear cache 
 # build test for 
 
-echo "Testing SCRIPT"
-
 if [[ -n ${INPUT_SCRIPT} ]]; then 
     SCRIPT="&& sh ${INPUT_SCRIPT}"; 
   else 
