@@ -95,7 +95,7 @@ jobs:
 | `REMOTE_PATH` | string | Optional path to specify a directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory on WP Engine.  |
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Default is `FALSE`. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete` or `--exclude-from`. The example is excluding paths specified in a `.deployignore` file in the root of the repo. This action defaults to a non-destructive deploy using the flags in the example above. |
-| `SCRIPT` | string | Path and name of a bash file to execute post deploy such as WP_CLI commands. This executes the bash file from within the remote filesystem. |
+| `SCRIPT` | string | Path and name of a bash file to execute post deploy such as WP_CLI commands. Path is relative to the WP root and file executes on remote.  |
 | `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
 
 
