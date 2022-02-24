@@ -25,7 +25,7 @@ fi
 echo "Deploying your code to:"
 echo ${WPE_ENV_NAME}
 
-#Deploy Vars
+# Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
 DIR_PATH="$INPUT_REMOTE_PATH"
 SRC_PATH="$INPUT_SRC_PATH"
@@ -39,9 +39,9 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 mkdir "$SSH_PATH"
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
 
-#Copy Secret Keys to container
+# Copy Secret Keys to container
 echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
-#Set Key Perms 
+# Set Key Perms 
 chmod 700 "$SSH_PATH"
 chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
@@ -51,7 +51,7 @@ find $SRC_PATH -type d -exec chmod -R 775 {} \;
 find $SRC_PATH -type f -exec chmod -R 664 {} \;
 echo "file perms set..."
 
-# Lint before deploy
+# pre deploy php lint
 if [ "${INPUT_PHP_LINT^^}" == "TRUE" ]; then
     echo "Begin PHP Linting."
     for file in $(find $SRC_PATH/ -name "*.php"); do
@@ -71,20 +71,19 @@ fi
 # Exclude restricted paths from exclude.txt
 rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION"
 
-# Post deploy clear cache 
-# build test for 
-
+# post deploy script 
 if [[ -n ${INPUT_SCRIPT} ]]; then 
     SCRIPT="&& sh ${INPUT_SCRIPT}"; 
   else 
     SCRIPT=""
 fi 
 
+# post deploy cache clear
 if [ "${INPUT_CACHE_CLEAR^^}" == "TRUE" ]; then
     CACHE_CLEAR="&& wp page-cache flush"
   elif [ "${INPUT_CACHE_CLEAR^^}" == "FALSE" ]; then
       CACHE_CLEAR=""
-  else echo "Please set CACHE_CLEAR value to either TRUE or FALSE only..."  && exit 1;
+  else echo "CACHE_CLEAR must be TRUE or FALSE only... Cache not cleared..."  && exit 1;
 fi
 
 if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
