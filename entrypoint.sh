@@ -78,14 +78,15 @@ echo "Testing SCRIPT"
 
 if [[ -n ${INPUT_SCRIPT} ]]; then 
     SCRIPT="&& sh ${INPUT_SCRIPT}"; 
-else 
+  else 
     SCRIPT=""
 fi 
 
 if [ "${INPUT_CACHE_CLEAR^^}" == "TRUE" ]; then
     CACHE_CLEAR="&& wp page-cache flush"
-else
-    CACHE_CLEAR=""
+  elif [ "${INPUT_CACHE_CLEAR^^}" == "FALSE" ]; then
+      CACHE_CLEAR=""
+  else echo "Please set CACHE_CLEAR value to either TRUE or FALSE only..."  && exit 1;
 fi
 
 if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
