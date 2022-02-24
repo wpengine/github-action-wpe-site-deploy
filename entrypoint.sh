@@ -88,5 +88,8 @@ else
     CACHE_CLEAR=""
 fi
 
-ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
-echo "SUCCESS: Your site hass been deployed."
+if [[ -n ${SCRIPT} }} || -n ${CACHE_CLEAR} ]]; then 
+    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
+fi 
+
+echo "SUCCESS: Your code has been deployed to WP Engine!"
