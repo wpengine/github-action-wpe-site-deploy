@@ -88,7 +88,7 @@ else
     CACHE_CLEAR=""
 fi
 
-if [[ -n ${SCRIPT} }} || -n ${CACHE_CLEAR} ]]; then 
+if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
     ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
 fi 
 
