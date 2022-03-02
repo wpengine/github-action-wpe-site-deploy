@@ -71,7 +71,7 @@ fi
 
 # Deploy via SSH
 # Exclude restricted paths from exclude.txt
-rsync --rsh="ssh -v -p 22 $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION"
+rsync --rsh="ssh -v -p 22 -o ControlMaster=auto ControlPersist=yes $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION""
 
 # post deploy script 
 if [[ -n ${INPUT_SCRIPT} ]]; then 
