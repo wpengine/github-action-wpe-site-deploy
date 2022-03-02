@@ -44,7 +44,7 @@ cp "/config" $SSH_PATH/config
 # Copy Secret Keys to container
 echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
 # Set Key Perms 
-chmod 700 "$SSH_PATH"
+chmod -R 700 "$SSH_PATH"
 chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 644 "$SSH_PATH/config"
 chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
