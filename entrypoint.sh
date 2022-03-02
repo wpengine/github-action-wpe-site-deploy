@@ -87,7 +87,7 @@ fi
 # Deploy via SSH
 if [[ -n ${WPE_ENV_NAME} ]]; then 
 # Create master SSH connection
-  ssh -nNfv -o ControlMaster=yes -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
+  ssh -nNfv -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o ControlMaster=yes -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
 # Rsync files to remote 
   rsync -v -e 'ssh -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p"' $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION" && \
     if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
