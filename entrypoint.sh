@@ -99,6 +99,6 @@ if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then
 fi 
 
 #close master ssh 
-ssh -O exit -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_SSH_USER
+ssh -O exit -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_FULL_HOST
 
 echo "SUCCESS: Your code has been deployed to WP Engine!"
