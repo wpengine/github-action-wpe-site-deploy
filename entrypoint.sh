@@ -98,6 +98,6 @@ if [[ -n ${WPE_ENV_NAME} ]]; then
         ssh -O exit -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
     fi 
   ssh -O exit -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
-done
+fi
 
 echo "SUCCESS: Your code has been deployed to WP Engine!"
