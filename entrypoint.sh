@@ -24,7 +24,7 @@ echo ${WPE_ENV_NAME}
 SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
-mkdir ~/.ssh/ctl
+mkdir ${HOME}/.ssh/ctl/
 
 # Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
