@@ -33,6 +33,7 @@ SRC_PATH="$INPUT_SRC_PATH"
 # Set up our user and path
 
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
+WPE_FULL_HOST=WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER"
 WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
@@ -86,7 +87,7 @@ fi
 
 # Deploy via SSH
 # setup master ssh connection 
-ssh -nNf -v -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlMaster=yes -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_DESTINATION
+ssh -nNf -v -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlMaster=yes -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_FULL_HOST
 
 echo "!!! MASTER SSH CONNECTION ESTABLISHED !!!"
 #rsync 
@@ -94,7 +95,7 @@ rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecki
 
 # post deploy script and cache clear
 if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
-    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
+    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_FULL_HOST "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
 fi 
 
 #close master ssh 
