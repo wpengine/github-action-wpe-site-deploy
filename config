@@ -1,5 +1,6 @@
 Host *.ssh.wpengine.net
-    IdentityFile ~/.ssh/github_action
-    ControlMaster yes
-    ControlPath ~/.ssh/ctl/%L-%r@%h:%p
-    ControlPersist yes
+    IdentityFile ~/.ssh/key_name
+    ControlPath ~/.ssh/socket-%C
+    ControlMaster auto
+    ControlPersist 60m
+    StrictHostKeyChecking=no
