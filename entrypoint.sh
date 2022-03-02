@@ -24,7 +24,6 @@ echo ${WPE_ENV_NAME}
 SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
-mkdir ${HOME}/.ssh/ctl/
 
 # Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
@@ -38,6 +37,7 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
 mkdir "$SSH_PATH"
+mkdir ${HOME}/.ssh/ctl/
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
 cp "/config" $SSH_PATH/config
 
