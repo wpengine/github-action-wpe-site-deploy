@@ -94,10 +94,10 @@ rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecki
 
 # post deploy script and cache clear
 if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
-    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="${SSH_PATH}/ctl/%L-%r@%h:%p" $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
+    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
 fi 
 
 #close master ssh 
-ssh -O exit -o ControlPath="$HOME/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
+ssh -O exit -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_SSH_USER
 
 echo "SUCCESS: Your code has been deployed to WP Engine!"
