@@ -8,4 +8,5 @@ LABEL "maintainer"="Alex Zuniga <alex.zuniga@wpengine.com>"
 RUN apk add bash php
 ADD entrypoint.sh /entrypoint.sh
 ADD exclude.txt /exclude.txt
+ADD config /config
 ENTRYPOINT ["/entrypoint.sh"]
