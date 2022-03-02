@@ -86,7 +86,7 @@ fi
 
 # Deploy via SSH
 # setup master ssh connection 
-ssh -nNf -v -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlMaster=yes -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_SSH_USER
+ssh -nNf -v -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlMaster=yes -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_DESTINATION
 
 echo "!!! MASTER SSH CONNECTION ESTABLISHED !!!"
 #rsync 
