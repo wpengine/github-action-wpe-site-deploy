@@ -37,13 +37,15 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
 mkdir "$SSH_PATH"
-ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"x
+ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
+cp "/config" $SSH_PATH/config
 
 # Copy Secret Keys to container
 echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
 # Set Key Perms 
 chmod 700 "$SSH_PATH"
 chmod 644 "$KNOWN_HOSTS_PATH"
+chmod 644 "$SSH_PATH/config"
 chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 
 echo "prepping file perms..."
