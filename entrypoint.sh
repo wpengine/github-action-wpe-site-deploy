@@ -85,13 +85,16 @@ if [ "${INPUT_CACHE_CLEAR^^}" == "TRUE" ]; then
 fi
 
 # Deploy via SSH
-# Create master SSH connection
 if [[ -n ${WPE_ENV_NAME}]]; then 
+# Create master SSH connection
   ssh -nNf -o ControlMaster=yes -o ControlPath="$HOME/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
+# Rsync files to remote 
   rsync -v -e "ssh -o 'ControlPath=$HOME/.ssh/ctl/%L-%r@%h:%p'" $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION" && \
     if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
+      #execute sctipt and cache clear
         ssh -v -o ControlPath="$HOME/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
       else 
+      # exit master SSH connection
         ssh -O exit -o ControlPath="$HOME/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
     fi 
   ssh -O exit -o ControlPath="$HOME/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
