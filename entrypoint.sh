@@ -85,7 +85,7 @@ if [ "${INPUT_CACHE_CLEAR^^}" == "TRUE" ]; then
 fi
 
 # Deploy via SSH
-if [[ -n ${WPE_ENV_NAME}]]; then 
+if [[ -n ${WPE_ENV_NAME} ]]; then 
 # Create master SSH connection
   ssh -nNfv -o ControlMaster=yes -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
 # Rsync files to remote 
