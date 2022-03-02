@@ -33,7 +33,7 @@ SRC_PATH="$INPUT_SRC_PATH"
 # Set up our user and path
 
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
-WPE_FULL_HOST=WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER"
+WPE_FULL_HOST=wpe_gha+"$WPE_SSH_USER"
 WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
