@@ -88,6 +88,7 @@ fi
 # setup master ssh connection 
 ssh -nNf -v -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlMaster=yes -o ControlPath="$HOME/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
 
+echo "!!! MASTER SSH CONNECTION ESTABLISHED !!!"
 #rsync 
 rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o 'ControlPath=$HOME/.ssh/ctl/%L-%r@%h:%p'" $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION"
 
