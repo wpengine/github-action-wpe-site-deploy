@@ -85,19 +85,11 @@ if [ "${INPUT_CACHE_CLEAR^^}" == "TRUE" ]; then
 fi
 
 # Deploy via SSH
-if [[ -n ${WPE_ENV_NAME} ]]; then 
-# Create master SSH connection
-  ssh -nNfv -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o ControlMaster=yes -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
-# Rsync files to remote 
-  rsync -v -e 'ssh -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p"' $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION" && \
-    if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
-      #execute sctipt and cache clear
-        ssh -v -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
-      else 
-      # exit master SSH connection
-        ssh -O exit -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
-    fi 
-  ssh -O exit -o ControlPath="${HOME}/.ssh/ctl/%L-%r@%h:%p" $WPE_SSH_USER
-fi
+# Exclude restricted paths from exclude.txt
+rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION"
+
+if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
+    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_SSH_USER "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
+fi 
 
 echo "SUCCESS: Your code has been deployed to WP Engine!"
