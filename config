@@ -3,4 +3,3 @@ Host *.ssh.wpengine.net
     ControlPath ~/.ssh/socket-%C
     ControlMaster auto
     ControlPersist 60m
-    StrictHostKeyChecking=no
