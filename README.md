@@ -1,6 +1,6 @@
 # GitHub Action for WP Engine Site Deployments
 
-This GitHub Action may be used to deploy code from a Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally just a theme, plugin or other directory with the TPO options. Other options include performing a PHP Lint, custom rsync flags, or clearing cache. 
+This GitHub Action may be used to deploy code from a GitHub repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally just a theme, plugin or other directory with the TPO options. Other options include performing a PHP Lint, custom rsync flags, or clearing cache. 
 
 V2.3.5 NOW AVAILABLE! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
 
@@ -16,14 +16,14 @@ Follow along with the [video tutorial here!](https://wpengine-2.wistia.com/media
 
 * Add the *SSH Private Key* to your [Repository Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) or your [Organization Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-organization). Save the new secret "Name" as `WPE_SSHG_KEY_PRIVATE`. 
 
-**NOTE:** If using a Github Organization, adding the SSH key to the Organization Secrets will allow all repos to reference the same SSH key for deploys using the method in the sample `main.yml`. The SSH Key also connects to all installs made available to its WP Engine User. One key can then effectively be used to deploy all projects to their respective sites on WP Engine. Less work. More deploys! 
+**NOTE:** If using a GitHub Organization, adding the SSH key to the Organization Secrets will allow all repos to reference the same SSH key for deploys using the method in the sample `main.yml`. The SSH Key also connects to all installs made available to its WP Engine User. One key can then effectively be used to deploy all projects to their respective sites on WP Engine. Less work. More deploys! 
 
 3. **SSH PUBLIC KEY SETUP IN WP ENGINE**
 * Add *SSH Public Key* to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key) 
 
     **NOTE:** This Action DOES NOT utilize WP Engine GitPush or the GitPush SSH keys [found here.](https://wpengine.com/support/git/#Add_SSH_Key_to_User_Portal)
 
-4. Git push your site Github repo. The action will do the rest! 
+4. Git push your site GitHub repo. The action will do the rest! 
 
 View your actions progress and logs by navigating to the "Actions" tab in your repo. 
 
@@ -94,7 +94,7 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `PRD_BRANCH` | string | Insert the name of the Github branch you would like to deploy from, example; main. |
+| `PRD_BRANCH` | string | Insert the name of the GitHub branch you would like to deploy from, example; main. |
 | `PRD_ENV` | string | Insert the name of the WP Engine environment you want to deploy to. |
 | `WPE_SSHG_KEY_PRIVATE` | secrets | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
 
@@ -102,9 +102,9 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `STG_BRANCH` | string | Insert the name of a staging Github branch you would like to deploy from. Note: exclude leading / from branch names.|
+| `STG_BRANCH` | string | Insert the name of a staging GitHub branch you would like to deploy from. Note: exclude leading / from branch names.|
 | `STG_ENV` | string | Insert the name of the WP Engine Stage environment you want to deploy to. |
-| `DEV_BRANCH` | string | Insert the name of a development Github branch you would like to deploy from. Note: exclude leading / in branch names.|
+| `DEV_BRANCH` | string | Insert the name of a development GitHub branch you would like to deploy from. Note: exclude leading / in branch names.|
 | `DEV_ENV` | string | Insert the name of the WP Engine Dev environment you want to deploy to. |
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Default is `FALSE`. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete` or `--exclude-from`. The example is excluding paths specified in a `.deployignore` file in the root of the repo. This action defaults to a non-destructive deploy using the flags in the example above. |
