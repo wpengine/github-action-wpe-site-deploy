@@ -19,13 +19,9 @@ fi
 echo "Deploying your code to:"
 echo ${WPE_ENV_NAME}
 
+
 # Setup SSH Key Vars 
-
-if [[ -n ${SSH_PATH} ]]; then 
-    SSH_PATH="$HOME/.ssh" ; 
-  else echo "Using established SSH key..."; 
-fi
-
+SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 
@@ -41,8 +37,15 @@ WPE_FULL_HOST=wpe_gha+"$WPE_SSH_USER"
 WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
-mkdir "$SSH_PATH"
-mkdir ${HOME}/.ssh/ctl/
+if [[ -n $SSH_PATH ]]; then 
+    mkdir "$SSH_PATH"
+  else echo "using established SSH KEY path";
+fi
+
+if [[ -n ${HOME}/.ssh/ctl/ ]]; then 
+    mkdir ${HOME}/.ssh/ctl/
+fi
+
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
 cp "/config" $SSH_PATH/config
 
