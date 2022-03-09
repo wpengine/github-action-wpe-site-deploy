@@ -20,11 +20,6 @@ echo "Deploying your code to:"
 echo ${WPE_ENV_NAME}
 
 
-# Setup SSH Key Vars 
-SSH_PATH="$HOME/.ssh"
-KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
-WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
-
 # Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
 DIR_PATH="$INPUT_REMOTE_PATH"
@@ -36,15 +31,23 @@ WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
 WPE_FULL_HOST=wpe_gha+"$WPE_SSH_USER"
 WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
+
+# Setup SSH Key Vars 
+
+
 # Setup our SSH Connection & use keys
 if [[ -z $HOME/.ssh ]]; then 
-    mkdir "$SSH_PATH" 
+    mkdir "$SSH_PATH" \
+    SSH_PATH="$HOME/.ssh"
   else echo "using established SSH KEY path...";
 fi
 
 if [[ -z ${HOME}/.ssh/ctl/ ]]; then 
     mkdir ${HOME}/.ssh/ctl/ ;
 fi
+
+KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
+WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
 cp "/config" $SSH_PATH/config
