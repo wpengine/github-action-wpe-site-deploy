@@ -19,11 +19,10 @@ fi
 echo "Deploying your code to:"
 echo ${WPE_ENV_NAME}
 
-
 # Setup SSH Key Vars 
 
-if [[ -n $SSH_PATH]]; then 
-    SSH_PATH="$HOME/.ssh"; 
+if [[ -n ${SSH_PATH} ]]; then 
+    SSH_PATH="$HOME/.ssh" ; 
   else echo "Using established SSH key..."; 
 fi
 
