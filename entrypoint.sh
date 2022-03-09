@@ -21,7 +21,11 @@ echo ${WPE_ENV_NAME}
 
 
 # Setup SSH Key Vars 
-SSH_PATH="$HOME/.ssh"
+
+if [[ -n $SSH_PATH]]; then 
+    SSH_PATH="$HOME/.ssh"; 
+  else echo "Using established SSH key..."
+  
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 
