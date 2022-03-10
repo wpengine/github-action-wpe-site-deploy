@@ -34,7 +34,6 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 # Setup our SSH Connection & use keys
 if [ ! -d ${HOME}/.ssh ]; then 
     mkdir "${HOME}/.ssh" 
-    mkdir "${HOME}/.ssh/ctl/" 
     SSH_PATH="${HOME}/.ssh" 
     WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" 
     cp "/config" $SSH_PATH/config
@@ -51,7 +50,8 @@ fi
 
 echo $WPE_SSH_HOST 
 echo $KNOWN_HOSTS_PATH
-    
+
+mkdir "${HOME}/.ssh/ctl/" 
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" 
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" 
 chmod 644 "$KNOWN_HOSTS_PATH"
