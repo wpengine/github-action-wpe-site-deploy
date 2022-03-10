@@ -34,6 +34,7 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 # Setup our SSH Connection & use keys
 if [ ! -d ${HOME}/.ssh ]; then 
     mkdir "${HOME}/.ssh" 
+    mkdir "${HOME}/.ssh/ctl/" 
     SSH_PATH="${HOME}/.ssh" 
     WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" 
     cp "/config" $SSH_PATH/config
@@ -50,8 +51,7 @@ fi
 
 echo $WPE_SSH_HOST 
 echo $KNOWN_HOSTS_PATH
-
-mkdir "${HOME}/.ssh/ctl/" 
+    
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" 
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" 
 chmod 644 "$KNOWN_HOSTS_PATH"
@@ -94,15 +94,15 @@ fi
 
 # Deploy via SSH
 # setup master ssh connection 
-ssh -nNf -v -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlMaster=yes -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_FULL_HOST
+ssh -nNf -v -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o ControlMaster=yes -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_FULL_HOST
 
 echo "!!! MASTER SSH CONNECTION ESTABLISHED !!!"
 #rsync 
-rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o 'ControlPath=$SSH_PATH/ctl/%L-%r@%h:%p'" $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION"
+rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o 'ControlPath=$SSH_PATH/ctl/%L-%r@%h:%p'" $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION"
 
 # post deploy script and cache clear
 if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
-    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_FULL_HOST "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
+    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_FULL_HOST "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
 fi 
 
 #close master ssh 
