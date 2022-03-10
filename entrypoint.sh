@@ -49,12 +49,13 @@ if [ ! -d ${HOME}/.ssh ]; then
 fi
 
 #must be refreshed for multistep build
-echo $KNOWN_HOSTS_PATH
-cat $SSH_PATH/known_hosts
 
 
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" 
 chmod 644 "$KNOWN_HOSTS_PATH"
+
+echo $KNOWN_HOSTS_PATH
+cat $SSH_PATH/known_hosts
 
 echo "prepping file perms..."
 find $SRC_PATH -type d -exec chmod -R 775 {} \;
