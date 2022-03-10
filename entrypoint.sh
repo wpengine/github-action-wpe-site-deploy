@@ -36,7 +36,6 @@ if [ ! -d ${HOME}/.ssh ]; then
     mkdir "${HOME}/.ssh" 
     mkdir "${HOME}/.ssh/ctl/" 
     SSH_PATH="${HOME}/.ssh" 
-    KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" 
     WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" 
     cp "/config" $SSH_PATH/config
     # Copy Secret Keys to container
@@ -50,11 +49,12 @@ fi
 
 #must be refreshed for multistep build
 
-
+echo $WPE_SSH_HOST 
+echo $KNOWN_HOSTS_PATH
+    
+KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" 
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" 
 chmod 644 "$KNOWN_HOSTS_PATH"
-
-echo $KNOWN_HOSTS_PATH
 cat $SSH_PATH/known_hosts
 
 echo "prepping file perms..."
