@@ -1,2 +1,3 @@
 Host *.ssh.wpengine.net
     IdentityFile ~/.ssh/github_action
+    StrictHostKeyChecking no
