@@ -33,13 +33,12 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
 if [ ! -d ${HOME}/.ssh ]; then 
-    mkdir "${HOME}/.ssh" \
-    SSH_PATH="${HOME}/.ssh" \ 
-    mkdir "${HOME}/.ssh/ctl/"
-
-    KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" \
-    WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" \
-    ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" \ 
+    mkdir "${HOME}/.ssh" 
+    mkdir "${HOME}/.ssh/ctl/" 
+    SSH_PATH="${HOME}/.ssh" 
+    KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" 
+    WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" 
+    ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" 
     cp "/config" $SSH_PATH/config
     # Copy Secret Keys to container
     echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
