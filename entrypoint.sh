@@ -26,20 +26,16 @@ DIR_PATH="$INPUT_REMOTE_PATH"
 SRC_PATH="$INPUT_SRC_PATH"
  
 # Set up our user and path
-
 WPE_SSH_USER="$WPE_ENV_NAME"@"$WPE_SSH_HOST"
 WPE_FULL_HOST=wpe_gha+"$WPE_SSH_USER"
 WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 
-# Setup SSH Key Vars 
-
-
 # Setup our SSH Connection & use keys
 if [ ! -d $HOME/.ssh ]; then 
-    SSH_PATH="$HOME/.ssh" \
-    mkdir "$SSH_PATH" \
-    mkdir ${HOME}/.ssh/ctl/
+    mkdir "$HOME/.ssh" \
+    SSH_PATH="$HOME/.ssh" \ 
+    mkdir $HOME/.ssh/ctl/
 
     KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" \
     WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" \
