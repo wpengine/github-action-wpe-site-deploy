@@ -37,12 +37,12 @@ if [ ! -d ${HOME}/.ssh ]; then
     mkdir "${HOME}/.ssh/ctl/" 
     SSH_PATH="${HOME}/.ssh" 
     WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" 
-    cp "/config" $SSH_PATH/config
+    cp "/config" "/etc/ssh/ssh_config"
     # Copy Secret Keys to container
     echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
     # Set Key Perms 
     chmod -R 700 "$SSH_PATH"
-    chmod 644 "$SSH_PATH/config"
+    chmod 644 "/etc/ssh/ssh_config"
     chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
   else echo "using established SSH KEY path...";
 fi
@@ -102,7 +102,7 @@ rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecki
 
 # post deploy script and cache clear
 if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
-    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="$SSH_PATH/ctl/%L-%r@%h:%p" $WPE_FULL_HOST "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
+    ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no $WPE_FULL_HOST "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
 fi 
 
 #close master ssh 
