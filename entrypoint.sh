@@ -38,7 +38,6 @@ if [ ! -d ${HOME}/.ssh ]; then
     SSH_PATH="${HOME}/.ssh" 
     KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" 
     WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" 
-    ssh-keyscan -t rsa "*.ssh.wpengine.net" >> "$KNOWN_HOSTS_PATH" 
     cp "/config" $SSH_PATH/config
     # Copy Secret Keys to container
     echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
@@ -52,6 +51,7 @@ fi
 #must be refreshed for multistep build
 echo $KNOWN_HOSTS_PATH
 cat $SSH_PATH/known_hosts
+
 
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" 
 chmod 644 "$KNOWN_HOSTS_PATH"
