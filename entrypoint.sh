@@ -37,8 +37,8 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
 if [[ -z $HOME/.ssh ]]; then 
-    mkdir "$SSH_PATH" \
-    SSH_PATH="$HOME/.ssh"
+    SSH_PATH="$HOME/.ssh" \
+    mkdir "$SSH_PATH" 
   else echo "using established SSH KEY path...";
 fi
 
