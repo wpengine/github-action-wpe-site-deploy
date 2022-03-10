@@ -34,13 +34,16 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 # Setup our SSH Connection & use keys
 if [ ! -d ${HOME}/.ssh ]; then 
     mkdir "${HOME}/.ssh" 
-    mkdir "${HOME}/.ssh/ctl/" 
     SSH_PATH="${HOME}/.ssh" 
     cp "/config" "/etc/ssh/ssh_config"
     # Set Key Perms 
     chmod -R 700 "$SSH_PATH"
     chmod 644 "/etc/ssh/ssh_config"
   else echo "using established SSH KEY path...";
+fi
+
+if [ ! -d ${HOME}/.ssh/ctl/ ]; then 
+    mkdir "${HOME}/.ssh/ctl/"; 
 fi
 
 #must be refreshed for multistep build
