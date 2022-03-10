@@ -19,7 +19,6 @@ fi
 echo "Deploying your code to:"
 echo ${WPE_ENV_NAME}
 
-
 # Deploy Vars
 WPE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
 DIR_PATH="$INPUT_REMOTE_PATH"
@@ -35,23 +34,18 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 if [ ! -d ${HOME}/.ssh ]; then 
     mkdir "${HOME}/.ssh" 
     SSH_PATH="${HOME}/.ssh" 
-    cp "/config" "/etc/ssh/ssh_config"
     # Set Key Perms 
     chmod -R 700 "$SSH_PATH"
-    chmod 644 "/etc/ssh/ssh_config"
   else 
   SSH_PATH="${HOME}/.ssh" 
   echo "using established SSH KEY path...";
 fi
 
+# set for multistep build
 if [ ! -d ${HOME}/.ssh/ctl/ ]; then 
     mkdir "${HOME}/.ssh/ctl/"; 
 fi
 
-#must be refreshed for multistep build
-
-echo $WPE_SSH_HOST 
-echo $KNOWN_HOSTS_PATH 
 
 # Copy Secret Keys to container
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"  
