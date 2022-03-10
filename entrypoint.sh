@@ -35,7 +35,7 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 if [ ! -d ${HOME}/.ssh ]; then 
     mkdir "${HOME}/.ssh" \
     SSH_PATH="${HOME}/.ssh" \ 
-    mkdir ${HOME}/.ssh/ctl/
+    mkdir "${HOME}/.ssh/ctl/"
 
     KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" \
     WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" \
