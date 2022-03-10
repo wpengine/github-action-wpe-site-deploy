@@ -36,14 +36,12 @@ if [ ! -d ${HOME}/.ssh ]; then
     mkdir "${HOME}/.ssh" 
     mkdir "${HOME}/.ssh/ctl/" 
     SSH_PATH="${HOME}/.ssh" 
-    WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" 
     cp "/config" "/etc/ssh/ssh_config"
     # Copy Secret Keys to container
     echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
     # Set Key Perms 
     chmod -R 700 "$SSH_PATH"
     chmod 644 "/etc/ssh/ssh_config"
-    chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
   else echo "using established SSH KEY path...";
 fi
 
@@ -51,9 +49,11 @@ fi
 
 echo $WPE_SSH_HOST 
 echo $KNOWN_HOSTS_PATH
-    
+WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"   
+
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" 
 ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" 
+chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 chmod 644 "$KNOWN_HOSTS_PATH"
 cat $SSH_PATH/known_hosts
 
