@@ -39,7 +39,9 @@ if [ ! -d ${HOME}/.ssh ]; then
     # Set Key Perms 
     chmod -R 700 "$SSH_PATH"
     chmod 644 "/etc/ssh/ssh_config"
-  else echo "using established SSH KEY path...";
+  else 
+  SSH_PATH="${HOME}/.ssh" 
+  echo "using established SSH KEY path...";
 fi
 
 if [ ! -d ${HOME}/.ssh/ctl/ ]; then 
