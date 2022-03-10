@@ -36,32 +36,26 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 
 # Setup our SSH Connection & use keys
-if [[ -z $HOME/.ssh ]]; then 
+if [ ! -d $HOME/.ssh ]; then 
     SSH_PATH="$HOME/.ssh" \
-    mkdir "$SSH_PATH" 
+    mkdir "$SSH_PATH" \
+    mkdir ${HOME}/.ssh/ctl/
+
+    KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts" \
+    WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action" \
+    ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" \ 
+    cp "/config" $SSH_PATH/config
+    # Copy Secret Keys to container
+    echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
+    # Set Key Perms 
+    chmod -R 700 "$SSH_PATH"
+    chmod 644 "$KNOWN_HOSTS_PATH"
+    chmod 644 "$SSH_PATH/config"
+    chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
   else echo "using established SSH KEY path...";
 fi
 
-if [[ -z ${HOME}/.ssh/ctl/ ]]; then 
-    mkdir ${HOME}/.ssh/ctl/ ;
-fi
 
-KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
-WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
-
-ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
-
-if [[ -z $SSH_PATH/config ]]; then 
-    cp "/config" $SSH_PATH/config
-fi
-
-# Copy Secret Keys to container
-echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
-# Set Key Perms 
-chmod -R 700 "$SSH_PATH"
-chmod 644 "$KNOWN_HOSTS_PATH"
-chmod 644 "$SSH_PATH/config"
-chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 
 echo "prepping file perms..."
 find $SRC_PATH -type d -exec chmod -R 775 {} \;
