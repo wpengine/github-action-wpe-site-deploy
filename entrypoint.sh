@@ -44,13 +44,14 @@ if [ ! -d ${HOME}/.ssh ]; then
     echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
     # Set Key Perms 
     chmod -R 700 "$SSH_PATH"
-    chmod 644 "$KNOWN_HOSTS_PATH"
     chmod 644 "$SSH_PATH/config"
     chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
   else echo "using established SSH KEY path...";
 fi
 
-
+#must be refreshed for multistep build
+ssh-keyscan -t rsa "$WPE_SSH_HOST" >> "$KNOWN_HOSTS_PATH" 
+chmod 644 "$KNOWN_HOSTS_PATH"
 
 echo "prepping file perms..."
 find $SRC_PATH -type d -exec chmod -R 775 {} \;
