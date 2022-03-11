@@ -43,7 +43,7 @@ fi
 
 # set for multistep build
 if [ ! -d ${SSH_PATH}/ctl/ ]; then 
-    mkdir "${SSH_PATH}/ctl/ "; 
+    mkdir "${SSH_PATH}/ctl/"; 
 fi
 
 
