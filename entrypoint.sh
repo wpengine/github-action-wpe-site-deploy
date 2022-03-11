@@ -34,6 +34,7 @@ WPE_DESTINATION=wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 if [ ! -d ${HOME}/.ssh ]; then 
     mkdir "${HOME}/.ssh" 
     SSH_PATH="${HOME}/.ssh" 
+    mkdir "${SSH_PATH}/ctl/"
     # Set Key Perms 
     chmod -R 700 "$SSH_PATH"
   else 
@@ -41,10 +42,10 @@ if [ ! -d ${HOME}/.ssh ]; then
   echo "using established SSH KEY path...";
 fi
 
-# set for multistep build
-if [ ! -d ${SSH_PATH}/ctl/ ]; then 
-    mkdir "${SSH_PATH}/ctl/"; 
-fi
+# # set for multistep build
+# if [ ! -d ${SSH_PATH}/ctl/ ]; then 
+#     mkdir "${SSH_PATH}/ctl/"; 
+# fi
 
 
 # Copy Secret Keys to container
