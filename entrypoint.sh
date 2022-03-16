@@ -42,12 +42,6 @@ if [ ! -d ${HOME}/.ssh ]; then
   echo "using established SSH KEY path...";
 fi
 
-# # set for multistep build
-# if [ ! -d ${SSH_PATH}/ctl/ ]; then 
-#     mkdir "${SSH_PATH}/ctl/"; 
-# fi
-
-
 # Copy Secret Keys to container
 WPE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"  
 echo "$INPUT_WPE_SSHG_KEY_PRIVATE" > "$WPE_SSHG_KEY_PRIVATE_PATH"
