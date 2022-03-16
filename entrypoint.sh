@@ -16,7 +16,7 @@ if [[ -n ${INPUT_WPE_ENV} ]]; then
   else echo "Failure: Missing environment variable..."  && exit 1;
 fi
 
-echo "Deploying ${{ github.ref }} to:"
+echo ${github.ref} 
 echo ${WPE_ENV_NAME}
 
 # Deploy Vars
