@@ -1,6 +1,6 @@
 # GitHub Action for WP Engine Site Deployments
 
-This GitHub Action may be used to deploy code from a Github repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally just a theme, plugin or other directory with the TPO options. Other options include performing a PHP Lint, custom rsync flags, or clearing cache. 
+This GitHub Action may be used to deploy code from a GitHub repo to a WP Engine environment of your choosing. Deploy a full site directory, or optionally just a theme, plugin or other directory with the TPO options. Other options include performing a PHP Lint, custom rsync flags, or clearing cache. 
 
 v3.0 COMING SOON! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
 
@@ -12,7 +12,7 @@ v3.0 COMING SOON! [View Changelog here.](https://github.com/wpengine/github-acti
 
 * Add the *SSH Private Key* to your [Repository Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) or your [Organization Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-organization). Save the new secret "Name" as `WPE_SSHG_KEY_PRIVATE`. 
 
-**NOTE:** If using a Github Organization, adding the SSH key to the Organization Secrets will allow all repos to reference the same SSH key for deploys using the method in the sample `main.yml`. The SSH Key also connects to all installs made available to its WP Engine User. One key can then effectively be used to deploy all projects to their respective sites on WP Engine. Less work. More deploys! 
+**NOTE:** If using a GitHub Organization, adding the SSH key to the Organization Secrets will allow all repos to reference the same SSH key for deploys using the method in the sample `main.yml`. The SSH Key also connects to all installs made available to its WP Engine User. One key can then effectively be used to deploy all projects to their respective sites on WP Engine. Less work. More deploys! 
 
 2. **SSH PUBLIC KEY SETUP IN WP ENGINE**
 
@@ -29,7 +29,7 @@ Copy and paste the configuration from below, replacing the value for `branches:`
 
 This provides optionality to perform a different workflow for different branches/environments. Consult ["Environment Variable & Secrets"](#environment-variables--secrets) for more available options. 
 
-4. Git push your site Github repo. The action will do the rest! 
+4. Git push your site GitHub repo. The action will do the rest! 
 
 View your actions progress and logs by navigating to the "Actions" tab in your repo. 
 
