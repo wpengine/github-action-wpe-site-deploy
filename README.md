@@ -15,12 +15,14 @@ v3.0 COMING SOON! [View Changelog here.](https://github.com/wpengine/github-acti
 **NOTE:** If using a Github Organization, adding the SSH key to the Organization Secrets will allow all repos to reference the same SSH key for deploys using the method in the sample `main.yml`. The SSH Key also connects to all installs made available to its WP Engine User. One key can then effectively be used to deploy all projects to their respective sites on WP Engine. Less work. More deploys! 
 
 2. **SSH PUBLIC KEY SETUP IN WP ENGINE**
-Add *SSH Public Key* to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key) 
+
+* Add *SSH Public Key* to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key) 
 
     **NOTE:** This Action DOES NOT utilize WP Engine GitPush or the GitPush SSH keys [found here.](https://wpengine.com/support/git/#Add_SSH_Key_to_User_Portal)
     
 3. **YML SETUP**
-Create `.github/workflows/main.yml` directory and file locally. 
+
+* Create `.github/workflows/main.yml` directory and file locally. 
 Copy and paste the configuration from below, replacing the value for `branches:` and  `WPE_ENV:` for your preferred branch and install. 
 To deploy from another branch, simply create another yml file for that branch, such as `.github/workflows/stage.yml` and replace the values for `branches:` and  `WPE_ENV:` for that workflow. 
 
