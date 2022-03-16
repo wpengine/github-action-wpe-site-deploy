@@ -24,7 +24,8 @@ v3.0 COMING SOON! [View Changelog here.](https://github.com/wpengine/github-acti
 
 * Create `.github/workflows/main.yml` directory and file locally. 
 Copy and paste the configuration from below, replacing the value for `branches:` and  `WPE_ENV:` for your preferred branch and install. 
-To deploy from another branch, simply create another yml file for that branch, such as `.github/workflows/stage.yml` and replace the values for `branches:` and  `WPE_ENV:` for that workflow. 
+
+* To deploy from another branch, simply create another yml file for that branch, such as `.github/workflows/stage.yml` and replace the values for `branches:` and  `WPE_ENV:` for that workflow. 
 
 This provides optionality to perform a different workflow for different branches/environments. Consult ["Environment Variable & Secrets"](#environment-variables--secrets) for more available options. 
 
