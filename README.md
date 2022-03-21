@@ -1,6 +1,6 @@
 # GitHub Action for WP Engine Site Deployments
 
-This GitHub Action may be used to deploy code from a GitHub repo to a WP Engine environment of your choosing. Deploy a full site directory or a subdurectiory of your WordPress install. Other options include performing a PHP Lint, custom rsync flags, clearing cache and a executing a post-deploy script of your choosing. 
+This GitHub Action may be used to deploy code from a GitHub repo to a WP Engine environment of your choosing. Deploy a full site directory or a subdirectory of your WordPress install. Other options include performing a PHP Lint, custom rsync flags, clearing cache and a executing a post-deploy script of your choosing. 
 
 v3.0 AVAILABLE NOW! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
 
