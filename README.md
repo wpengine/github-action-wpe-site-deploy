@@ -7,6 +7,7 @@ v3.0 AVAILABLE NOW! [View Changelog here.](https://github.com/wpengine/github-ac
 
 ## Setup Instructions 
 **TLDR;** 
+
 (step 1 & 2) Connect Github and WP Engine, saving Private and Public SSH key to each respectively. 
 (step 3) Setup local yml config to orchestrate deploy. 
 
