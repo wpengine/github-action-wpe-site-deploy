@@ -114,5 +114,5 @@ jobs:
 
 * [Defining environment variables in GitHub Actions](https://docs.github.com/en/actions/reference/environment-variables)
 * [Storing secrets in GitHub repositories](https://docs.github.com/en/actions/reference/encrypted-secrets)
-* As this script does not restrict files or directories that can be deployed, it is recommended to leverage one of [WP Engine's .gitignore templates.](https://wpengine.com/support/git/#Add_gitignore)
+* It is recommended to leverage one of [WP Engine's .gitignore templates.](https://wpengine.com/support/git/#Add_gitignore)
 * This action excludes several files and directories from the deploy by default. See the [exclude.txt](https://github.com/wpengine/github-action-wpe-site-deploy/blob/main/exclude.txt) for reference.  
