@@ -73,7 +73,7 @@ fi
 
 # post deploy script 
 if [[ -n ${INPUT_SCRIPT} ]]; then 
-    SCRIPT="&& sh ${INPUT_SCRIPT}"; 
+    SCRIPT="&& sh ${INPUT_SCRIPT}";
   else 
     SCRIPT=""
 fi 
@@ -95,7 +95,16 @@ echo "!!! MASTER SSH CONNECTION ESTABLISHED !!!"
 rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o 'ControlPath=$SSH_PATH/ctl/%C'" $INPUT_FLAGS --exclude-from='/exclude.txt' $SRC_PATH "$WPE_DESTINATION"
 
 # post deploy script and cache clear
-if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then 
+if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then
+
+    if [[ -n ${SCRIPT} ]]; then
+      ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="$SSH_PATH/ctl/%C" $WPE_FULL_HOST "stat sites/${WPE_ENV_NAME}/${INPUT_SCRIPT}"
+
+      if [ $? -eq 1 ]; then
+        rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o 'ControlPath=$SSH_PATH/ctl/%C'" ${INPUT_SCRIPT} sites/${WPE_ENV_NAME}/${INPUT_SCRIPT}
+      fi
+    fi
+
     ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="$SSH_PATH/ctl/%C" $WPE_FULL_HOST "cd sites/${WPE_ENV_NAME} ${SCRIPT} ${CACHE_CLEAR}"
 fi 
 
