@@ -14,7 +14,7 @@ v3.0 AVAILABLE NOW! [View Changelog here.](https://github.com/wpengine/github-ac
 (step 3) Setup local yml config to orchestrate deploy. 
 
 1. **SSH PRIVATE KEY SETUP IN GITHUB**
-* [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. 
+* [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. Please note that this SSH Key needs to be *passwordless*.
 
 * Add the *SSH Private Key* to your [Repository Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) or your [Organization Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-organization). Save the new secret "Name" as `WPE_SSHG_KEY_PRIVATE`. 
 
