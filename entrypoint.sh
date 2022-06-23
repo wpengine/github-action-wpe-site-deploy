@@ -103,7 +103,7 @@ if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then
       # if [[ $? -ne 0 && -f ${INPUT_SCRIPT} ]]; then
       if [[ -f ${INPUT_SCRIPT} ]]; then
       echo ${INPUT_SCRIPT}
-        rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o 'ControlPath=$SSH_PATH/ctl/%C'" ${INPUT_SCRIPT} sites/${WPE_ENV_NAME}/${INPUT_SCRIPT}
+        rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o 'ControlPath=$SSH_PATH/ctl/%C'" ${INPUT_SCRIPT} wpe_gha+"$WPE_SSH_USER":sites/"$WPE_ENV_NAME"/${INPUT_SCRIPT}
       fi
     fi
 
