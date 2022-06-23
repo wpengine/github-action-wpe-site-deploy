@@ -98,9 +98,10 @@ rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecki
 if [[ -n ${SCRIPT} || -n ${CACHE_CLEAR} ]]; then
 
     if [[ -n ${SCRIPT} ]]; then
-      ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="$SSH_PATH/ctl/%C" $WPE_FULL_HOST "stat sites/${WPE_ENV_NAME}/${INPUT_SCRIPT}" > /dev/null 2>&1
+      # ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o ControlPath="$SSH_PATH/ctl/%C" $WPE_FULL_HOST "stat sites/${WPE_ENV_NAME}/${INPUT_SCRIPT}"
 
-      if [[ $? -ne 0 && -f ${INPUT_SCRIPT} ]]; then
+      # if [[ $? -ne 0 && -f ${INPUT_SCRIPT} ]]; then
+      if [[ -f ${INPUT_SCRIPT} ]]; then
         rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no -o 'ControlPath=$SSH_PATH/ctl/%C'" ${INPUT_SCRIPT} sites/${WPE_ENV_NAME}/${INPUT_SCRIPT}
       fi
     fi
