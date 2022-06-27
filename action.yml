@@ -14,7 +14,7 @@ inputs:
   FLAGS: 
     description: "Optional flags for the deployment"
     required: true
-    default: '-azvr --inplace --exclude=".*"'
+    default: '-avr --inplace --exclude=".*"'
   CACHE_CLEAR:
     description: "Optional WPE Clear cache"
     required: false
