@@ -6,7 +6,7 @@ Use this GitHub Action to deploy code from a GitHub repo to a WP Engine environm
 What this action lets you do:
   * Deploy a full site directory or a subdirectory of your WordPress install
   * Perform a PHP Lint
-  * Custom(ize?) rsync flags
+  * Custom rsync flags
   * Clear cache 
   * Execute a post-deploy script of your choosing
 
@@ -94,8 +94,6 @@ jobs:
 ```
 
 ## Environment Variables & Secrets
-
----
 
 ### Required
 
