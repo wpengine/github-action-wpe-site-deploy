@@ -17,8 +17,6 @@ v3.0 AVAILABLE NOW! [View Changelog here.](https://github.com/wpengine/github-ac
 
 ## Setup Instructions 
 
----
-
 1. **SSH PRIVATE KEY SETUP IN GITHUB**
 * [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. Please note that this SSH Key needs to be *passwordless*.
 
@@ -46,8 +44,6 @@ This provides the ability to perform a different workflow for different branches
 View your actions progress and logs by navigating to the "Actions" tab in your repo. 
 
 ## Example GitHub Action workflow
-
----
 
 ### Simple main.yml:
 
@@ -121,8 +117,6 @@ jobs:
 
 
 ### Further reading
-
----
 
 * [Defining environment variables in GitHub Actions](https://docs.github.com/en/actions/reference/environment-variables)
 * [Storing secrets in GitHub repositories](https://docs.github.com/en/actions/reference/encrypted-secrets)
