@@ -1,4 +1,4 @@
-name: Deploy to WP Engine
+name: Test WP Engine GHA
 on:
   push:
     branches:
@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
     - name: Lint yml files
