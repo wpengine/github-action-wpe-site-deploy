@@ -47,7 +47,7 @@ View your actions progress and logs by navigating to the "Actions" tab in your r
 
 ### Simple main.yml:
 
-```
+```yml
 name: Deploy to WP Engine
 on:
   push:
@@ -67,7 +67,7 @@ jobs:
 
 ### Extended main.yml
 
-```
+```yml
 name: Deploy to WP Engine
 on:
   push:
