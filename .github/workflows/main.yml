@@ -1,0 +1,13 @@
+name: Deploy to WP Engine
+on:
+  push:
+    branches:
+     - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Lint yml files
+      uses: actions/checkout@v3
+    - run: echo "Running yamllint!"
+    - run: shellcheck entrypoint.sh
