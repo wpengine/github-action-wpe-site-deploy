@@ -11,6 +11,6 @@ jobs:
       - name: Lint files
         uses: actions/checkout@v3
       - run: echo "Running shell script lint!"
-      - run: find . -name "*.sh" -type f | xargs -0 shellcheck
+      - run: find . -name "*.sh" -type f | xargs -I {} shellcheck {}
       - run: echo "Running yml file lint!"
       - run: find . -name "*.yml" -type f | xargs -I {} yamllint {}
