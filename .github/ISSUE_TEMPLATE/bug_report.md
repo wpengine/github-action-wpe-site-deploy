@@ -11,7 +11,7 @@ assignees: ''
 A clear and concise description of the bug goes here.
 
 ### To reproduce
-Any steps, flags, details that can help the team reproduce the issue
+Any steps, flags, details that can help the team reproduce the issue.
 
 ### Expected behavior
 A clear and concise description of what you expected to happen.
