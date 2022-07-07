@@ -1,3 +1,4 @@
+---
 name: Test WP Engine GHA
 on:
   push:
@@ -7,7 +8,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - name: Lint .sh files
-      uses: actions/checkout@v3
-    - run: echo "Running shell script lint!"
-    - run: find . -name "*.sh" -type f | xargs -0 shellcheck
+      - name: Lint .sh files
+        uses: actions/checkout@v3
+      - run: echo "Running shell script lint!"
+      - run: find . -name "*.sh" -type f | xargs -0 shellcheck
+      - name: lint .yml files
+      - run:
