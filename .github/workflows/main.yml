@@ -1,15 +1,13 @@
 name: Test WP Engine GHA
 on:
   push:
-    branches:
-     - main
-  pull_request:
+    branches: "**"
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - name: Lint yml files
+    - name: Lint .sh files
       uses: actions/checkout@v3
-    - run: echo "Running yamllint!"
+    - run: echo "Running shell script lint!"
     - run: shellcheck entrypoint.sh
