@@ -1,20 +1,24 @@
-# GitHub Action for WP Engine Site Deployments
+![Site Deployment GitHub Action by WP Engine](docs/images/banner.jpg)
 
-This GitHub Action may be used to deploy code from a GitHub repo to a WP Engine environment of your choosing. Deploy a full site directory or a subdirectory of your WordPress install. Other options include performing a PHP Lint, custom rsync flags, clearing cache and a executing a post-deploy script of your choosing. 
+# Site Deployment GitHub Action by WP Engine
+
+Use this GitHub Action to deploy code from a GitHub repo to a WP Engine environment of your choosing. 
+What this action lets you do:
+  * Deploy a full site directory or a subdirectory of your WordPress install
+  * Perform a PHP Lint
+  * Custom rsync flags
+  * Clear cache 
+  * Execute a post-deploy script of your choosing
+
 
 v3.0 AVAILABLE NOW! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
 
 
 
 ## Setup Instructions 
-**TLDR;**  
-
-(step 1 & 2) Connect GitHub and WP Engine, saving Private and Public SSH key to each respectively.  
-
-(step 3) Setup local yml config to orchestrate deploy. 
 
 1. **SSH PRIVATE KEY SETUP IN GITHUB**
-* [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. 
+* [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. Please note that this SSH Key needs to be *passwordless*.
 
 * Add the *SSH Private Key* to your [Repository Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) or your [Organization Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-organization). Save the new secret "Name" as `WPE_SSHG_KEY_PRIVATE`. 
 
@@ -101,7 +105,7 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `WPE_ENV` | string | Insert the name of the WP Engine environment you want to deploy to. This also has an alias of `PRD_ENV`, `STG_ENV`, or `DEV_ENV` for multistep workflows. |
+| `WPE_ENV` | string | Insert the name of the WP Engine environment you want to deploy to. This also has an alias of `PRD_ENV`, `STG_ENV`, or `DEV_ENV` for multi-step workflows. |
 | `SRC_PATH` | string | Optional path to specify a directory within the repo to deploy from. Ex. `"wp-content/themes/genesis-child-theme/"`. Defaults to root of repo filesystem as source. |
 | `REMOTE_PATH` | string | Optional path to specify a directory destination to deploy to. Ex. `"wp-content/themes/genesis-child-theme/"` . Defaults to WordPress root directory on WP Engine.  |
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Default is `FALSE`. |
@@ -110,7 +114,7 @@ jobs:
 | `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
 
 
-### Further reading 
+### Further reading
 
 * [Defining environment variables in GitHub Actions](https://docs.github.com/en/actions/reference/environment-variables)
 * [Storing secrets in GitHub repositories](https://docs.github.com/en/actions/reference/encrypted-secrets)
