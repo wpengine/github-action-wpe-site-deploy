@@ -10,4 +10,4 @@ jobs:
     - name: Lint .sh files
       uses: actions/checkout@v3
     - run: echo "Running shell script lint!"
-    - run: shellcheck entrypoint.sh
+    - run: find . -name "*.sh" -type f | xargs -0 shellcheck
