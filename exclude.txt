@@ -53,7 +53,6 @@ wp-content/mu-plugins/force-strong-passwords*
 wp-content/mu-plugins/wpengine-common*
 wp-content/mu-plugins/wpe-wp-sign-on-plugin*
 wp-content/mu-plugins/wpe-elasticpress-autosuggest-logger*
-wp-content/mu-plugins/wpe-cache-plugin/*
 wp-content/mu-plugins/wpe-cache-plugin*
 wp-content/mysql.sql
 
