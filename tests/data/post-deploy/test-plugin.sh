@@ -15,7 +15,7 @@ echo "New test plugin version: $AFTER_PLUGIN_VERSION"
 
 # Revert to backup created by rsync if it exists
 if [ -d $BACKUP_DIR/$PLUGIN_NAME ]; then
-    rm -rf ${PLUGINS_DIR:?}/${PLUGIN_NAME} && mv ${BACKUP_DIR}/${PLUGIN_NAME} ${PLUGINS_DIR}/
+    rm -rf $PLUGINS_DIR/$PLUGIN_NAME && mv $BACKUP_DIR/$PLUGIN_NAME $PLUGINS_DIR/
 fi
 
 # Get the old plugin version
