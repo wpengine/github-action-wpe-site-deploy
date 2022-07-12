@@ -14,7 +14,7 @@ AFTER_PLUGIN_VERSION=$(wp plugin get $PLUGIN_NAME | sed -n "/version/p" | cut -f
 echo "New test plugin version: $AFTER_PLUGIN_VERSION"
 
 # Revert to backup created by rsync if it exists
-if [ -d $BACKUP_DIR/$PLUGIN_NAME ]; then 
+if [ -d $BACKUP_DIR/$PLUGIN_NAME ]; then
     rm -rf $PLUGINS_DIR/$PLUGIN_NAME && mv $BACKUP_DIR/$PLUGIN_NAME $PLUGINS_DIR/
 fi
 

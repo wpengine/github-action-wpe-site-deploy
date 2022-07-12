@@ -1,3 +1,4 @@
+---
 name: "Deploy WordPress to WP Engine"
 branding:
   icon: "upload-cloud"
@@ -11,7 +12,7 @@ inputs:
     description: "optional php syntax check"
     required: false
     default: false
-  FLAGS: 
+  FLAGS:
     description: "Optional flags for the deployment"
     required: true
     default: '-azvr --inplace --exclude=".*"'
@@ -39,7 +40,7 @@ inputs:
   DEV_ENV:
     description: "Destination to deploy to WPE Dev"
     required: false
-  SCRIPT: 
+  SCRIPT:
     description: "File containing custom scripts run after the rsync"
     required: false
 
