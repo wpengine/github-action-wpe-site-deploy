@@ -1,8 +1,12 @@
 ---
-name: Test WP Engine GHA
+name: Lint GHA Files
 on:
   push:
-    branches: "**"
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   lint:
