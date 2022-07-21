@@ -1,0 +1,17 @@
+name: Publish Release
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  update_tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/update-tags
+        env:
+          RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
