@@ -17,7 +17,7 @@ if [[ "$RELEASE_TAG_NAME" =~ $VALID_TAG_REGEX ]] ; then
     majorTag="v${BASH_REMATCH[1]}"
     minorTag="$majorTag.${BASH_REMATCH[3]:-0}"
     patchTag="$minorTag.${BASH_REMATCH[5]:-0}"
-    tags=("$majorTag" "$minorTag" "$patchTag")
+    tagsToUpdate=("$majorTag" "$minorTag")
 else
     echo "Release tag does not match the format \"v{MAJOR}.{MINOR}?.{PATCH}?\". Skipping tag updates."
     exit 0
@@ -26,7 +26,7 @@ fi
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-for tag in "${tags[@]}"; do
+for tag in "${tagsToUpdate[@]}"; do
     message="Release $patchTag"
 
     if [ "$(git tag -l "$tag")" ]; then
