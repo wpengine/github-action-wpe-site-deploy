@@ -28,6 +28,9 @@ jobs:
       - name: Create Release Pull Request
         id: changesets
         uses: changesets/action@v1
+        with:
+          commit: "Version Action"
+          title: "Version Action"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
