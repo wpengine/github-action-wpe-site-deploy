@@ -1,17 +1,42 @@
-name: Publish Release
+name: Version and Release
 
 on:
-  release:
-    types: [released]
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  update_tags:
+  release:
+    name: Version and Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout Repo
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: ./.github/actions/update-tags
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create Release Pull Request
+        id: changesets
+        uses: changesets/action@v1
         env:
-          RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get current version
+        id: version
+        run: echo "::set-output name=CURRENT_VERSION::$(node -p "require('./package.json').version")"
+
+      - name: Publish tags
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        uses: ./.github/actions/publish
+        with:
+          version: ${{ steps.version.outputs.CURRENT_VERSION }}
