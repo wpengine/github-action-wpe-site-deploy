@@ -2,8 +2,11 @@
 
 ## Getting Started
 
-1. Clone the repository
-2. Run `npm install`
+Before you get started, we recommend installing [Node Version Manager](https://github.com/nvm-sh/nvm#installing-and-updating).
+
+1. Clone the repository and `cd` into it.
+2. Run `nvm use` to make sure you have the right `node` and `npm` versions.
+3. Run `npm install`.
 ## Git Workflows
 
 We use the [feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). The workflow for a typical code change looks like this:
