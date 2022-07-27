@@ -59,7 +59,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v3.0
+      uses: wpengine/github-action-wpe-site-deploy@v3
       with:
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
         WPE_ENV: <your_install_name_here>
@@ -79,7 +79,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: GitHub Action Deploy to WP Engine
-      uses: wpengine/github-action-wpe-site-deploy@v3.0
+      uses: wpengine/github-action-wpe-site-deploy@v3
       with:
       # Deploy vars
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}

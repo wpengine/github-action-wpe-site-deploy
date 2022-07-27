@@ -1,0 +1,13 @@
+{
+  "name": "@wpengine/github-action-wpe-site-deploy",
+  "version": "3.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=16",
+    "npm": ">=8"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@changesets/cli": "^2.24.1"
+  }
+}

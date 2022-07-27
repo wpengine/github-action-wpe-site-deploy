@@ -1,0 +1,45 @@
+name: Version and Release
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Version and Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create Release Pull Request
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          commit: "Version Action"
+          title: "Version Action"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get current version
+        id: version
+        run: echo "::set-output name=CURRENT_VERSION::$(node -p "require('./package.json').version")"
+
+      - name: Publish tags
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        uses: ./.github/actions/publish
+        with:
+          version: ${{ steps.version.outputs.CURRENT_VERSION }}
