@@ -123,6 +123,6 @@ jobs:
 
 ## Versioning
 
-We follow [SemVer](https://semver.org/) and [GitHub's action versioning recommendations](https://github.com/actions/toolkit/blob/01e1ff7bc04e1c57c980a0d1530478a5b60cf812/docs/action-versioning.md) for maintaining major, minor, and patch [version tags](https://github.com/wpengine/github-action-wpe-site-deploy/tags). Major tags (e.g. `v1`) are updated to track the latest major version and minor tags (e.g. `v1.1`) are updated to track the latest minor version. Patch tags (e.g. `v1.1.1`) are never updated.
+We follow [SemVer](https://semver.org/) and [GitHub's action versioning recommendations](https://github.com/actions/toolkit/blob/01e1ff7bc04e1c57c980a0d1530478a5b60cf812/docs/action-versioning.md) for maintaining major, minor, and patch [version tags](https://github.com/wpengine/github-action-wpe-site-deploy/tags). Patch tags (e.g. `v1.1.1`) are created for each release and will not move once created. Major tags (e.g. `v1`) and minor tags (e.g. `v1.1`) will be updated to track their respective latest versions.
 
 We recommend binding this action to the latest major tag so that you will receive backwards compatible updates.
