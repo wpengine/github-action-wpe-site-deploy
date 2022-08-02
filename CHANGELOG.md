@@ -1,5 +1,11 @@
 # @wpengine/github-action-wpe-site-deploy
 
+## 3.1.1
+
+### Patch Changes
+
+- 0da65a6: Prevent plugin and theme conflicts from adversely affecting cache clear
+
 ## 3.1.0
 
 ### Minor Changes
