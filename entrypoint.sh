@@ -80,7 +80,7 @@ fi
 
 # post deploy cache clear
 if [ "${INPUT_CACHE_CLEAR^^}" == "TRUE" ]; then
-    CACHE_CLEAR="&& wp --skip-plugins --skip-themes page-cache flush"
+    CACHE_CLEAR="&& wp --skip-plugins --skip-themes page-cache flush && wp cdn-cache flush"
   elif [ "${INPUT_CACHE_CLEAR^^}" == "FALSE" ]; then
       CACHE_CLEAR=""
   else echo "CACHE_CLEAR must be TRUE or FALSE only... Cache not cleared..."  && exit 1;
