@@ -109,7 +109,7 @@ jobs:
 | `PHP_LINT` | bool | Set to TRUE to execute a php lint on your branch pre-deployment. Default is `FALSE`. |
 | `FLAGS` | string | Set optional rsync flags such as `--delete` or `--exclude-from`. The example is excluding paths specified in a `.deployignore` file in the root of the repo. This action defaults to a non-destructive deploy using the flags in the example above. <br /><br />_Caution: Setting custom rsync flags replaces the default flags provided by this action. Consider also adding the `-azvr` flags as needed.<br /> `-a` preserves symbolic links, timestamps, user permissions and ownership.<br /> `-z` is for compression <br /> `-v` is for verbose output<br /> `-r` is for recursive directory scanning_|
 | `SCRIPT` | string | Remote bash file to execute post-deploy. This can include WP_CLI commands for example. Path is relative to the WP root and file executes on remote. This file can be included in your repo, or be a persistent file that lives on your server.  |
-| `CACHE_CLEAR` | bool | Optionally clear cache post deploy. This takes a few seconds. Default is TRUE. |
+| `CACHE_CLEAR` | bool | Optionally clear page and CDN cache post deploy. This takes a few seconds. Default is TRUE. |
 
 
 ### Further reading
