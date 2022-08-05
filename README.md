@@ -1,6 +1,9 @@
-![Site Deployment GitHub Action by WP Engine](docs/images/banner.jpg)
 
-# Site Deployment GitHub Action by WP Engine
+![WP Engine GitHub Actions Site Deployment](docs/images/banner.jpg)
+
+[![Test e2e Deploy to WP Engine](https://github.com/wpengine/github-action-wpe-site-deploy/actions/workflows/e2e-deploy.yml/badge.svg)](https://github.com/wpengine/github-action-wpe-site-deploy/actions/workflows/e2e-deploy.yml)  [![Lint GHA Files](https://github.com/wpengine/github-action-wpe-site-deploy/actions/workflows/lint-files.yml/badge.svg)](https://github.com/wpengine/github-action-wpe-site-deploy/actions/workflows/lint-files.yml)  [![Version and Release](https://github.com/wpengine/github-action-wpe-site-deploy/actions/workflows/release.yml/badge.svg)](https://github.com/wpengine/github-action-wpe-site-deploy/actions/workflows/release.yml)
+
+# WP Engine GitHub Action for Site Deployment
 
 Use this GitHub Action to deploy code from a GitHub repo to a WP Engine environment of your choosing.
 What this action lets you do:
@@ -9,11 +12,6 @@ What this action lets you do:
   * Custom rsync flags
   * Clear cache
   * Execute a post-deploy script of your choosing
-
-
-v3.0 AVAILABLE NOW! [View Changelog here.](https://github.com/wpengine/github-action-wpe-site-deploy/releases)
-
-
 
 ## Setup Instructions
 
