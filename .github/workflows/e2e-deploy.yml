@@ -1,5 +1,7 @@
 name: Test e2e Deploy to WP Engine
 on:
+  schedule:
+    - cron: '*/5 * * * *'
   push:
     branches:
       - main
@@ -38,3 +40,12 @@ jobs:
       - name: Validate deploy results
         run: |
           [ ${{needs.run_action.outputs.status}} = "pass" ] || exit 1
+      - name: Notify slack on failure
+        if: failure()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel: status-github-action
+          status: FAILED
+          color: danger
