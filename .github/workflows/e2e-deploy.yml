@@ -41,7 +41,7 @@ jobs:
         run: |
           [ ${{needs.run_action.outputs.status}} = "pass" ] || exit 1
       - name: Notify slack on failure
-        if: success() && github.ref == 'refs/heads/main'
+        if: failure() && github.ref == 'refs/heads/main'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
         uses: voxmedia/github-action-slack-notify-build@v1
