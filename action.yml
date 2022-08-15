@@ -46,4 +46,4 @@ inputs:
 
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: docker://wpengine/gha:v1
