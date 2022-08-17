@@ -6,6 +6,6 @@ LABEL "com.github.actions.color"="blue"
 LABEL "repository"="http://github.com/wpengine/github-action-wpe-site-deploy"
 LABEL "maintainer"="Alex Zuniga <alex.zuniga@wpengine.com>"
 RUN apk add bash php
-ADD entrypoint.sh /entrypoint.sh
+ADD entrypoint2.sh /entrypoint2.sh
 ADD exclude.txt /exclude.txt
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint2.sh"]
