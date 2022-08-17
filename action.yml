@@ -46,4 +46,4 @@ inputs:
 
 runs:
   using: "docker"
-  image: docker://wpengine/gha:v1
+  image: docker://wpengine/gha:latest
