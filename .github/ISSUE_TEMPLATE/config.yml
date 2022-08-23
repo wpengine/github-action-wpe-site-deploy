@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Feature requests
+    url: https://github.com/wpengine/github-action-wpe-site-deploy/discussions/new
+    about: Create a new discussion in the "Ideas" category
+  - name: Help requests
+    url: https://my.wpengine.com/support
+    about: Contact WP Engine live chat support for help with configuration or troubleshooting

@@ -1,0 +1,11 @@
+name: Publish release tags
+description: Ensures major, minor, and patch version tags for a given version.
+inputs:
+  version:
+    description: 'Patch version to publish.'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run: "${{ github.action_path }}/publish.sh ${{ inputs.version }}"
+      shell: bash
