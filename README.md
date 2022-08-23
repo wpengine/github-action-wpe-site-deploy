@@ -5,28 +5,26 @@
 
 # WP Engine GitHub Action for Site Deployment
 
-Use this GitHub Action to deploy code from a GitHub repo to a WP Engine environment of your choosing.
-What this action lets you do:
-  * Deploy a full site directory or a subdirectory of your WordPress install
+Use this GitHub Action to deploy code from a GitHub repo to a WP Engine environment of your choosing. If you dot not have a WP Engine Account, [click here to get started!](https://wpengine.com/plans/?utm_content=wpe_gha)
+
+This action enables you to:
+  * Deploy a full site directory or subdirectory of your WordPress install
   * Perform a PHP Lint
-  * Custom rsync flags
+  * Customize rsync flags
   * Clear cache
   * Execute a post-deploy script of your choosing
 
 ## Setup Instructions
 
-1. **SSH PRIVATE KEY SETUP IN GITHUB**
-* [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key) if you have not already done so. Please note that this SSH Key needs to be *passwordless*.
+
+1. **SSH PUBLIC KEY SETUP IN WP ENGINE**
+* [Generate a new SSH key pair](https://wpengine.com/support/ssh-keys-for-shell-access/#Generate_New_SSH_Key?utm_content=wpe_gha) if you have not already done so. Please note that this SSH Key needs to be *passwordless*.
+
+* Add *SSH Public Key* to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key?utm_content=wpe_gha)
+
+2. **SSH PRIVATE KEY SETUP IN GITHUB**
 
 * Add the *SSH Private Key* to your [Repository Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) or your [Organization Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-organization). Save the new secret "Name" as `WPE_SSHG_KEY_PRIVATE`.
-
-**NOTE:** If using a GitHub Organization, adding the SSH key to the [Organization Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-organization) will allow all repos to reference the same SSH key for deploys using the method in the sample `main.yml`. The SSH Key also connects to all installs made available to its WP Engine User. One key can then effectively be used to deploy all projects to their respective sites on WP Engine. Less work. More deploys!
-
-2. **SSH PUBLIC KEY SETUP IN WP ENGINE**
-
-* Add *SSH Public Key* to WP Engine SSH Gateway Key settings. [This Guide will show you how.](https://wpengine.com/support/ssh-gateway/#Add_SSH_Key)
-
-**NOTE:** This Action DOES NOT utilize WP Engine GitPush or the GitPush SSH keys [found here.](https://wpengine.com/support/git/#Add_SSH_Key_to_User_Portal)
 
 3. **YML SETUP**
 
@@ -112,11 +110,15 @@ jobs:
 | `CACHE_CLEAR` | bool | Optionally clear page and CDN cache post deploy. This takes a few seconds. Default is TRUE. |
 
 
+
+
 ### Further reading
 
+* **NOTE:** This Action DOES NOT utilize WP Engine GitPush or the GitPush SSH keys [found here.](https://wpengine.com/support/git/#Add_SSH_Key_to_User_Portal?utm_content=wpe_gha)
+* **TIP:** If using a GitHub Organization, adding the SSH key to the [Organization Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-an-organization) will allow all repos to reference the same SSH key for deploys using the method in the sample `main.yml`. The SSH Key also connects to all installs made available to its WP Engine User. One key can then effectively be used to deploy all projects to their respective sites on WP Engine. Less work. More deploys!
 * [Defining environment variables in GitHub Actions](https://docs.github.com/en/actions/reference/environment-variables)
 * [Storing secrets in GitHub repositories](https://docs.github.com/en/actions/reference/encrypted-secrets)
-* It is recommended to leverage one of [WP Engine's .gitignore templates.](https://wpengine.com/support/git/#Add_gitignore)
+* It is recommended to leverage one of [WP Engine's .gitignore templates.](https://wpengine.com/support/git/#Add_gitignore?utm_content=wpe_gha)
 * This action excludes several files and directories from the deploy by default. See the [exclude.txt](https://github.com/wpengine/github-action-wpe-site-deploy/blob/main/exclude.txt) for reference.
 
 ## Versioning
