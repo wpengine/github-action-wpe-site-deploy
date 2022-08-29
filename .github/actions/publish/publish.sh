@@ -23,6 +23,7 @@ version="$1"
 #   capture 4: patch number with dot
 #   capture 5: patch number without dot
 VERSION_REGEX="^([1-9][0-9]*)(\.(0|[1-9][0-9]*)){0,1}(\.(0|[1-9][0-9]*)){0,1}$"
+PUBLISHED='false'
 
 if [[ "$version" =~ $VERSION_REGEX ]] ; then
     majorTag="v${BASH_REMATCH[1]}"
@@ -41,6 +42,7 @@ else
     echo "Creating tag: $patchTag"
     git tag -a "$patchTag" -m " Release $patchTag"
     git push origin "$patchTag"
+    PUBLISHED='true'
 fi
 
 for tag in "${tagsToUpdate[@]}"; do
@@ -56,3 +58,5 @@ for tag in "${tagsToUpdate[@]}"; do
     git tag -fa "$tag" -m "$message"
     git push origin "$tag" --force
 done
+
+echo "::set-output name=PUBLISHED::$PUBLISHED"
