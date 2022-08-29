@@ -26,11 +26,4 @@ We use [Changesets](https://github.com/changesets/changesets) to automate versio
     - [ ] All `.changeset/*.md` files were removed.
 3. Approve, then "Squash and merge" the PR into `main`.
 
-Merging the versioning PR will run a workflow that creates or updates all necessary tags. The next step is to create a release in GitHub. This may be automated in the future, but for now the process is:
-
-1. In GitHub, visit "Releases -> Draft new release"
-2. In the "Choose a tag" dropdown, choose the tag you want to release. This is usually the most recently created patch tag (`v{MAJOR}.{MINOR}.{PATCH}`). Major/minor tags (i.e `v3` and `v3.0`) are only present to allow users to opt into automatic patch or minor version updates and should not be associated with a GitHub release.
-3. Leave the target branch set to `main`.
-4. Give the release a title. Typically, this will be identical to the release's tag name.
-5. Copy the [CHANGLELOG.md](./CHANGELOG.md) entry for this release into the release body.
-6. Click "Publish Release".
+Merging the versioning PR will run a workflow that creates or updates all necessary tags. It will also create a new release in GitHub.
