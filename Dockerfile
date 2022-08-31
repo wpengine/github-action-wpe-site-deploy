@@ -8,3 +8,4 @@ ADD exclude.txt /exclude.txt
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Will it build with regex after adding capture groups to the regex in Dockerhub?
+# Please.
