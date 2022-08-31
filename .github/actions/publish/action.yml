@@ -4,8 +4,13 @@ inputs:
   version:
     description: 'Patch version to publish.'
     required: true
+outputs:
+  published:
+    description: 'Whether a new version was published.'
+    value: ${{ steps.publish.outputs.PUBLISHED }}
 runs:
   using: 'composite'
   steps:
-    - run: "${{ github.action_path }}/publish.sh ${{ inputs.version }}"
+    - id: publish
+      run: "${{ github.action_path }}/publish.sh ${{ inputs.version }}"
       shell: bash
