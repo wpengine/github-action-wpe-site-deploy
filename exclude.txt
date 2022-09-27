@@ -1,7 +1,7 @@
-# Version Control 
-# NOTE: 
+# Version Control
+# NOTE:
 #    WP Engine does not support server side versioning so hosting any version control
-#    on the server would not be advantageous. 
+#    on the server would not be advantageous.
 
 *~
 .git
@@ -16,10 +16,10 @@ Thumbs.db
 
 # WordPress specific files
 # NOTE:
-#     These files are excluded from the deploy so as to prevent unwanted errors from occurring, 
+#     These files are excluded from the deploy so as to prevent unwanted errors from occurring,
 #     such as accidentally deploying a local version of wp-config.php or accidentally deleting
-#     wp-content/uploads/ if a --delete flag is passed while deploying root. Most paths here 
-#     are ingnored in the WPE sample .gitinore per best practice.
+#     wp-content/uploads/ if a --delete flag is passed while deploying root. Most paths here
+#     are ingnored in the WPE sample .gitignore per best practice.
 wp-config.php
 wp-content/uploads/
 wp-content/blogs.dir/
