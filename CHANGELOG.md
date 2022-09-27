@@ -1,5 +1,15 @@
 # @wpengine/github-action-wpe-site-deploy
 
+## 3.2.0
+
+### Minor Changes
+
+- 24c8aaf: Add CDN cache clearing ability to the CACHE_CLEAR flag.
+
+### Patch Changes
+
+- 7301b87: Improve performance by utilizing pre-built Docker Image.
+
 ## 3.1.1
 
 ### Patch Changes
