@@ -19,7 +19,7 @@ Thumbs.db
 #     These files are excluded from the deploy so as to prevent unwanted errors from occurring, 
 #     such as accidentally deploying a local version of wp-config.php or accidentally deleting
 #     wp-content/uploads/ if a --delete flag is passed while deploying root. Most paths here 
-#     are ingnored in the WPE sample .gitinore per best practice.
+#     are ingnored in the WPE sample .gitignore per best practice.
 wp-config.php
 wp-content/uploads/
 wp-content/blogs.dir/
