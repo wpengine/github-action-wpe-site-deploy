@@ -5,7 +5,7 @@
 
 # WP Engine GitHub Action for Site Deployment
 
-Use this GitHub Action to deploy code from a GitHub repo to a WP Engine environment of your choosing. If you dot not have a WP Engine Account, [click here to get started!](https://wpengine.com/plans/?utm_content=wpe_gha)
+Use this GitHub Action to deploy code from a GitHub repo to a WP Engine environment of your choosing. If you dot not have a WP Engine Account, [click here to get started!](https://wpengine.com/plans/?utm_content=wpe_gha) If you do have an account, check out our guided [step-by-step instructions](https://my.wpengine.com/profile/github_action).
 
 This action enables you to:
   * Deploy a full site directory or subdirectory of your WordPress install
