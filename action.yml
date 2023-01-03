@@ -46,4 +46,16 @@ inputs:
 
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: wpengine/site-deploy:1.0.0
+  env:
+    WPE_SSHG_KEY_PRIVATE: ${{ inputs.WPE_SSHG_KEY_PRIVATE }}
+    WPE_ENV: ${{ inputs.WPE_ENV }}
+    PRD_ENV: ${{ inputs.PRD_ENV }}
+    STG_ENV: ${{ inputs.STG_ENV }}
+    DEV_ENV: ${{ inputs.DEV_ENV }}
+    REMOTE_PATH: ${{ inputs.REMOTE_PATH }}
+    SRC_PATH: ${{ inputs.SRC_PATH }}
+    FLAGS: ${{ inputs.FLAGS }}
+    PHP_LINT: ${{ inputs.PHP_LINT }}
+    CACHE_CLEAR: ${{ inputs.CACHE_CLEAR }}
+    SCRIPT: ${{ inputs.SCRIPT }}
