@@ -24,7 +24,7 @@ jobs:
         uses: ./
         with:
           # Deploy vars
-          WPE_SSHG_KEY_PRIVATE: ${{ inputs.WPE_SSHG_KEY_PRIVATE }}
+          WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
           WPE_ENV: ghae2e
           # Deploy Options
           SRC_PATH: "tests/data/plugins/test-plugin"
