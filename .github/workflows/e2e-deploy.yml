@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       status: ${{ steps.deploy.outputs.status }}
-    steps: 
+    steps:
       - uses: actions/checkout@v3
       - name: Bump test plugin version number
         run: sed -i 's/0.0.1/0.0.2/' tests/data/plugins/test-plugin/test-plugin.php
@@ -23,8 +23,8 @@ jobs:
         id: deploy
         uses: ./
         with:
-          # Deploy vars 
-          WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }} 
+          # Deploy vars
+          WPE_SSHG_KEY_PRIVATE: ${{ inputs.WPE_SSHG_KEY_PRIVATE }}
           WPE_ENV: ghae2e
           # Deploy Options
           SRC_PATH: "tests/data/plugins/test-plugin"
