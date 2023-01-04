@@ -1,5 +1,11 @@
 # @wpengine/github-action-wpe-site-deploy
 
+## 3.2.2
+
+### Patch Changes
+
+- 42002e5: Fixes an issue in v3.2.1 where the action may fail to resolve the public Docker image
+
 ## 3.2.1
 
 ### Patch Changes
