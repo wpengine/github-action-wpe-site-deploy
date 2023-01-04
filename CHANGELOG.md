@@ -1,5 +1,11 @@
 # @wpengine/github-action-wpe-site-deploy
 
+## 3.2.1
+
+### Patch Changes
+
+- cecc467: [CICD-217] Replace split image with site-deploy combined image
+
 ## 3.2.0
 
 ### Minor Changes
