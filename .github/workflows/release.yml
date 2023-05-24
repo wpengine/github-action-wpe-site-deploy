@@ -37,7 +37,7 @@ jobs:
 
       - name: Get current version
         id: version
-        run: echo "::set-output name=CURRENT_VERSION::$(node -p "require('./package.json').version")"
+        run: echo "CURRENT_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
   release:
     name: Release

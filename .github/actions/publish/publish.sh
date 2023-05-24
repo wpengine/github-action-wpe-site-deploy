@@ -59,4 +59,4 @@ for tag in "${tagsToUpdate[@]}"; do
     git push origin "$tag" --force
 done
 
-echo "::set-output name=PUBLISHED::$PUBLISHED"
+echo "PUBLISHED=$PUBLISHED" >> $GITHUB_OUTPUT
