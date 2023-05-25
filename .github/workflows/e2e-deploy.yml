@@ -49,6 +49,7 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFICATIONS_BOT_TOKEN }}
         uses: voxmedia/github-action-slack-notify-build@v1
         with:
-          channel: status-github-action
+          # Channel: status-github-action
+          channel_id: C03QDL9U0TW
           status: FAILED
           color: danger
