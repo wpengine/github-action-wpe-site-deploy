@@ -3,6 +3,7 @@
 BACKUP_DIR=/tmp
 PLUGINS_DIR=wp-content/plugins
 PLUGIN_NAME=test-plugin
+STATUS_FILE=status.json
 
 cleanup() {
     rm tests/data/post-deploy/test-plugin.sh
@@ -25,8 +26,8 @@ echo "Old test plugin version: $BEFORE_PLUGIN_VERSION"
 # Check that the expected update was made
 if [ -z "$BEFORE_PLUGIN_VERSION" ] || [ -z "$AFTER_PLUGIN_VERSION" ] || [ "$BEFORE_PLUGIN_VERSION" = "$AFTER_PLUGIN_VERSION" ]; then
     echo "Failure: Test plugin was not updated!"
-    echo "::set-output name=status::fail"
+    echo "{\"status\": \"failure\"}" > $PLUGINS_DIR/$PLUGIN_NAME/$STATUS_FILE
 else
     echo "Success: Test plugin successfully updated from $BEFORE_PLUGIN_VERSION to $AFTER_PLUGIN_VERSION!"
-    echo "::set-output name=status::pass"
+    echo "{\"status\": \"success\"}" > $PLUGINS_DIR/$PLUGIN_NAME/$STATUS_FILE
 fi
