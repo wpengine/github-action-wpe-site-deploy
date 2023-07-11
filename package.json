@@ -8,6 +8,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "^2.24.1"
+    "@changesets/cli": "^2.26.2"
   }
 }
