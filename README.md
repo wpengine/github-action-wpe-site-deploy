@@ -119,7 +119,7 @@ jobs:
 * [Defining environment variables in GitHub Actions](https://docs.github.com/en/actions/reference/environment-variables)
 * [Storing secrets in GitHub repositories](https://docs.github.com/en/actions/reference/encrypted-secrets)
 * It is recommended to leverage one of [WP Engine's .gitignore templates.](https://wpengine.com/support/git/#Add_gitignore?utm_content=wpe_gha)
-* This action excludes several files and directories from the deploy by default. See the [exclude.txt](https://github.com/wpengine/github-action-wpe-site-deploy/blob/main/exclude.txt) for reference.
+* This action excludes several files and directories from the deploy by default. See the [exclude.txt](https://github.com/wpengine/site-deploy/blob/main/exclude.txt) for reference.
 
 ## Versioning
 
