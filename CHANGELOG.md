@@ -1,5 +1,13 @@
 # @wpengine/github-action-wpe-site-deploy
 
+## 3.2.4
+
+### Patch Changes
+
+- 34b3009: Update link to exclude.txt
+- 1a754af: Bump @changesets/cli > 2.26.2 (resolves semver vulnerability)
+- 4e010b0: Update wpengine/site-deploy image to 1.0.2
+
 ## 3.2.3
 
 ### Patch Changes
