@@ -1,5 +1,5 @@
 name: Test e2e Deploy to WP Engine
-on:
+on: 
   schedule:
     - cron: '*/5 * * * *'
   push:
