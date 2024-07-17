@@ -1,5 +1,11 @@
 # @wpengine/github-action-wpe-site-deploy
 
+## 3.2.5
+
+### Patch Changes
+
+- 24a71db: Update wpengine/site-deploy image to 1.0.3
+
 ## 3.2.4
 
 ### Patch Changes
