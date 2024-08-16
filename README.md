@@ -84,7 +84,7 @@ jobs:
         SRC_PATH: "wp-content/themes/genesis-child-theme/"
         REMOTE_PATH: "wp-content/themes/genesis-child-theme/"
         PHP_LINT: TRUE
-        FLAGS: -azvr --inplace --delete --exclude=".*"  --exclude=wp-content/mu-plugins/local-plugin --exclude-from=ignorefile.txt
+        FLAGS: -azvr --inplace --delete --exclude=".*"  --exclude=wp-content/mu-plugins/local-plugin --exclude-from=.deployignore
         SCRIPT: "path/yourscript.sh"
         CACHE_CLEAR: TRUE
 ```
