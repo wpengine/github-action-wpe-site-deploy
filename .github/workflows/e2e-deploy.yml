@@ -9,6 +9,9 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-main
+  cancel-in-progress: false
 
 jobs:
   run_action:
