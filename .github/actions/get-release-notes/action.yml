@@ -17,8 +17,7 @@ runs:
     - id: notes
       run: |
           notes=$(node ${{ github.action_path }}/getReleaseNotes ${{ inputs.version }} ${{ inputs.changelog }})
-          notes="${notes//'%'/'%25'}"
-          notes="${notes//$'\n'/'%0A'}"
-          notes="${notes//$'\r'/'%0D'}"
-          echo "RELEASE_NOTES=$notes" >> $GITHUB_OUTPUT
+          echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+          echo "$notes" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
       shell: bash
