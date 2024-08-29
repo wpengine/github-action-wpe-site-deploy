@@ -9,5 +9,8 @@
   "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "^2.26.2"
+  },
+  "scripts": {
+    "version": "changeset version && npm install --package-lock-only"
   }
 }
