@@ -1,7 +1,7 @@
 name: Test e2e Deploy to WP Engine
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/60 * * * *'
   push:
     branches:
       - main
