@@ -1,5 +1,11 @@
 # @wpengine/github-action-wpe-site-deploy
 
+## 3.2.8
+
+### Patch Changes
+
+- d903a96: Bump wpengine/site-deploy image version [1.0.6](https://github.com/wpengine/site-deploy/releases/tag/v1.0.6)
+
 ## 3.2.7
 
 ### Patch Changes
