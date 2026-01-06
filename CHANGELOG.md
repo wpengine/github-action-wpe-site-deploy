@@ -1,5 +1,11 @@
 # @wpengine/github-action-wpe-site-deploy
 
+## 3.2.9
+
+### Patch Changes
+
+- cbc333d: Bump wpengine/site-deploy image version [1.0.7](https://github.com/wpengine/site-deploy/releases/tag/v1.0.7)
+
 ## 3.2.8
 
 ### Patch Changes
