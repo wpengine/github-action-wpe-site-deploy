@@ -15,11 +15,22 @@ We use the [feature branch workflow](https://www.atlassian.com/git/tutorials/com
 5. Open a pull request to the `main` branch.
 6. Once all checks are passing and the PR is approved, Squash and Merge into the `main` branch.
 
+## Updating the Docker Image
+
+The docker image that this action relies on is managed in https://github.com/wpengine/site-deploy. After a new `wpengine/site-deploy` image is released and tagged:
+
+1. Create a new branch.
+2. Update the tag in [./action.yml](./action.yml).
+3. Use `npx changeset` to create a changeset describing the change to users.
+4. Commit your changes.
+5. Open a pull request to the `main` branch.
+6. Once all checks are passing and the PR is approved, Squash and Merge into the `main` branch.
+
 ## Creating a release
 
-We use [Changesets](https://github.com/changesets/changesets) to automate versioning and releasing. When you are ready to release, the first step is to create the new version.
+We use [Changesets](https://github.com/changesets/changesets) to automate versioning and releasing.
 
-1. Go to pull requests and view the "Version Action" PR.
+1. Go to pull requests and view the automated "Version Action" PR.
 2. Review the PR:
     - [ ] Changelog entries were created.
     - [ ] Version number in package.json was bumped.
@@ -27,28 +38,3 @@ We use [Changesets](https://github.com/changesets/changesets) to automate versio
 3. Approve, then "Squash and merge" the PR into `main`.
 
 Merging the versioning PR will run a workflow that creates or updates all necessary tags. It will also create a new release in GitHub.
-
-## Managing the Dockerfile & Docker Image
-
-The base of the `Dockerfile` is hosted as a Docker image on DockerHub. The image is originally built locally from `Dockerfiles/Dockerfile` and pushed up to DockerHub.
-
-The main `Dockerfile` at the project root imports the `wpengine/gha:base-stable` hosted image from DockerHub. Customizations to the image should be added below the base image for code that is updated more frequently, such as:
-- entrypoint.sh
-- exclude.txt
-
-All other customizations that are updated less frequently, or managed by 3rd parties, should be added to the `base-stable` image. Rebuild and push the image to DockerHub to update the image.
-
-## Updating the Docker Image
-The `base-stable` Docker Image will rarely need to be updated, however it may be necessary to update it manually* from time to time.
-
-- Build the docker image locally:
-`docker build --no-cache -t wpengine/gha:base-stable Dockerfiles`
-
-- Push the image to DockerHub:
-`docker push wpengine/gha:base-stable`
-
-Once the hosted Docker image is updated, it will need to be imported (or updated) on the main project `Dockerfile`. If the Dockerhub tag name (image version) has changed, update the existing line in the project root `Dockerfile` to match the new tag name.
-- Update the root Docker file for the project with the latest version of the Docker Image:tagname. i.e.:
-`FROM wpengine/gha:base-stable`
-
-_*TO DO: Process will be automated in the future._
