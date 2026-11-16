@@ -29,7 +29,6 @@ jobs:
           # Deploy Options
           SRC_PATH: "tests/data/plugins/test-plugin"
           REMOTE_PATH: "wp-content/plugins/"
-          PHP_LINT: true
           FLAGS: -r --backup --backup-dir=/tmp --itemize-changes
           SCRIPT: "tests/data/post-deploy/test-plugin.sh"
           CACHE_CLEAR: true

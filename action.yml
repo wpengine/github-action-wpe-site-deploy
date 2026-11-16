@@ -11,7 +11,10 @@ inputs:
   PHP_LINT:
     description: "optional php syntax check"
     required: false
-    default: false
+    default: 'false'
+    deprecationMessage: >-
+      PHP_LINT is no longer supported as of wpengine/github-action-wpe-site-deploy@v4.
+      Please run PHP lint as a separate step in your workflow.
   FLAGS:
     description: "Optional flags for the deployment"
     required: true
@@ -46,7 +49,7 @@ inputs:
 
 runs:
   using: "docker"
-  image: docker://wpengine/site-deploy:1.0.9
+  image: docker://wpengine/site-deploy:2.0.0
   env:
     WPE_SSHG_KEY_PRIVATE: ${{ inputs.WPE_SSHG_KEY_PRIVATE }}
     WPE_ENV: ${{ inputs.WPE_ENV }}
@@ -56,6 +59,5 @@ runs:
     REMOTE_PATH: ${{ inputs.REMOTE_PATH }}
     SRC_PATH: ${{ inputs.SRC_PATH }}
     FLAGS: ${{ inputs.FLAGS }}
-    PHP_LINT: ${{ inputs.PHP_LINT }}
     CACHE_CLEAR: ${{ inputs.CACHE_CLEAR }}
     SCRIPT: ${{ inputs.SCRIPT }}
